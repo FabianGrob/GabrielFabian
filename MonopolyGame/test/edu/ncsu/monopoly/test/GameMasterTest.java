@@ -174,7 +174,14 @@ public class GameMasterTest extends TestCase {
          }
         @Test
         public void testBtnGetOutOfJailClicked() {
-            //MonopolyGUI gui = gameMaster.getGUI();
+            MonopolyGUI gui = gameMaster.getGUI();
+            Player testP=gameMaster.getCurrentPlayer();
+            gameMaster.sendToJail(testP);
+            gameMaster.btnEndTurnClicked();
+            gameMaster.btnEndTurnClicked();
+            gameMaster.btnGetOutOfJailClicked();
+            gui.isEndTurnButtonEnabled();
+           // gui.is
             
         }
 }
