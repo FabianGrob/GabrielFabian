@@ -220,4 +220,23 @@ public class MainWindow extends JFrame implements MonopolyGUI{
 			cell.displayInfo();
 		}
 	}
+
+    @Override
+    public boolean isBuyHouseEnabled() {
+          int currentPlayerIndex = GameMaster.instance().getCurrentPlayerIndex();
+        return playerPanels[currentPlayerIndex].isBuyHouseButtonEnabled();
+    }
+
+    @Override
+    public boolean isPurchasePropertyButtonEnabled() {
+        int currentPlayerIndex = GameMaster.instance().getCurrentPlayerIndex();
+        return playerPanels[currentPlayerIndex].isPurchasePropertyButtonEnabled(); 
+    }
+
+    @Override
+    public boolean isRollDiceButtonEnabled() {
+         int currentPlayerIndex = GameMaster.instance().getCurrentPlayerIndex();
+        return playerPanels[currentPlayerIndex].isRollDiceButtonEnabled();
+    }
 }
+    

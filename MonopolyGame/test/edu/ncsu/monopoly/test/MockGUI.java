@@ -10,7 +10,7 @@ import edu.ncsu.monopoly.TradeDialog;
 
 public class MockGUI implements MonopolyGUI {
 
-    private boolean btnDrawCardState, btnEndTurnState, btnGetOutOfJailState;
+    private boolean btnDrawCardState, btnEndTurnState, btnGetOutOfJailState,btnBuyHouseState,btnPurchasePropertyState,RollDiceState;
     private boolean[] btnTradeState = new boolean[2];
 
     public void enableEndTurnBtn(int playerIndex) {
@@ -37,10 +37,9 @@ public class MockGUI implements MonopolyGUI {
         return btnEndTurnState;
     }
     
-  /*  public boolean isBuyHouseEnabled(){
-       // return btnBuyHouseState;
-       return true;
-    }*/
+    public boolean isBuyHouseEnabled(){
+      return btnBuyHouseState;
+    }
     
     public boolean isGetOutOfJailButtonEnabled() {
         return btnGetOutOfJailState;
@@ -48,6 +47,12 @@ public class MockGUI implements MonopolyGUI {
 
     public boolean isTradeButtonEnabled(int i) {
         return btnTradeState[i];
+    }
+    public boolean isPurchasePropertyButtonEnabled(){
+        return btnPurchasePropertyState;
+    }
+    public boolean isRollDiceButtonEnabled(){
+        return this.RollDiceState;
     }
 
     public void movePlayer(int index, int from, int to) {
@@ -63,7 +68,13 @@ public class MockGUI implements MonopolyGUI {
         return dialog;
     }
 
+    public void setRollDiceEnabled(boolean b) {
+        
+        this.RollDiceState=b;
+    }
+    
     public void setBuyHouseEnabled(boolean b) {
+        this.btnBuyHouseState=b;
     }
 
     public void setDrawCardEnabled(boolean b) {
@@ -79,9 +90,7 @@ public class MockGUI implements MonopolyGUI {
     }
 
     public void setPurchasePropertyEnabled(boolean enabled) {
-    }
-
-    public void setRollDiceEnabled(boolean b) {
+        this.btnPurchasePropertyState=enabled;
     }
 
     public void setTradeEnabled(int index, boolean b) {

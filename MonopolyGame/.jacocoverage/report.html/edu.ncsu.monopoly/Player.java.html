@@ -115,14 +115,14 @@ public class Player {
 	}
 
 	public void getOutOfJail() {
-<span class="nc" id="L118">		money -= JailCell.BAIL;</span>
-<span class="nc bnc" id="L119" title="All 2 branches missed.">		if(isBankrupt()) {</span>
+<span class="fc" id="L118">		money -= JailCell.BAIL;</span>
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">		if(isBankrupt()) {</span>
 <span class="nc" id="L120">			money = 0;</span>
 <span class="nc" id="L121">			exchangeProperty(null);</span>
 		}
-<span class="nc" id="L123">		inJail = false;</span>
-<span class="nc" id="L124">		GameMaster.instance().updateGUI();</span>
-<span class="nc" id="L125">	}</span>
+<span class="fc" id="L123">		inJail = false;</span>
+<span class="fc" id="L124">		GameMaster.instance().updateGUI();</span>
+<span class="fc" id="L125">	}</span>
 
 	public Cell getPosition() {
 <span class="fc" id="L128">		return this.position;</span>

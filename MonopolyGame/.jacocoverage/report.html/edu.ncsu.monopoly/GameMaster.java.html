@@ -68,8 +68,8 @@ public class GameMaster {
 <span class="fc" id="L68">    }</span>
 
     public void btnGetOutOfJailClicked() {
-<span class="nc" id="L71">		getCurrentPlayer().getOutOfJail();</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">		if(getCurrentPlayer().isBankrupt()) {</span>
+<span class="fc" id="L71">		getCurrentPlayer().getOutOfJail();</span>
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">		if(getCurrentPlayer().isBankrupt()) {</span>
 <span class="nc" id="L73">			gui.setBuyHouseEnabled(false);</span>
 <span class="nc" id="L74">			gui.setDrawCardEnabled(false);</span>
 <span class="nc" id="L75">			gui.setEndTurnEnabled(false);</span>
@@ -79,11 +79,11 @@ public class GameMaster {
 <span class="nc" id="L79">			gui.setTradeEnabled(getCurrentPlayerIndex(),false);</span>
 		}
 		else {
-<span class="nc" id="L82">			gui.setRollDiceEnabled(true);</span>
-<span class="nc" id="L83">			gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse());</span>
-<span class="nc" id="L84">			gui.setGetOutOfJailEnabled(getCurrentPlayer().isInJail());</span>
+<span class="fc" id="L82">			gui.setRollDiceEnabled(true);</span>
+<span class="fc" id="L83">			gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse());</span>
+<span class="fc" id="L84">			gui.setGetOutOfJailEnabled(getCurrentPlayer().isInJail());</span>
 		}
-<span class="nc" id="L86">    }</span>
+<span class="fc" id="L86">    }</span>
 
     public void btnPurchasePropertyClicked() {
 <span class="fc" id="L89">        Player player = getCurrentPlayer();</span>
@@ -300,13 +300,13 @@ public class GameMaster {
 
 	public void switchTurn() {
 <span class="fc" id="L302">		turn = (turn + 1) % getNumberOfPlayers();</span>
-<span class="pc bpc" id="L303" title="1 of 2 branches missed.">		if(!getCurrentPlayer().isInJail()) {</span>
+<span class="fc bfc" id="L303" title="All 2 branches covered.">		if(!getCurrentPlayer().isInJail()) {</span>
 <span class="fc" id="L304">			gui.enablePlayerTurn(turn);</span>
 <span class="fc" id="L305">			gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse());</span>
 <span class="fc" id="L306">            gui.setTradeEnabled(turn, true);</span>
 		}
 		else {
-<span class="nc" id="L309">			gui.setGetOutOfJailEnabled(false);</span>
+<span class="fc" id="L309">			gui.setGetOutOfJailEnabled(false);</span>
 		}
 <span class="fc" id="L311">	}</span>
 	

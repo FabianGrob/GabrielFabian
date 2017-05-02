@@ -10,7 +10,7 @@ public interface MonopolyGUI {
 
     public int[] getDiceRoll();
 
-   // public boolean isBuyHouseEnabled();
+   public boolean isBuyHouseEnabled();
     
     public boolean isDrawCardButtonEnabled();
 
@@ -19,6 +19,10 @@ public interface MonopolyGUI {
     public boolean isGetOutOfJailButtonEnabled();
 
     public boolean isTradeButtonEnabled(int i);
+    
+    public boolean isPurchasePropertyButtonEnabled();
+    
+    public boolean isRollDiceButtonEnabled();
 
     public void movePlayer(int index, int from, int to);
 
