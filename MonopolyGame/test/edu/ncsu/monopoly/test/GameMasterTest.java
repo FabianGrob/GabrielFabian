@@ -86,7 +86,7 @@ public class GameMasterTest extends TestCase {
         assertEquals(1, gameMaster.getNumberOfSellers());
     }
     @Test
-    public void testTradeFirstSeller() {
+    public void testTradeFirstSeller(){
         MonopolyGUI gui = gameMaster.getGUI();
         gameMaster.movePlayer(0, 1);
         gameMaster.getCurrentPlayer().purchase();
@@ -165,4 +165,16 @@ public class GameMasterTest extends TestCase {
 		assertEquals(1640,gameMaster.getPlayer(0).getMoney());
 		assertEquals(1300,gameMaster.getPlayer(1).getMoney());
 	}
+        @Test
+        public void testSetInitAmountOfMoney(){
+            int initialAmount = gameMaster.getInitAmountOfMoney();
+            gameMaster.setInitAmountOfMoney(0);
+            assertEquals(gameMaster.getInitAmountOfMoney(),0);
+            gameMaster.setInitAmountOfMoney(initialAmount);
+         }
+        @Test
+        public void testBtnGetOutOfJailClicked() {
+            //MonopolyGUI gui = gameMaster.getGUI();
+            
+        }
 }
