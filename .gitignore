@@ -1,3 +1,6 @@
 /MonopolyGame/nbproject/private/
 /MonopolyGame/build/
 /MonopolyGame/dist/
+/sonar-scanner
+/.scannerwork
+/.DS_Store
