@@ -21,14 +21,19 @@ public class PlayerTest extends TestCase {
         gameMaster.setTestMode(true);
         gameMaster.reset();
 	}
-	
-	public void testPurchaseProperty() {
+	public void testPurchasePropertyCheckMnyAndPropName() {
 		gameMaster.setNumberOfPlayers(1);
 		gameMaster.movePlayer(0, 3);
 		Player player = gameMaster.getPlayer(0);
 		player.purchase();
 		assertEquals(1380, player.getMoney());
-		assertEquals("Blue 3", player.getProperty(0).getName());
+                assertEquals("Blue 3", player.getProperty(0).getName());
+        }
+	public void testPurchasePropertyCheckOwner() {
+		gameMaster.setNumberOfPlayers(1);
+		gameMaster.movePlayer(0, 3);
+		Player player = gameMaster.getPlayer(0);
+		player.purchase();
 		PropertyCell cell =
 			(PropertyCell) gameMaster.getGameBoard().queryCell("Blue 3");
 		assertSame(player, cell.getOwner());
