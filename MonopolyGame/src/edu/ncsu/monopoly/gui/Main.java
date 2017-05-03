@@ -29,6 +29,17 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+                 DataBase dB;
+        
+        try {
+            Serialize ser = new Serialize();
+            dB = ser.recuperate();
+            javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception ex) {
+            dB = new DataBase();
+        }
+            
+            
 		GameMaster master = GameMaster.instance();
 		MainWindow window = new MainWindow();
 		GameBoard gameBoard = null;

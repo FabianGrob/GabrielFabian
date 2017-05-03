@@ -15,6 +15,8 @@ public class User {
 
     private String name;
     private File picture;
+    private int playedGames;
+    private int wonGames;
 
     
     public User(){
@@ -28,6 +30,18 @@ public class User {
 
     public void setPicture(File pic) {
         picture = pic;
+    }
+    public void setWonGames(int wGs){
+        wonGames=wGs;
+    }
+    public int getWonGames(){
+        return wonGames;
+    }
+    public void setPlayedGames(int pGs){
+        playedGames=pGs;
+    }
+    public int getPlayedGames(){
+        return playedGames;
     }
 
 }
