@@ -18,12 +18,13 @@ public class User {
     private int playedGames;
     private int wonGames;
 
-    
-    public User(){
-        name="Not name asigned yet";
-        picture = null;    
+    public User() {
+        name = "Not name asigned yet";
+        picture = null;
+        playedGames = 0;
+        wonGames = 0;
     }
-    
+
     public File getPicture() {
         return picture;
     }
@@ -31,17 +32,41 @@ public class User {
     public void setPicture(File pic) {
         picture = pic;
     }
-    public void setWonGames(int wGs){
-        wonGames=wGs;
+
+    public void setWonGames(int wGs) {
+        wonGames = wGs;
     }
-    public int getWonGames(){
+
+    public int getWonGames() {
         return wonGames;
     }
-    public void setPlayedGames(int pGs){
-        playedGames=pGs;
+
+    public void setPlayedGames(int pGs) {
+        playedGames = pGs;
     }
-    public int getPlayedGames(){
+
+    public int getPlayedGames() {
         return playedGames;
+    }
+
+    public void setName(String n) {
+        name = n;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        String txt = this.getName() + " |Puntaje: " + this.getWonGames() + "/" + this.getPlayedGames();
+        return txt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        User u2 = (User) o;
+        return this.getName().equals(u2.getName());
     }
 
 }

@@ -6,6 +6,7 @@
 package edu.ncsu.monopoly.gui;
 
 
+import edu.ncsu.monopoly.DataBase;
 import edu.ncsu.monopoly.User;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -17,12 +18,16 @@ import javax.swing.JOptionPane;
  */
 public class CreatePlayerWindow extends javax.swing.JFrame {
     private User user;
+    private DataBase dB;
+    private MainMenu prev;
    
     
     /**
      * Creates new form CreatePlayerWindow
      */
-    public CreatePlayerWindow() {
+    public CreatePlayerWindow(MainMenu previous,DataBase dBs) {
+        prev=previous;
+        dB=dBs;
         user= new User();
       // ImageIcon playerPicture=new javax.swing.ImageIcon(getClass().getResource("/PredefPic/PredefPicture.png"));
       File playerPicture = new File("/PredefPic/PredefPicture.png");
@@ -72,6 +77,11 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
         jLabel1.setText("Agreagar un Jugador");
 
         Back.setText("Cancelar");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,43 +188,22 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
         if (userName.length() < 4) {
             JOptionPane.showMessageDialog(this, "El nombre debe contener almenos 4 letras","Error" , WIDTH);
         }
+        if (dB.alreadyExists(user)) {
+            JOptionPane.showMessageDialog(this, "Ya existe un usuario con ese nombre registrado","Error" , WIDTH);
+        }
+        user.setName(userName);
+        dB.addUser(user);
+        
+        prev.setVisible(true);
+        this.setVisible(false);
         
     }//GEN-LAST:event_jButtonCreateActionPerformed
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreatePlayerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreatePlayerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreatePlayerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreatePlayerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreatePlayerWindow().setVisible(true);
-            }
-        });
-    }
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        prev.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_BackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
