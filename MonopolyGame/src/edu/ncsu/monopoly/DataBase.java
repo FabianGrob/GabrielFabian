@@ -18,7 +18,7 @@ public class DataBase implements Serializable {
     public DataBase(){
         users=new ArrayList<User>();
         User none = new User();
-        none.setName("<Ninguno>");
+        none.setName("Jugar como invitado");
         users.add(none);
     }
     public void setUsers(ArrayList<User> users){
