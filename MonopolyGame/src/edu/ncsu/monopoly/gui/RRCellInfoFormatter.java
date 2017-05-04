@@ -13,12 +13,12 @@ public class RRCellInfoFormatter implements CellInfoFormatter {
         if(owner != null) {
         	ownerName = owner.getName();
         }
-        buf.append("<html><b><font color='lime'>")
+        buf.append("<html><div style='width:100px; height:100%; text-align:center'><div style='background-color:lime; height:10px;'></div><p style='font-size:90%'><b>")
                 .append(cell.getName())
-                .append("</font></b><br>")
+                .append("<b></p><p>")
                 .append("$").append(c.getPrice())
 				.append("<br>Owner: ").append(ownerName)
-                .append("</html>");
+                .append("</p></div></html>");
         return buf.toString();
     }
 }
