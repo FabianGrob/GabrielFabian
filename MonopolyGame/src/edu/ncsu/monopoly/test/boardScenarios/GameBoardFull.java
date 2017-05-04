@@ -11,6 +11,7 @@ import edu.ncsu.monopoly.MoneyCard;
 import edu.ncsu.monopoly.MovePlayerCard;
 import edu.ncsu.monopoly.PropertyCell;
 import edu.ncsu.monopoly.RailRoadCell;
+import edu.ncsu.monopoly.TaxiCard;
 import edu.ncsu.monopoly.UtilityCell;
 
 public class GameBoardFull extends GameBoard {
@@ -56,7 +57,7 @@ public class GameBoardFull extends GameBoard {
         PropertyCell db2 = new PropertyCell();
         PropertyCell db3 = new PropertyCell();
         
-
+        
         dp1.setPrice(60);
         dp1.setColorGroup("purple");
         dp1.setHousePrice(50);
@@ -80,13 +81,13 @@ public class GameBoardFull extends GameBoard {
         lb1.setHousePrice(50);
         lb1.setName("Oriental Avenue");
         lb1.setRent(6);
-
+        
         lb2.setPrice(100);
         lb2.setColorGroup("aqua");
         lb2.setHousePrice(50);
         lb2.setName("Vermont Avenue");
         lb2.setRent(6);
-
+        
         lb3.setPrice(120);
         lb3.setColorGroup("aqua");
         lb3.setHousePrice(50);
@@ -261,8 +262,12 @@ public class GameBoardFull extends GameBoard {
         addCard(new MoneyCard("Lose $50", -50, Card.TYPE_CC));
         addCard(new JailCard(Card.TYPE_CC));
         addCard(new MovePlayerCard("St. Charles Place", Card.TYPE_CC));
-        addCard(new MovePlayerCard("Boardwalk", Card.TYPE_CC));
-
+        addCard(new TaxiCard("Journy completed", Card.TYPE_CC));
+        addCard(new TaxiCard("Journy completed", Card.TYPE_CC));
+        addCard(new TaxiCard("Journy completed", Card.TYPE_CC));
+        
+        
+        
         addCard(new MoneyCard("Win $50", 50, Card.TYPE_CHANCE));
         addCard(new MoneyCard("Win $20", 20, Card.TYPE_CHANCE));
         addCard(new MoneyCard("Win $10", 10, Card.TYPE_CHANCE));
@@ -270,5 +275,7 @@ public class GameBoardFull extends GameBoard {
         addCard(new MoneyCard("Lose $50", -50, Card.TYPE_CHANCE));
         addCard(new JailCard(Card.TYPE_CHANCE));
         addCard(new MovePlayerCard("Illinois Avenue", Card.TYPE_CHANCE));
+        addCard(new TaxiCard("Journey completed", Card.TYPE_CHANCE));
+        
     }
 }

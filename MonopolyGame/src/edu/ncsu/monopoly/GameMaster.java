@@ -104,8 +104,9 @@ public class GameMaster {
 					.append(" and ")
 					.append(rolls[1]);
 			gui.showMessage(msg.toString());
-			movePlayer(player, rolls[0] + rolls[1]);
-			gui.setBuyHouseEnabled(false);
+			//movePlayer(player, rolls[0] + rolls[1]);
+			movePlayer(player, 2);
+                        gui.setBuyHouseEnabled(false);
 		}
     }
 

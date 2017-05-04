@@ -11,16 +11,16 @@ public class MoneyCard extends Card {
         this.amount = amount;
         this.cardType = cardType;
     }
-
+    
     public void applyAction() {
         Player currentPlayer = GameMaster.instance().getCurrentPlayer();
-		currentPlayer.setMoney(currentPlayer.getMoney() + amount);
+        currentPlayer.setMoney(currentPlayer.getMoney() + amount);
     }
-
+    
     public int getCardType() {
         return cardType;
     }
-
+    
     public String getLabel() {
         return label;
     }

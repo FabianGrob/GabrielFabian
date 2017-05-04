@@ -21,8 +21,8 @@ public class DataBase implements Serializable {
         none.setName("<Ninguno>");
         users.add(none);
     }
-    public void setUsers(ArrayList<User> usrs){
-        users = usrs;
+    public void setUsers(ArrayList<User> users){
+        users = users;
     }
     public ArrayList<User> getUsers(){
         return users;
