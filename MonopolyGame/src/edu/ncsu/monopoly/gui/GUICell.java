@@ -22,7 +22,7 @@ public class GUICell extends JPanel {
         pnlPlayer.setOpaque(false);
         createPlayerLabels(pnlPlayer);
         add(pnlPlayer);
-        setPreferredSize(new Dimension(100,100));
+        setPreferredSize(new Dimension(135,80));
         addCellInfo();
         this.doLayout();
 	}
@@ -45,7 +45,8 @@ public class GUICell extends JPanel {
     private void createPlayerLabels(JPanel pnlPlayer) {
 		for (int i = 0; i < GameMaster.MAX_PLAYER; i++) {
 			lblPlayers[i] = new JLabel();
-			lblPlayers[i].setBackground(Color.GREEN);
+                        //ACA TIENE QUE IR EL CAMBIO DE COLOR DEL USUARIO!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			lblPlayers[i].setBackground(Color.RED);
 			pnlPlayer.add(lblPlayers[i]);
 		}
 	}

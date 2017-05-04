@@ -14,12 +14,12 @@ public class UtilCellInfoFormatter implements CellInfoFormatter {
         if(owner != null) {
         	ownerName = owner.getName();
         }
-        buf.append("<html><b><font color='olive'>")
+        buf.append("<html><div style='height:100%; width:100px; text-align:center'><div style='background-color:olive; height:10px'></div><p style='font-size:90%'><b>")
                 .append(cell.getName())
-                .append("</font></b><br>")
+                .append("</b></p><p>")
                 .append("$").append(c.getPrice())
 				.append("<br>Owner: ").append(ownerName)
-                .append("</html>");
+                .append("</p></div></html>");
         return buf.toString();
 	}
 }

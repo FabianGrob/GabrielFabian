@@ -11,17 +11,15 @@ public class PropertyCellInfoFormatter implements CellInfoFormatter {
         Player owner = cell.getOwner();
         String ownerName = "";
         if(owner != null) {
-        	ownerName = owner.getName();
+            ownerName = owner.getName();
         }
-        buf.append("<html><b><font color='")
-                .append(c.getColorGroup())
-                .append("'>")
+        buf.append("<html><div style='height:100%; width:100px; text-align:center'><div style='height:2px; background-color:"+ c.getColorGroup() +"'></div><p style='font-size:90%'><b>")
                 .append(cell.getName())
-                .append("</font></b><br>")
+                .append("</b></p><p>")
                 .append("$").append(c.getPrice())
-				.append("<br>Owner: ").append(ownerName)
-				.append("<br>* ").append(c.getNumHouses())
-                .append("</html>");
+                .append("<br>* ").append(c.getNumHouses())
+                .append(" Owner: ").append(ownerName)
+                .append("</p></div></html>");
         return buf.toString();
     }
 }
