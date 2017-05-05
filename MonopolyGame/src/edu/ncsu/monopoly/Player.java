@@ -7,7 +7,7 @@ import java.util.Hashtable;
 
 public class Player {
     //the key of colorGroups is the name of the color group.
-
+    
     private Hashtable colorGroups = new Hashtable();
     private boolean inJail;
     private int money;
@@ -18,7 +18,7 @@ public class Player {
     private ArrayList railroads = new ArrayList();
     private ArrayList utilities = new ArrayList();
     private boolean belongsToUser;
-
+    
     public Player() {
         belongsToUser=false;
         GameBoard gb = GameMaster.instance().getGameBoard();
@@ -30,19 +30,19 @@ public class Player {
     public boolean getBelongsToUser() {
         return belongsToUser;
     }
-
+    
     public void setBelongsToUser(boolean belongs) {
         belongsToUser = belongs;
     }
-
+    
     public File getPicture() {
         return picture;
     }
-
+    
     public void setPicture(File pic) {
         picture = pic;
     }
-
+    
     public void buyProperty(Cell property, int amount) {
         property.setOwner(this);
         if (property instanceof PropertyCell) {
@@ -66,11 +66,11 @@ public class Player {
         }
         setMoney(getMoney() - amount);
     }
-
+    
     public boolean canBuyHouse() {
         return (getMonopolies().length != 0);
     }
-
+    
     public boolean checkProperty(String property) {
         for (int i = 0; i < properties.size(); i++) {
             Cell cell = (Cell) properties.get(i);
@@ -79,9 +79,9 @@ public class Player {
             }
         }
         return false;
-
+        
     }
-
+    
     public void exchangeProperty(Player player) {
         for (int i = 0; i < getPropertyNumber(); i++) {
             PropertyCell cell = getProperty(i);
@@ -98,7 +98,7 @@ public class Player {
         }
         properties.clear();
     }
-
+    
     public Cell[] getAllProperties() {
         ArrayList list = new ArrayList();
         list.addAll(properties);
@@ -106,11 +106,11 @@ public class Player {
         list.addAll(railroads);
         return (Cell[]) list.toArray(new Cell[list.size()]);
     }
-
+    
     public int getMoney() {
         return this.money;
     }
-
+    
     public String[] getMonopolies() {
         ArrayList monopolies = new ArrayList();
         Enumeration colors = colorGroups.keys();
@@ -126,11 +126,11 @@ public class Player {
         }
         return (String[]) monopolies.toArray(new String[monopolies.size()]);
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public void getOutOfJail() {
         money -= JailCell.BAIL;
         if (isBankrupt()) {
@@ -140,19 +140,19 @@ public class Player {
         inJail = false;
         GameMaster.instance().updateGUI();
     }
-
+    
     public Cell getPosition() {
         return this.position;
     }
-
+    
     public PropertyCell getProperty(int index) {
         return (PropertyCell) properties.get(index);
     }
-
+    
     public int getPropertyNumber() {
         return properties.size();
     }
-
+    
     private int getPropertyNumberForColor(String name) {
         Integer number = (Integer) colorGroups.get(name);
         if (number != null) {
@@ -160,23 +160,23 @@ public class Player {
         }
         return 0;
     }
-
+    
     public boolean isBankrupt() {
         return money <= 0;
     }
-
+    
     public boolean isInJail() {
         return inJail;
     }
-
+    
     public int numberOfRR() {
         return getPropertyNumberForColor(RailRoadCell.COLOR_GROUP);
     }
-
+    
     public int numberOfUtil() {
         return getPropertyNumberForColor(UtilityCell.COLOR_GROUP);
     }
-
+    
     public void payRentTo(Player owner, int rentValue) {
         if (money < rentValue) {
             owner.money += money;
@@ -190,7 +190,7 @@ public class Player {
             exchangeProperty(owner);
         }
     }
-
+    
     public void purchase() {
         if (getPosition().isAvailable()) {
             Cell c = getPosition();
@@ -209,7 +209,7 @@ public class Player {
             }
         }
     }
-
+    
     public void purchaseHouse(String selectedMonopoly, int houses) {
         GameBoard gb = GameMaster.instance().getGameBoard();
         PropertyCell[] cells = gb.getPropertiesInMonopoly(selectedMonopoly);
@@ -224,63 +224,59 @@ public class Player {
             }
         }
     }
-
+    
     private void purchaseProperty(PropertyCell cell) {
         buyProperty(cell, cell.getPrice());
     }
-
+    
     private void purchaseRailRoad(RailRoadCell cell) {
         buyProperty(cell, cell.getPrice());
     }
-
+    
     private void purchaseUtility(UtilityCell cell) {
         buyProperty(cell, cell.getPrice());
     }
-
+    
     public void sellProperty(Cell property, int amount) {
         property.setOwner(null);
-        try {
-            if (property instanceof PropertyCell) {
-                properties.remove(property);
-            }
-            if (property instanceof RailRoadCell) {
-                railroads.remove(property);
-            }
-            if (property instanceof UtilityCell) {
-                railroads.remove(property);
-            }
-        } catch (Exception e) {
-            property.setOwner(this);
+        if (property instanceof PropertyCell) {
+            properties.remove(property);
+        }
+        if (property instanceof RailRoadCell) {
+            railroads.remove(property);
+        }
+        if (property instanceof UtilityCell) {
+            utilities.remove(property);
         }
         setMoney(getMoney() + amount);
     }
-
+    
     public void setInJail(boolean inJail) {
         this.inJail = inJail;
     }
-
+    
     public void setMoney(int money) {
         this.money = money;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public void setPosition(Cell newPosition) {
         this.position = newPosition;
     }
-
+    
     public String toString() {
         return name;
     }
-
+    
     public void resetProperty() {
         properties = new ArrayList();
         railroads = new ArrayList();
         utilities = new ArrayList();
     }
-
+    
     public void payRentToBank(int ammount) {
         this.money -= ammount;
     }
