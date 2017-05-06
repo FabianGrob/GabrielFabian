@@ -6,8 +6,11 @@
 package edu.ncsu.monopoly.gui;
 
 import edu.ncsu.monopoly.DataBase;
+import edu.ncsu.monopoly.GameBoard;
+import edu.ncsu.monopoly.GameMaster;
 import edu.ncsu.monopoly.Player;
 import edu.ncsu.monopoly.User;
+import edu.ncsu.monopoly.test.boardScenarios.GameBoardFull;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -25,7 +28,7 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
-    public MainMenu(DataBase dBs,WelcomeMenu prev) {
+    public MainMenu(DataBase dBs, WelcomeMenu prev) {
         players = new ArrayList<Player>();
         previous = prev;
 
@@ -337,140 +340,200 @@ public class MainMenu extends javax.swing.JFrame {
         boolean isNoneSelected8 = ((String) jComboBoxUser8.getSelectedItem()).equals(guest.getName());
         //boolean isNoneSelected = isNoneSelected1 || isNoneSelected2 || isNoneSelected3 || isNoneSelected4 || isNoneSelected5 || isNoneSelected6 || isNoneSelected7 || isNoneSelected8;
         boolean[] repeated = new boolean[9];
+        ArrayList<User> actualUsers = new ArrayList<User>();
         int i = 1;
         String actualName = "";
         ArrayList<String> names = new ArrayList<String>();
         if (!((String) jComboBoxUser1.getSelectedItem()).equals(guest.getName())) {
 
             names.add((String) jComboBoxUser1.getSelectedItem());
-            //create player1 as user
+            User ui = dB.getUser((String) jComboBoxUser1.getSelectedItem());
+            actualUsers.add(ui);
+
         } else {
             names.add("Invitado" + i);
             i++;
-            //create player1 as guest
+            User ui = null;
+            actualUsers.add(ui);
+
         }
         if (jCheckBoxUser2.isSelected()) {
             if (!((String) jComboBoxUser2.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser2.getSelectedItem();
-                names.add(actualName);
+                
+                User ui = dB.getUser((String) jComboBoxUser2.getSelectedItem());
+                actualUsers.add(ui);
                 //create player2 as user
             } else {
                 actualName = "Invitado" + i;
                 i++;
-                names.add(actualName);
+                
+                User ui = null;
+                actualUsers.add(ui);
                 //create player2 as guest
             }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i-1))) {
-                repeated[names.size()]=true;
+            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
+                repeated[names.size()] = true;
             }
+            names.add(actualName);
         }
         if (jCheckBoxUser3.isSelected()) {
             if (!((String) jComboBoxUser3.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser3.getSelectedItem();
-                names.add(actualName);
+                
+                User ui = dB.getUser((String) jComboBoxUser3.getSelectedItem());
+                actualUsers.add(ui);
                 //create player2 as user
             } else {
                 actualName = "Invitado" + i;
                 i++;
-                names.add(actualName);
+               
+                User ui = null;
+                actualUsers.add(ui);
                 //create player2 as guest
             }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i-1))) {
-                repeated[names.size()]=true;
+            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
+                repeated[names.size()] = true;
             }
+            names.add(actualName);
         }
         if (jCheckBoxUser4.isSelected()) {
             if (!((String) jComboBoxUser4.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser4.getSelectedItem();
-                names.add(actualName);
+               
+                User ui = dB.getUser((String) jComboBoxUser4.getSelectedItem());
+                actualUsers.add(ui);
                 //create player2 as user
             } else {
                 actualName = "Invitado" + i;
                 i++;
-                names.add(actualName);
+                
+                User ui = null;
+                actualUsers.add(ui);
                 //create player2 as guest
             }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i-1))) {
-                repeated[names.size()]=true;
+            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
+                repeated[names.size()] = true;
             }
+            names.add(actualName);
         }
         if (jCheckBoxUser5.isSelected()) {
             if (!((String) jComboBoxUser5.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser5.getSelectedItem();
-                names.add(actualName);
+                
+                User ui = dB.getUser((String) jComboBoxUser5.getSelectedItem());
+                actualUsers.add(ui);
                 //create player2 as user
             } else {
                 actualName = "Invitado" + i;
                 i++;
-                names.add(actualName);
+               
+                User ui = null;
+                actualUsers.add(ui);
                 //create player2 as guest
             }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i-1))) {
-                repeated[names.size()]=true;
+            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
+                repeated[names.size()] = true;
             }
+            names.add(actualName);
         }
         if (jCheckBoxUser6.isSelected()) {
             if (!((String) jComboBoxUser6.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser6.getSelectedItem();
+                User ui = dB.getUser((String) jComboBoxUser6.getSelectedItem());
+                actualUsers.add(ui);
                 //create player2 as user
-                names.add(actualName);
+               
             } else {
                 actualName = "Invitado" + i;
                 i++;
-                names.add(actualName);
+                
+                User ui = null;
+                actualUsers.add(ui);
                 //create player2 as guest
             }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i-1))) {
-                repeated[names.size()]=true;
+            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
+                repeated[names.size()] = true;
             }
+            names.add(actualName);
         }
         if (jCheckBoxUser7.isSelected()) {
             if (!((String) jComboBoxUser7.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser7.getSelectedItem();
-                names.add(actualName);
+                
+                User ui = dB.getUser((String) jComboBoxUser7.getSelectedItem());
+                actualUsers.add(ui);
                 //create player2 as user
             } else {
                 actualName = "Invitado" + i;
                 i++;
-                names.add(actualName);
+                
+                User ui = null;
+                actualUsers.add(ui);
                 //create player2 as guest
             }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i-1))) {
-                repeated[names.size()]=true;
+            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
+                repeated[names.size()] = true;
             }
+            names.add(actualName);
         }
         if (jCheckBoxUser8.isSelected()) {
             if (!((String) jComboBoxUser8.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser8.getSelectedItem();
-                names.add(actualName);
+                
+                User ui = dB.getUser((String) jComboBoxUser8.getSelectedItem());
+                actualUsers.add(ui);
                 //create player2 as user
             } else {
                 actualName = "Invitado" + i;
                 i++;
-                names.add(actualName);
+                
+                User ui = null;
+                actualUsers.add(ui);
                 //create player2 as guest
             }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i-1))) {
-                repeated[names.size()]=true;
+            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
+                repeated[names.size()] = true;
             }
+            names.add(actualName);
         }
         boolean hasRepetitions = false;
         boolean noRepetitions = false;
-        String fstErrorMessage= "El/Los jugadores: ";
+        String fstErrorMessage = "El/Los jugadores: ";
         String sndErrorMessage = " están quieren elegir usuarios ya elegidos";
         for (int j = 1; j < 9; j++) {
             if (repeated[j]) {
-                if(hasRepetitions){
+                if (hasRepetitions) {
                     fstErrorMessage += ", ";
                 }
                 fstErrorMessage += j;
-                hasRepetitions= true;
+                hasRepetitions = true;
             }
         }
         if (hasRepetitions) {
-            JOptionPane.showMessageDialog(this, fstErrorMessage+sndErrorMessage,"Error" , WIDTH);
+            JOptionPane.showMessageDialog(this, fstErrorMessage + sndErrorMessage, "Error", WIDTH);
         }
-        
+
+        GameMaster master = GameMaster.instance();
+        MainWindow window = new MainWindow();
+        GameBoard gameBoard = new GameBoardFull();
+
+        master.setGameBoard(gameBoard);
+        GameMaster.instance().setNumberOfPlayers(names.size());
+
+        for (int j = 0; j < names.size(); j++) {
+            Player pi = GameMaster.instance().getPlayer(j);
+            if (actualUsers.get(j) != null) {
+                pi.setBelongsToUser(actualUsers.get(j));
+            }
+            pi.setName(names.get(j));
+
+        }
+        window.setupGameBoard(gameBoard);
+        window.show();
+        master.setGUI(window);
+        master.startGame();
+        this.setVisible(false);
 
 
     }//GEN-LAST:event_jButtonStartActionPerformed

@@ -13,24 +13,41 @@ import java.util.ArrayList;
  * @author Fabian
  */
 public class DataBase implements Serializable {
+
     private ArrayList<User> users;
-    
-    public DataBase(){
-        users=new ArrayList<User>();
+
+    public DataBase() {
+        users = new ArrayList<User>();
         User none = new User();
         none.setName("Jugar como invitado");
         users.add(none);
     }
-    public void setUsers(ArrayList<User> users){
+
+    public void setUsers(ArrayList<User> users) {
         users = users;
     }
-    public ArrayList<User> getUsers(){
+
+    public ArrayList<User> getUsers() {
         return users;
     }
-    public void addUser(User u){
+
+    public void addUser(User u) {
         this.users.add(u);
     }
-    public boolean alreadyExists(User u){
+
+    public boolean alreadyExists(User u) {
         return users.contains(u);
+    }
+
+    public User getUser(String name) {
+        User returningUser = null;
+        for (int i = 0; i < users.size(); i++) {
+            User auxiliarUser = users.get(i);
+            auxiliarUser.getName().equals(name);
+            returningUser = auxiliarUser;
+
         }
+        return returningUser;
+
+    }
 }

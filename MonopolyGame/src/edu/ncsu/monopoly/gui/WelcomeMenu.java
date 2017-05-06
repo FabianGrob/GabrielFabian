@@ -6,6 +6,7 @@
 package edu.ncsu.monopoly.gui;
 
 import edu.ncsu.monopoly.DataBase;
+import edu.ncsu.monopoly.Serialize;
 import edu.ncsu.monopoly.User;
 
 /**
@@ -56,6 +57,11 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jButton3.setText("Tabla de Puntajes");
 
         jButton4.setText("Salir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,6 +117,12 @@ public class WelcomeMenu extends javax.swing.JFrame {
         this.setVisible(false);
         window.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Serialize ser = new Serialize();
+        ser.serializer(dB);
+        System.exit(0);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

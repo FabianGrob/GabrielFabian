@@ -17,23 +17,23 @@ public class Player {
     private ArrayList properties = new ArrayList();
     private ArrayList railroads = new ArrayList();
     private ArrayList utilities = new ArrayList();
-    private boolean belongsToUser;
+    private User userBelong;
     private String color;
     
     public Player() {
-        belongsToUser=false;
+        userBelong=null;
         GameBoard gb = GameMaster.instance().getGameBoard();
         inJail = false;
         if (gb != null) {
             position = gb.queryCell("Go");
         }
     }
-    public boolean getBelongsToUser() {
-        return belongsToUser;
+    public User getBelongsToUser() {
+        return userBelong;
     }
     
-    public void setBelongsToUser(boolean belongs) {
-        belongsToUser = belongs;
+    public void setBelongsToUser(User belongs) {
+        userBelong = belongs;
     }
     
     public File getPicture() {

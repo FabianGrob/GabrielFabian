@@ -160,16 +160,13 @@ public class GameMasterTest extends TestCase {
     public void testButtonRollDiceClicked1() {
         gameMaster.reset();
         MonopolyGUI gui = gameMaster.getGUI();
-        //double a = (Math.random());
-       // int b = ((int)a) * 1000000;
-       
-       Cell result0=gameMaster.getPlayer(0).getPosition();
+        Cell result0 = gameMaster.getPlayer(0).getPosition();
         int rolled = gameMaster.btnRollDiceClicked();
-        int posIndex= gameMaster.getCurrentPlayerIndex();
+        int posIndex = gameMaster.getCurrentPlayerIndex();
         assertEquals(0, posIndex);
-        Cell expResult =gameMaster.getGameBoard().getCell(rolled);
-        Cell result=gameMaster.getPlayer(0).getPosition();
-        assertEquals(expResult ,result);
+        Cell expResult = gameMaster.getGameBoard().getCell(rolled);
+        Cell result = gameMaster.getPlayer(0).getPosition();
+        assertEquals(expResult, result);
     }
 
     @Test
