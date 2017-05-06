@@ -255,27 +255,27 @@ public class GameBoardFull extends GameBoard {
         addCell(db2);
         addCell(db3);
         
-//        addCard(new MoneyCard("Win $50", 50, Card.TYPE_CC));
-//        addCard(new MoneyCard("Win $20", 20, Card.TYPE_CC));
-//        addCard(new MoneyCard("Win $10", 10, Card.TYPE_CC));
+        addCard(new MoneyCard("Win $50", 50, Card.TYPE_CC));
+        addCard(new MoneyCard("Win $20", 20, Card.TYPE_CC));
+        addCard(new MoneyCard("Win $10", 10, Card.TYPE_CC));
         addCard(new MoneyCard("Lose $100", -100, Card.TYPE_CC));
         addCard(new MoneyCard("Lose $50", -50, Card.TYPE_CC));
-//        addCard(new JailCard(Card.TYPE_CC));
-//        addCard(new MovePlayerCard("St. Charles Place", Card.TYPE_CC));
-//        addCard(new TaxiCard("Journy completed", Card.TYPE_CC));
-//        addCard(new TaxiCard("Journy completed", Card.TYPE_CC));
-//        addCard(new TaxiCard("Journy completed", Card.TYPE_CC));
-//        
-//        
-//        
-//        addCard(new MoneyCard("Win $50", 50, Card.TYPE_CHANCE));
-//        addCard(new MoneyCard("Win $20", 20, Card.TYPE_CHANCE));
-//        addCard(new MoneyCard("Win $10", 10, Card.TYPE_CHANCE));
+        addCard(new JailCard(Card.TYPE_CC));
+        addCard(new MovePlayerCard("St. Charles Place", Card.TYPE_CC));
+        addCard(new TaxiCard("Journy completed", Card.TYPE_CC));
+        addCard(new TaxiCard("Journy completed", Card.TYPE_CC));
+      addCard(new TaxiCard("Journy completed", Card.TYPE_CC));
+        
+      
+        
+        addCard(new MoneyCard("Win $50", 50, Card.TYPE_CHANCE));
+      addCard(new MoneyCard("Win $20", 20, Card.TYPE_CHANCE));
+        addCard(new MoneyCard("Win $10", 10, Card.TYPE_CHANCE));
         addCard(new MoneyCard("Lose $100", -100, Card.TYPE_CHANCE));
         addCard(new MoneyCard("Lose $50", -50, Card.TYPE_CHANCE));
-//        addCard(new JailCard(Card.TYPE_CHANCE));
-//        addCard(new MovePlayerCard("Illinois Avenue", Card.TYPE_CHANCE));
-//        addCard(new TaxiCard("Journey completed", Card.TYPE_CHANCE));
+       addCard(new JailCard(Card.TYPE_CHANCE));
+        addCard(new MovePlayerCard("Illinois Avenue", Card.TYPE_CHANCE));
+        addCard(new TaxiCard("Journey completed", Card.TYPE_CHANCE));
         
     }
 }
