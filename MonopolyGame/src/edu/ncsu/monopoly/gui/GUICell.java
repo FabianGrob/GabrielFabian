@@ -14,8 +14,6 @@ public class GUICell extends JPanel {
     private Cell cell;
     private JLabel lblInfo;
     private JLabel[] lblPlayers = new JLabel[GameMaster.MAX_PLAYER];
-    private double screenWidth;
-    private double screenHeight;
     
     public GUICell(Cell cell) {
         this.cell = cell;
@@ -25,7 +23,6 @@ public class GUICell extends JPanel {
         pnlPlayer.setLayout(new GridLayout(2, 4));
         createPlayerLabels(pnlPlayer);
         pnlPlayer.setOpaque(false);
-        //pnlPlayer.setVisible(true);
         add(pnlPlayer);
         setPreferredSize(new Dimension(135, 80));
         addCellInfo();
@@ -43,24 +40,46 @@ public class GUICell extends JPanel {
     
     public void addPlayer(int index) {
         Player player = GameMaster.instance().getPlayer(index);
-        //lblPlayers[index].setText(player.getName().substring(0, 1));
-        //lblPlayers[index].setOpaque(true);
         lblPlayers[index].setVisible(true);
         
     }
     
     private void createPlayerLabels(JPanel pnlPlayer) {
+        String color = "";
         for (int i = 0; i < GameMaster.MAX_PLAYER; i++) {
-            String color = "1";
+            switch(i) {
+                case 0:
+                    color = "Yellow";
+                    break;
+                case 1:
+                    color = "Violet";
+                    break;
+                case 2:
+                    color = "Red";
+                    break;
+                case 3:
+                    color = "Orange";
+                    break;
+                case 4:
+                    color = "Green";
+                    break;
+                case 5:
+                    color = "Yellow";
+                    break;
+                case 6:
+                    color = "Orange";
+                    break;
+                case 7:
+                    color = "Red";
+                    break;
+                    
+            }
+            //ACA TIENE QUE IR EL CAMBIO DE COLOR DEL USUARIO!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             ImageIcon imageIcon = new ImageIcon("src/PredefPic/Pawn" + color + ".png");
             Image image = imageIcon.getImage();
             Image newimg = image.getScaledInstance(30, 40,  java.awt.Image.SCALE_SMOOTH);
-            
             ImageIcon icon = new ImageIcon(newimg);
-            //CAMBIAR EL TAMANO DEL ICONO
             lblPlayers[i] = new JLabel(icon);
-            //ACA TIENE QUE IR EL CAMBIO DE COLOR DEL USUARIO!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //lblPlayers[i].setBackground(Color.RED);
             lblPlayers[i].setVisible(false);
             pnlPlayer.add(lblPlayers[i]);
         }
@@ -78,7 +97,6 @@ public class GUICell extends JPanel {
     
     public void removePlayer(int index) {
         lblPlayers[index].setText("");
-        //lblPlayers[index].setOpaque(false);
         lblPlayers[index].setVisible(false);
         this.repaint();
     }

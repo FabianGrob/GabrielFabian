@@ -25,7 +25,7 @@ public class GameMaster {
     }
     
     public GameMaster() {
-        initAmountOfMoney = 1500;
+        initAmountOfMoney = 1;
         dice = new Die[]{new Die(), new Die()};
     }
     
@@ -59,6 +59,7 @@ public class GameMaster {
             gui.setPurchasePropertyEnabled(false);
             gui.setRollDiceEnabled(false);
             gui.setTradeEnabled(getCurrentPlayerIndex(),false);
+            PlayerLose();
             updateGUI();
         }
         else {
@@ -117,7 +118,8 @@ public class GameMaster {
             gui.showMessage(msg.toString());
             
             if(roll){
-                movePlayer(player, rolls[0] + rolls[1]);
+                //movePlayer(player, rolls[0] + rolls[1]);
+                movePlayer(player, 2);
             }
             
             gui.setEndTurnEnabled(true);
@@ -338,5 +340,17 @@ public class GameMaster {
     
     public void setTestMode(boolean b) {
         testMode = b;
+    }
+    
+    //ACA ES DONDE SE SETEA QUE EL USUARIO NO PUEDE JUGAR MAS
+    public void PlayerLose() {
+        Cell [] playerProperties = getCurrentPlayer().getAllProperties();
+        getCurrentPlayer().resetProperty();
+        this.players.remove(turn);
+        for (int i = 0; i < playerProperties.length; i++) {
+            playerProperties[i].setAvailable(true);
+            playerProperties[i].setOwner(null);
+        }
+                
     }
 }

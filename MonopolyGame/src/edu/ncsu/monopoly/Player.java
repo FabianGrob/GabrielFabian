@@ -18,6 +18,7 @@ public class Player {
     private ArrayList railroads = new ArrayList();
     private ArrayList utilities = new ArrayList();
     private boolean belongsToUser;
+    private String color;
     
     public Player() {
         belongsToUser=false;
@@ -42,6 +43,14 @@ public class Player {
     public void setPicture(File pic) {
         picture = pic;
     }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }    
     
     public void buyProperty(Cell property, int amount) {
         property.setOwner(this);

@@ -44,6 +44,9 @@
     <Component class="javax.swing.JFileChooser" name="jFileCh">
       <Properties>
         <Property name="dialogTitle" type="java.lang.String" value=""/>
+        <Property name="fileFilter" type="javax.swing.filechooser.FileFilter" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new FileNameExtensionFilter(&quot;Image files&quot;, ImageIO.getReaderFileSuffixes())" type="code"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFileChActionPerformed"/>
