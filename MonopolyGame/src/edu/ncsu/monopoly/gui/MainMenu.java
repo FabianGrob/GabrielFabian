@@ -469,7 +469,10 @@ public class MainMenu extends javax.swing.JFrame {
         String sndErrorMessage = " están quieren elegir usuarios ya elegidos";
         for (int j = 1; j < 9; j++) {
             if (repeated[j]) {
-                fstErrorMessage = fstErrorMessage + j+",";
+                if(hasRepetitions){
+                    fstErrorMessage += ", ";
+                }
+                fstErrorMessage += j;
                 hasRepetitions= true;
             }
         }

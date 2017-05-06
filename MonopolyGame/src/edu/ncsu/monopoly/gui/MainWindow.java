@@ -22,6 +22,7 @@ import edu.ncsu.monopoly.GameBoard;
 import edu.ncsu.monopoly.GameMaster;
 import edu.ncsu.monopoly.MonopolyGUI;
 import edu.ncsu.monopoly.Player;
+import java.awt.Rectangle;
 
 public class MainWindow extends JFrame implements MonopolyGUI{
     JPanel eastPanel = new JPanel();
@@ -39,7 +40,6 @@ public class MainWindow extends JFrame implements MonopolyGUI{
         eastPanel.setBorder(new LineBorder(Color.BLACK));
         
         Container c = getContentPane();
-        //setSize(800, 600);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
         setSize(d);
@@ -56,6 +56,7 @@ public class MainWindow extends JFrame implements MonopolyGUI{
     }
     
     private void addCells(JPanel panel, List cells) {
+        Rectangle r = panel.getBounds();
         for(int x=0; x<cells.size(); x++) {
             GUICell cell = new GUICell((Cell)cells.get(x));
             panel.add(cell);
