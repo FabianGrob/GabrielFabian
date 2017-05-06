@@ -19,13 +19,13 @@ import javax.swing.JOptionPane;
 public class CreatePlayerWindow extends javax.swing.JFrame {
     private User user;
     private DataBase dB;
-    private MainMenu prev;
+    private WelcomeMenu prev;
    
     
     /**
      * Creates new form CreatePlayerWindow
      */
-    public CreatePlayerWindow(MainMenu previous,DataBase dBs) {
+    public CreatePlayerWindow(WelcomeMenu previous,DataBase dBs) {
         prev=previous;
         dB=dBs;
         user= new User();

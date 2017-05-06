@@ -172,7 +172,7 @@ public class GameMasterTest extends TestCase {
             assertEquals(gameMaster.getInitAmountOfMoney(),0);
             gameMaster.setInitAmountOfMoney(initialAmount);
          }
-       /* @Test
+       @Test
         public void testBtnGetOutOfJailClicked() {
             MonopolyGUI gui = gameMaster.getGUI();
             Player testP=gameMaster.getCurrentPlayer();
@@ -189,5 +189,5 @@ public class GameMasterTest extends TestCase {
             assertTrue(true);
             
         }
-*/
+
 }

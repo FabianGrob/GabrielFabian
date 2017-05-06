@@ -19,13 +19,15 @@ import javax.swing.JOptionPane;
 public class MainMenu extends javax.swing.JFrame {
 
     private DataBase dB;
+    private WelcomeMenu previous;
     private ArrayList<Player> players;
 
     /**
      * Creates new form MainMenu
      */
-    public MainMenu(DataBase dBs) {
+    public MainMenu(DataBase dBs,WelcomeMenu prev) {
         players = new ArrayList<Player>();
+        previous = prev;
 
         dB = dBs;
         initComponents();
@@ -72,7 +74,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButtoncreateUser = new javax.swing.JButton();
         jComboBoxUser1 = new javax.swing.JComboBox<>();
         jLabelChoose = new javax.swing.JLabel();
         jCheckBoxUser1 = new javax.swing.JCheckBox();
@@ -98,13 +99,6 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PredefPic/monopolyIlustration.jpg"))); // NOI18N
-
-        jButtoncreateUser.setText("Crear un Usuario");
-        jButtoncreateUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtoncreateUserActionPerformed(evt);
-            }
-        });
 
         jComboBoxUser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,6 +207,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -251,15 +250,9 @@ public class MainMenu extends javax.swing.JFrame {
                                     .addComponent(jCheckBoxUser6)
                                     .addComponent(jCheckBoxUser7)
                                     .addComponent(jCheckBoxUser8))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(224, 224, 224)
-                                .addComponent(jButtonStart)
-                                .addGap(36, 36, 36))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtoncreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonStart)
+                        .addGap(36, 36, 36))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,9 +295,7 @@ public class MainMenu extends javax.swing.JFrame {
                             .addComponent(jCheckBoxUser8))
                         .addGap(13, 13, 13))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jButtoncreateUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Salir, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButtonStart, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -561,56 +552,14 @@ public class MainMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBoxUser1ActionPerformed
 
-    private void jButtoncreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoncreateUserActionPerformed
-        CreatePlayerWindow window = new CreatePlayerWindow(this, dB);
-        window.setVisible(true);
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_jButtoncreateUserActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                DataBase db = new DataBase();
-                User u = new User();
-                u.setName("Jorge");
-                db.addUser(u);
-
-                new MainMenu(db).setVisible(true);
-            }
-        });
-    }
+        previous.setVisible(true);
+    }//GEN-LAST:event_SalirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Salir;
     private javax.swing.JButton jButtonStart;
-    private javax.swing.JButton jButtoncreateUser;
     private javax.swing.JCheckBox jCheckBoxUser1;
     private javax.swing.JCheckBox jCheckBoxUser2;
     private javax.swing.JCheckBox jCheckBoxUser3;
