@@ -25,7 +25,7 @@ public class GameMaster {
     }
     
     public GameMaster() {
-        initAmountOfMoney = 1;
+        initAmountOfMoney = 1500;
         dice = new Die[]{new Die(), new Die()};
     }
     
@@ -65,6 +65,16 @@ public class GameMaster {
         else {
             switchTurn();
             updateGUI();
+            Player player = getCurrentPlayer();
+            if(player.isInJail()){
+                if(player.getNumberOfTriesInJail() < 3) {
+                    gui.setRollDiceEnabled(true);
+                    gui.setGetOutOfJailEnabled(true);
+                } else {
+                    gui.setRollDiceEnabled(false);
+                    gui.setGetOutOfJailEnabled(true);
+                }
+            }
         }
     }
     
@@ -78,11 +88,14 @@ public class GameMaster {
             gui.setPurchasePropertyEnabled(false);
             gui.setRollDiceEnabled(false);
             gui.setTradeEnabled(getCurrentPlayerIndex(),false);
+            PlayerLose();
+            updateGUI();
         }
         else {
             gui.setRollDiceEnabled(true);
             gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse());
             gui.setGetOutOfJailEnabled(getCurrentPlayer().isInJail());
+            getCurrentPlayer().setNumberOfTriesInJail(0);
         }
     }
     
@@ -113,13 +126,13 @@ public class GameMaster {
                 }else{
                     msg.append(". You cant get out unless you pay or get a double!");
                     roll = false;
+                    player.setNumberOfTriesInJail(player.getNumberOfTriesInJail() + 1);
                 }
             }
             gui.showMessage(msg.toString());
             
             if(roll){
-                //movePlayer(player, rolls[0] + rolls[1]);
-                movePlayer(player, 2);
+                movePlayer(player, rolls[0] + rolls[1]);
             }
             
             gui.setEndTurnEnabled(true);
@@ -300,6 +313,7 @@ public class GameMaster {
         players.clear();
         for(int i =0;i<number;i++) {
             Player player = new Player();
+            player.setPlayerPanel(i);
             player.setMoney(initAmountOfMoney);
             players.add(player);
         }
@@ -326,7 +340,9 @@ public class GameMaster {
             gui.setTradeEnabled(turn, true);
             
         }
-        gui.enablePlayerTurn(turn);
+        Player player = getPlayer(turn);
+        int panel = player.getPlayerPanel();
+        gui.enablePlayerTurn(panel);
         
     }
     
@@ -342,15 +358,20 @@ public class GameMaster {
         testMode = b;
     }
     
-    //ACA ES DONDE SE SETEA QUE EL USUARIO NO PUEDE JUGAR MAS
     public void PlayerLose() {
         Cell [] playerProperties = getCurrentPlayer().getAllProperties();
         getCurrentPlayer().resetProperty();
-        this.players.remove(turn);
         for (int i = 0; i < playerProperties.length; i++) {
             playerProperties[i].setAvailable(true);
             playerProperties[i].setOwner(null);
         }
-                
+        gui.showMessage(getCurrentPlayer().toString() + " has lost!");
+        this.players.remove(turn);
+        if (players.size() == 1){
+            gui.showMessage("Congratulations!!! " + players.get(0).toString() + " has won the game!");
+        } else {
+            switchTurn();
+        }
+        
     }
 }

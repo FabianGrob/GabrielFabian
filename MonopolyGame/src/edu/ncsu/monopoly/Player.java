@@ -19,9 +19,12 @@ public class Player {
     private ArrayList utilities = new ArrayList();
     private boolean belongsToUser;
     private String color;
+    private int numberOfTriesInJail;
+    private int playerPanel;
     
     public Player() {
         belongsToUser=false;
+        numberOfTriesInJail = 0;
         GameBoard gb = GameMaster.instance().getGameBoard();
         inJail = false;
         if (gb != null) {
@@ -51,6 +54,22 @@ public class Player {
     public void setColor(String color) {
         this.color = color;
     }    
+
+    public int getNumberOfTriesInJail() {
+        return numberOfTriesInJail;
+    }
+
+    public void setNumberOfTriesInJail(int numberOfTriesInJail) {
+        this.numberOfTriesInJail = numberOfTriesInJail;
+    }
+
+    public int getPlayerPanel() {
+        return playerPanel;
+    }
+
+    public void setPlayerPanel(int playerPanel) {
+        this.playerPanel = playerPanel;
+    }
     
     public void buyProperty(Cell property, int amount) {
         property.setOwner(this);
@@ -284,9 +303,5 @@ public class Player {
         properties = new ArrayList();
         railroads = new ArrayList();
         utilities = new ArrayList();
-    }
-    
-    public void payRentToBank(int ammount) {
-        this.money -= ammount;
     }
 }

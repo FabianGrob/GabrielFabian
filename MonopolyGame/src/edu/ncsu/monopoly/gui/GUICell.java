@@ -45,37 +45,9 @@ public class GUICell extends JPanel {
     }
     
     private void createPlayerLabels(JPanel pnlPlayer) {
-        String color = "";
-        for (int i = 0; i < GameMaster.MAX_PLAYER; i++) {
-            switch(i) {
-                case 0:
-                    color = "Yellow";
-                    break;
-                case 1:
-                    color = "Violet";
-                    break;
-                case 2:
-                    color = "Red";
-                    break;
-                case 3:
-                    color = "Orange";
-                    break;
-                case 4:
-                    color = "Green";
-                    break;
-                case 5:
-                    color = "Yellow";
-                    break;
-                case 6:
-                    color = "Orange";
-                    break;
-                case 7:
-                    color = "Red";
-                    break;
-                    
-            }
-            //ACA TIENE QUE IR EL CAMBIO DE COLOR DEL USUARIO!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            ImageIcon imageIcon = new ImageIcon("src/PredefPic/Pawn" + color + ".png");
+        for (int i = 0; i < GameMaster.instance().getNumberOfPlayers(); i++) {
+            Player player = GameMaster.instance().getPlayer(i);
+            ImageIcon imageIcon = new ImageIcon("src/PredefPic/Pawn" + /*player.getColor()*/ "Black" + ".png");
             Image image = imageIcon.getImage();
             Image newimg = image.getScaledInstance(30, 40,  java.awt.Image.SCALE_SMOOTH);
             ImageIcon icon = new ImageIcon(newimg);
