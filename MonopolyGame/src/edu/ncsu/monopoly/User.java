@@ -59,7 +59,7 @@ public class User {
 
     @Override
     public String toString() {
-        String txt = this.getName() + " |Puntaje: " + this.getWonGames() + "/" + this.getPlayedGames();
+        String txt = this.getName();
         return txt;
     }
 
