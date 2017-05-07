@@ -3,26 +3,29 @@
 import edu.ncsu.monopoly.Cell;
 import edu.ncsu.monopoly.Player;
 import edu.ncsu.monopoly.PropertyCell;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
-<span class="fc" id="L7">public class PropertyCellInfoFormatter implements CellInfoFormatter {</span>
+<span class="fc" id="L9">public class PropertyCellInfoFormatter implements CellInfoFormatter {</span>
     public String format(Cell cell) {
-<span class="fc" id="L9">        PropertyCell c = (PropertyCell)cell;</span>
-<span class="fc" id="L10">        StringBuffer buf = new StringBuffer();</span>
-<span class="fc" id="L11">        Player owner = cell.getOwner();</span>
-<span class="fc" id="L12">        String ownerName = &quot;&quot;;</span>
-<span class="pc bpc" id="L13" title="1 of 2 branches missed.">        if(owner != null) {</span>
-<span class="fc" id="L14">        	ownerName = owner.getName();</span>
+<span class="fc" id="L11">        PropertyCell c = (PropertyCell)cell;</span>
+<span class="fc" id="L12">        StringBuffer buf = new StringBuffer();</span>
+<span class="fc" id="L13">        Player owner = cell.getOwner();</span>
+<span class="fc" id="L14">        String ownerName = &quot;&quot;;</span>
+<span class="fc" id="L15">        Toolkit tk = Toolkit.getDefaultToolkit();</span>
+<span class="fc" id="L16">        Dimension d = tk.getScreenSize();</span>
+<span class="fc" id="L17">        int width = (int) Math.round(d.width/14.4);</span>
+<span class="pc bpc" id="L18" title="1 of 2 branches missed.">        if(owner != null) {</span>
+<span class="fc" id="L19">            ownerName = owner.getName();</span>
         }
-<span class="fc" id="L16">        buf.append(&quot;&lt;html&gt;&lt;b&gt;&lt;font color='&quot;)</span>
-<span class="fc" id="L17">                .append(c.getColorGroup())</span>
-<span class="fc" id="L18">                .append(&quot;'&gt;&quot;)</span>
-<span class="fc" id="L19">                .append(cell.getName())</span>
-<span class="fc" id="L20">                .append(&quot;&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&quot;)</span>
-<span class="fc" id="L21">                .append(&quot;$&quot;).append(c.getPrice())</span>
-<span class="fc" id="L22">				.append(&quot;&lt;br&gt;Owner: &quot;).append(ownerName)</span>
-<span class="fc" id="L23">				.append(&quot;&lt;br&gt;* &quot;).append(c.getNumHouses())</span>
-<span class="fc" id="L24">                .append(&quot;&lt;/html&gt;&quot;);</span>
-<span class="fc" id="L25">        return buf.toString();</span>
+<span class="fc" id="L21">        buf.append(&quot;&lt;html&gt;&lt;div style='height:100%; width:&quot; + width + &quot;px; text-align:center'&gt;&lt;div style='height:2px; background-color:&quot;+ c.getColorGroup() +&quot;'&gt;&lt;/div&gt;&lt;p style='font-size:90%'&gt;&lt;b&gt;&quot;)</span>
+<span class="fc" id="L22">                .append(cell.getName())</span>
+<span class="fc" id="L23">                .append(&quot;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&quot;)</span>
+<span class="fc" id="L24">                .append(&quot;$&quot;).append(c.getPrice())</span>
+<span class="fc" id="L25">                .append(&quot;&lt;br&gt;* &quot;).append(c.getNumHouses())</span>
+<span class="fc" id="L26">                .append(&quot; Owner: &quot;).append(ownerName)</span>
+<span class="fc" id="L27">                .append(&quot;&lt;/p&gt;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="fc" id="L28">        return buf.toString();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
