@@ -51,6 +51,11 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jButton3.setText("Ranking");
         jButton3.setPreferredSize(new java.awt.Dimension(75, 29));
         jButton3.setSize(new java.awt.Dimension(75, 29));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton4.setText("Exit");
@@ -138,6 +143,10 @@ public class WelcomeMenu extends javax.swing.JFrame {
         ser.serializer(dB);
         System.exit(0);
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
     
     public static void main(String args[]) {
         try {
