@@ -391,8 +391,7 @@ public class MainMenu extends javax.swing.JFrame {
 
                 User ui = null;
                 actualUsers.add(ui);
-                names.add(actualName);
-            }
+                            }
             if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
                 repeated[names.size()] = true;
             }

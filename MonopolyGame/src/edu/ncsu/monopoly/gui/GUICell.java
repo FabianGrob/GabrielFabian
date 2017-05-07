@@ -47,7 +47,7 @@ public class GUICell extends JPanel {
     private void createPlayerLabels(JPanel pnlPlayer) {
         for (int i = 0; i < GameMaster.instance().getNumberOfPlayers(); i++) {
             Player player = GameMaster.instance().getPlayer(i);
-            ImageIcon imageIcon = new ImageIcon("src/PredefPic/Pawn" + /*player.getColor()*/ "Black" + ".png");
+            ImageIcon imageIcon = new ImageIcon("src/PredefPic/Pawn" + player.getColor() + ".png");
             Image image = imageIcon.getImage();
             Image newimg = image.getScaledInstance(30, 40,  java.awt.Image.SCALE_SMOOTH);
             ImageIcon icon = new ImageIcon(newimg);
