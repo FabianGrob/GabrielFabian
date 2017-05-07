@@ -27,18 +27,18 @@ import java.awt.Rectangle;
 public class MainWindow extends JFrame implements MonopolyGUI{
     JPanel eastPanel = new JPanel();
     ArrayList guiCells = new ArrayList();
-    
     JPanel northPanel = new JPanel();
     PlayerPanel[] playerPanels;
     JPanel southPanel = new JPanel();
     JPanel westPanel = new JPanel();
+    private DataBase dB;
     
-    public MainWindow() {
+    public MainWindow(DataBase dBs) {
         northPanel.setBorder(new LineBorder(Color.BLACK));
         southPanel.setBorder(new LineBorder(Color.BLACK));
         westPanel.setBorder(new LineBorder(Color.BLACK));
         eastPanel.setBorder(new LineBorder(Color.BLACK));
-        
+        dB = dBs;
         Container c = getContentPane();
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
@@ -50,9 +50,13 @@ public class MainWindow extends JFrame implements MonopolyGUI{
         
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
-                System.exit(0);
+                WelcomeMenu welcome = new WelcomeMenu(dB);
+                welcome.setVisible(true);
+                dispose();
             }
         });
+        this.setLocationRelativeTo(null);
+        
     }
     
     private void addCells(JPanel panel, List cells) {

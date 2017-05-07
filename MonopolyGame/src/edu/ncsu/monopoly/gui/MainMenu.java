@@ -16,10 +16,10 @@ public class MainMenu extends javax.swing.JFrame {
     private DataBase dB;
     private WelcomeMenu previous;
     private ArrayList<Player> players;
-
+    
     private ArrayList<JComboBox> comboBoxesColor;
-
-   
+    
+    
     public MainMenu(DataBase dBs, WelcomeMenu prev) {
         comboBoxesColor = new ArrayList<JComboBox>();
         players = new ArrayList<Player>();
@@ -36,7 +36,7 @@ public class MainMenu extends javax.swing.JFrame {
         jComboBoxUser7.setEnabled(false);
         jComboBoxUser6.setEnabled(false);
         jComboBoxUser5.setEnabled(false);
-
+        
         
         comboBoxesColor.add(jComboBoxColor1);
         comboBoxesColor.add(jComboBoxColor2);
@@ -47,7 +47,7 @@ public class MainMenu extends javax.swing.JFrame {
         comboBoxesColor.add(jComboBoxColor7);
         comboBoxesColor.add(jComboBoxColor8);
         String[] colors = {"Green", "Orange", "Red", "Violet", "Yellow", "Gray", "Blue", "Black"};
-
+        
         for (int i = 0; i < comboBoxesColor.size(); i++) {
             if (i > 0) {
                 comboBoxesColor.get(i).setEnabled(false);
@@ -56,9 +56,8 @@ public class MainMenu extends javax.swing.JFrame {
                 comboBoxesColor.get(i).addItem(colors[j]);
             }
         }
-
+        
         for (int i = 0; i < dB.getUsers().size(); i++) {
-            
             jComboBoxUser1.addItem(dB.getUsers().get(i).getName());
             jComboBoxUser2.addItem(dB.getUsers().get(i).getName());
             jComboBoxUser3.addItem(dB.getUsers().get(i).getName());
@@ -67,9 +66,8 @@ public class MainMenu extends javax.swing.JFrame {
             jComboBoxUser6.addItem(dB.getUsers().get(i).getName());
             jComboBoxUser7.addItem(dB.getUsers().get(i).getName());
             jComboBoxUser8.addItem(dB.getUsers().get(i).getName());
-            
         }
-        
+        this.setLocationRelativeTo(null);
     }
     
     @SuppressWarnings("unchecked")
@@ -77,7 +75,6 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jComboBoxUser1 = new javax.swing.JComboBox<>();
         jLabelChoose = new javax.swing.JLabel();
         jCheckBoxUser1 = new javax.swing.JCheckBox();
@@ -96,7 +93,7 @@ public class MainMenu extends javax.swing.JFrame {
         jComboBoxUser6 = new javax.swing.JComboBox<>();
         jComboBoxUser5 = new javax.swing.JComboBox<>();
         jButtonStart = new javax.swing.JButton();
-        Salir = new javax.swing.JButton();
+        Exit = new javax.swing.JButton();
         jComboBoxColor1 = new javax.swing.JComboBox<>();
         jComboBoxColor2 = new javax.swing.JComboBox<>();
         jComboBoxColor3 = new javax.swing.JComboBox<>();
@@ -105,12 +102,14 @@ public class MainMenu extends javax.swing.JFrame {
         jComboBoxColor6 = new javax.swing.JComboBox<>();
         jComboBoxColor7 = new javax.swing.JComboBox<>();
         jComboBoxColor8 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PredefPic/monopolyIlustration.jpg"))); // NOI18N
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jComboBoxUser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +117,8 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabelChoose.setText("Selecciona un usuario:");
+        jLabelChoose.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabelChoose.setText("Select Users");
 
         jCheckBoxUser1.setSelected(true);
         jCheckBoxUser1.addActionListener(new java.awt.event.ActionListener() {
@@ -211,144 +211,141 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jButtonStart.setText("Comenzar");
+        jButtonStart.setText("Start");
         jButtonStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonStartActionPerformed(evt);
             }
         });
 
-        Salir.setText("Salir");
-        Salir.addActionListener(new java.awt.event.ActionListener() {
+        Exit.setText("Exit");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirActionPerformed(evt);
+                ExitActionPerformed(evt);
             }
         });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PredefPic/Monpoly_users.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelChoose)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jCheckBoxUser1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jCheckBoxUser2)
+                                .addComponent(jCheckBoxUser3)
+                                .addComponent(jCheckBoxUser4)
+                                .addComponent(jCheckBoxUser5)
+                                .addComponent(jCheckBoxUser6)
+                                .addComponent(jCheckBoxUser7)
+                                .addComponent(jCheckBoxUser8))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jComboBoxUser8, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelChoose)
-                                    .addComponent(jComboBoxUser1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBoxUser2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBoxUser3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBoxUser4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBoxUser5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBoxUser6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxUser7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBoxUser1)
-                                    .addComponent(jCheckBoxUser2)
-                                    .addComponent(jCheckBoxUser3)
-                                    .addComponent(jCheckBoxUser4)
-                                    .addComponent(jCheckBoxUser5)
-                                    .addComponent(jCheckBoxUser6)
-                                    .addComponent(jCheckBoxUser7)
-                                    .addComponent(jCheckBoxUser8))))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBoxColor2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxColor4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxColor5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxColor6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxColor7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxColor8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonStart)
-                        .addGap(36, 36, 36))))
+                                    .addComponent(jComboBoxUser7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jComboBoxColor2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxColor4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxColor5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxColor6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxColor7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxColor8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabelChoose)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelChoose)
-                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxUser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBoxUser1)
-                            .addComponent(jComboBoxColor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxColor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBoxUser1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxUser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBoxUser2)
+                            .addComponent(jComboBoxUser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxColor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxUser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBoxUser3)
+                            .addComponent(jComboBoxUser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxColor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxUser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBoxUser4)
+                            .addComponent(jComboBoxUser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxColor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxUser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBoxUser5)
+                            .addComponent(jComboBoxUser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxColor5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxUser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBoxUser6)
+                            .addComponent(jComboBoxUser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxColor6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBoxUser7)
                             .addComponent(jComboBoxUser7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxColor7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(7, 7, 7)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxUser8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBoxUser8)
-                            .addComponent(jComboBoxColor8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Salir, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonStart, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxColor8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBoxUser8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 6, Short.MAX_VALUE))))
         );
-
-        jLabel2.getAccessibleContext().setAccessibleParent(this);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -365,12 +362,11 @@ public class MainMenu extends javax.swing.JFrame {
         int i = 1;
         String actualName = "";
         ArrayList<String> names = new ArrayList<String>();
+        
         if (!((String) jComboBoxUser1.getSelectedItem()).equals(guest.getName())) {
-            
             names.add((String) jComboBoxUser1.getSelectedItem());
             User ui = dB.getUser((String) jComboBoxUser1.getSelectedItem());
             actualUsers.add(ui);
-            
         } else {
             names.add("Invitado" + i);
             i++;
@@ -382,16 +378,16 @@ public class MainMenu extends javax.swing.JFrame {
         if (jCheckBoxUser2.isSelected()) {
             if (!((String) jComboBoxUser2.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser2.getSelectedItem();
-
+                
                 User ui = dB.getUser((String) jComboBoxUser2.getSelectedItem());
                 actualUsers.add(ui);
             } else {
                 actualName = "Invitado" + i;
                 i++;
-
+                
                 User ui = null;
                 actualUsers.add(ui);
-                            }
+            }
             if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
                 repeated[names.size()] = true;
             }
@@ -402,17 +398,17 @@ public class MainMenu extends javax.swing.JFrame {
             chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
             choseColorIndex++;
         }
-
+        
         if (jCheckBoxUser3.isSelected()) {
             if (!((String) jComboBoxUser3.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser3.getSelectedItem();
-
+                
                 User ui = dB.getUser((String) jComboBoxUser3.getSelectedItem());
                 actualUsers.add(ui);
             } else {
                 actualName = "Invitado" + i;
                 i++;
-
+                
                 User ui = null;
                 actualUsers.add(ui);
             }
@@ -426,17 +422,17 @@ public class MainMenu extends javax.swing.JFrame {
             chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
             choseColorIndex++;
         }
-
+        
         if (jCheckBoxUser4.isSelected()) {
             if (!((String) jComboBoxUser4.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser4.getSelectedItem();
-
+                
                 User ui = dB.getUser((String) jComboBoxUser4.getSelectedItem());
                 actualUsers.add(ui);
             } else {
                 actualName = "Invitado" + i;
                 i++;
-
+                
                 User ui = null;
                 actualUsers.add(ui);
             }
@@ -450,17 +446,17 @@ public class MainMenu extends javax.swing.JFrame {
             chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
             choseColorIndex++;
         }
-
+        
         if (jCheckBoxUser5.isSelected()) {
             if (!((String) jComboBoxUser5.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser5.getSelectedItem();
-
+                
                 User ui = dB.getUser((String) jComboBoxUser5.getSelectedItem());
                 actualUsers.add(ui);
             } else {
                 actualName = "Invitado" + i;
                 i++;
-
+                
                 User ui = null;
                 actualUsers.add(ui);
             }
@@ -474,17 +470,17 @@ public class MainMenu extends javax.swing.JFrame {
             chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
             choseColorIndex++;
         }
-
+        
         if (jCheckBoxUser6.isSelected()) {
             if (!((String) jComboBoxUser6.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser6.getSelectedItem();
                 User ui = dB.getUser((String) jComboBoxUser6.getSelectedItem());
                 actualUsers.add(ui);
-
+                
             } else {
                 actualName = "Invitado" + i;
                 i++;
-
+                
                 User ui = null;
                 actualUsers.add(ui);
             }
@@ -498,17 +494,17 @@ public class MainMenu extends javax.swing.JFrame {
             chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
             choseColorIndex++;
         }
-
+        
         if (jCheckBoxUser7.isSelected()) {
             if (!((String) jComboBoxUser7.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser7.getSelectedItem();
-
+                
                 User ui = dB.getUser((String) jComboBoxUser7.getSelectedItem());
                 actualUsers.add(ui);
             } else {
                 actualName = "Invitado" + i;
                 i++;
-
+                
                 User ui = null;
                 actualUsers.add(ui);
             }
@@ -522,17 +518,16 @@ public class MainMenu extends javax.swing.JFrame {
             chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
             choseColorIndex++;
         }
-
+        
         if (jCheckBoxUser8.isSelected()) {
             if (!((String) jComboBoxUser8.getSelectedItem()).equals(guest.getName())) {
                 actualName = (String) jComboBoxUser8.getSelectedItem();
-
+                
                 User ui = dB.getUser((String) jComboBoxUser8.getSelectedItem());
                 actualUsers.add(ui);
             } else {
                 actualName = "Invitado" + i;
                 i++;
-
                 User ui = null;
                 actualUsers.add(ui);
             }
@@ -545,11 +540,11 @@ public class MainMenu extends javax.swing.JFrame {
             }
             chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
             choseColorIndex++;
-
+            
         }
-
+        
         boolean hasRepetitions = false;
-
+        
         String fstErrorMessage = "El/Los jugadores: ";
         String sndErrorMessage = " están quieren elegir usuarios ya elegidos";
         for (int j = 1; j < 9; j++) {
@@ -561,12 +556,12 @@ public class MainMenu extends javax.swing.JFrame {
                 hasRepetitions = true;
             }
         }
-
+        
         if (hasRepetitions) {
             JOptionPane.showMessageDialog(this, fstErrorMessage + sndErrorMessage, "Error", WIDTH);
         }
-
-
+        
+        
         boolean colorsAreRepeated = false;
         String fstColorErrorMessage = "The player(s): ";
         String sndColorErrorMessage = " are choosing repeated colors";
@@ -585,20 +580,20 @@ public class MainMenu extends javax.swing.JFrame {
         }
         if (!hasRepetitions && !colorsAreRepeated) {
             GameMaster master = GameMaster.instance();
-            MainWindow window = new MainWindow();
+            MainWindow window = new MainWindow(dB);
             GameBoard gameBoard = new GameBoardFull();
-
+            
             master.setGameBoard(gameBoard);
             GameMaster.instance().setNumberOfPlayers(names.size());
-
+            
             for (int j = 0; j < names.size(); j++) {
                 Player pi = GameMaster.instance().getPlayer(j);
                 if (actualUsers.get(j) != null) {
-                    pi.setBelongsToUser(actualUsers.get(j));
+                    pi.setUser(actualUsers.get(j));
                 }
                 pi.setName(names.get(j));
                 pi.setColor(chosenColors.get(j));
-
+                
             }
             window.setupGameBoard(gameBoard);
             window.show();
@@ -696,13 +691,18 @@ public class MainMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBoxUser1ActionPerformed
 
-    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         this.setVisible(false);
         previous.setVisible(true);
-    }//GEN-LAST:event_SalirActionPerformed
+    }//GEN-LAST:event_ExitActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.previous.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Salir;
+    private javax.swing.JButton Exit;
     private javax.swing.JButton jButtonStart;
     private javax.swing.JCheckBox jCheckBoxUser1;
     private javax.swing.JCheckBox jCheckBoxUser2;
@@ -728,7 +728,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxUser6;
     private javax.swing.JComboBox<String> jComboBoxUser7;
     private javax.swing.JComboBox<String> jComboBoxUser8;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelChoose;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

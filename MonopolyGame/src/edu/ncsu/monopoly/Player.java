@@ -17,13 +17,13 @@ public class Player {
     private ArrayList properties = new ArrayList();
     private ArrayList railroads = new ArrayList();
     private ArrayList utilities = new ArrayList();
-    private User userBelong;
+    private User user;
     private String color;
     private int numberOfTriesInJail;
     private int playerPanel;
     
     public Player() {
-        userBelong=null;
+        user=null;
         numberOfTriesInJail = 0;
         GameBoard gb = GameMaster.instance().getGameBoard();
         inJail = false;
@@ -31,12 +31,12 @@ public class Player {
             position = gb.queryCell("Go");
         }
     }
-    public User getBelongsToUser() {
-        return userBelong;
+    public User getUser() {
+        return user;
     }
     
-    public void setBelongsToUser(User belongs) {
-        userBelong = belongs;
+    public void setUser(User belongs) {
+        user = belongs;
     }
     
     public File getPicture() {

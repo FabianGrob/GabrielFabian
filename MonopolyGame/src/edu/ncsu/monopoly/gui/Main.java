@@ -30,7 +30,6 @@ public class Main {
     
     public static void main(String[] args) {
         DataBase dB;
-        
         try {
             Serialize ser = new Serialize();
             dB = ser.recuperate();
@@ -41,7 +40,7 @@ public class Main {
         
         
         GameMaster master = GameMaster.instance();
-        MainWindow window = new MainWindow();
+        MainWindow window = new MainWindow(dB);
         GameBoard gameBoard = null;
         if(args.length > 0) {
             if(args[0].equals("test")) {

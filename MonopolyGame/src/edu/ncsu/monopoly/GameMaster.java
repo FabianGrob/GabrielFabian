@@ -24,7 +24,7 @@ public class GameMaster {
     }
     
     public GameMaster() {
-        initAmountOfMoney = 1500;
+        initAmountOfMoney = 1;
         dice = new Die[]{new Die(), new Die()};
     }
     
@@ -325,9 +325,27 @@ public class GameMaster {
     }
     
     public void startGame() {
+        addGameToPlayers();
         gui.startGame();
         gui.enablePlayerTurn(0);
         gui.setTradeEnabled(0, true);
+    }
+    
+    public void addGameToPlayers() {
+        for (int i = 0; i < players.size(); i++) {
+            Player player = (Player) players.get(i);
+            User user = player.getUser();
+            if(user != null){
+                user.setPlayedGames(user.getPlayedGames() + 1);
+            }
+        }
+    }
+    
+    public void addWonGameToPlayer(Player player) {
+        User user = player.getUser();
+        if(user != null) {
+            user.setWonGames(user.getWonGames() + 1);
+        }
     }
     
     public void switchTurn() {
@@ -367,6 +385,7 @@ public class GameMaster {
         gui.showMessage(getCurrentPlayer().toString() + " has lost!");
         this.players.remove(turn);
         if (players.size() == 1){
+            addWonGameToPlayer((Player) players.get(0));
             gui.showMessage("Congratulations!!! " + players.get(0).toString() + " has won the game!");
         } else {
             switchTurn();
