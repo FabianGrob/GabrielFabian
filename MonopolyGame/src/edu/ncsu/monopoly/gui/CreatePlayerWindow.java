@@ -1,6 +1,5 @@
 package edu.ncsu.monopoly.gui;
 
-
 import edu.ncsu.monopoly.DataBase;
 import edu.ncsu.monopoly.User;
 import java.io.File;
@@ -8,22 +7,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class CreatePlayerWindow extends javax.swing.JFrame {
+
     private User user;
     private DataBase dB;
     private WelcomeMenu prev;
-    
-    public CreatePlayerWindow(WelcomeMenu previous,DataBase dBs) {
-        prev=previous;
-        dB=dBs;
-        user= new User();
+
+    public CreatePlayerWindow(WelcomeMenu previous, DataBase dBs) {
+        prev = previous;
+        dB = dBs;
+        user = new User();
         File playerPicture = new File("/PredefPic/PredefPicture.png");
-        
+
         user.setPicture(playerPicture);
         initComponents();
-        
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -125,14 +124,13 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddPictureActionPerformed
-        PictureChooser window= new PictureChooser(this);
+        PictureChooser window = new PictureChooser(this);
         this.setVisible(false);
-        
-        javax.swing.JFileChooser jFCh=window.getfCh();
-        
+
+        javax.swing.JFileChooser jFCh = window.getfCh();
+
         int returnVal = jFCh.showOpenDialog(null);
-        
-        
+
         boolean opened = returnVal != jFCh.CANCEL_OPTION;
         if (opened) {
             String path = jFCh.getSelectedFile().getPath();
@@ -145,7 +143,7 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
             if (isValid) {
                 user.setPicture(file);
                 this.setVisible(true);
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Archivo inválido, debe ser jpg, jpeg o png", "Error", 0);
                 this.setVisible(true);
@@ -153,33 +151,36 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
         } else {
             this.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_jButtonAddPictureActionPerformed
 
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         String userName = jTextFieldName.getText();
-        if (userName.length()==0) {
-            JOptionPane.showMessageDialog(this, "No se ingreso un nombre","Error" , WIDTH);
-        }
-        if (userName.length() < 4) {
-            JOptionPane.showMessageDialog(this, "El nombre debe contener almenos 4 letras","Error" , WIDTH);
-        }
-        if (dB.alreadyExists(user)) {
-            JOptionPane.showMessageDialog(this, "Ya existe un usuario con ese nombre registrado","Error" , WIDTH);
-        }
         user.setName(userName);
-        dB.addUser(user);
-        
-        prev.setVisible(true);
-        this.setVisible(false);
-        
+        if (userName.length() == 0) {
+            JOptionPane.showMessageDialog(this, "A name must be entered", "Error", WIDTH);
+        } else {
+            if (userName.length() < 4) {
+                JOptionPane.showMessageDialog(this, "The name must have at least 4 characters", "Error", WIDTH);
+            } else {
+                if (dB.alreadyExists(user)) {
+                    JOptionPane.showMessageDialog(this, "An user with that name already exists", "Error", WIDTH);
+                } else {
+                    
+                    dB.addUser(user);
+
+                    prev.setVisible(true);
+                    this.setVisible(false);
+                }
+            }
+        }
     }//GEN-LAST:event_jButtonCreateActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         prev.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BackActionPerformed
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;

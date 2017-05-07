@@ -10,6 +10,7 @@ import edu.ncsu.monopoly.DataBase;
 import edu.ncsu.monopoly.User;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -30,9 +31,16 @@ public class Ranking extends javax.swing.JFrame {
 
         jListUsers.removeAll();
         Collections.sort(dB.getUsers(), new Criteria());
-        ArrayList users = dB.getUsers();
-
-        jListUsers.setListData((String[]) users.toArray());
+        ArrayList <User>users = dB.getUsers(); 
+        String[] names = new String[users.size()-1];
+        int j =0;
+        for (int i = 1; i < users.size(); i++) {
+            names[j]=users.get(i).getName();
+            j++;
+        }
+        
+        jListUsers.setListData(names);
+        jListUsers.setSelectedIndex(0);
     }
 
     /**
@@ -49,23 +57,25 @@ public class Ranking extends javax.swing.JFrame {
         jLabelName = new javax.swing.JLabel();
         jLabelScore = new javax.swing.JLabel();
         jLabelPicture = new javax.swing.JLabel();
-        jButtonInformation = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jListUsers.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListUsersValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jListUsers);
 
         jLabelName.setText("Name:");
+        jLabelName.setBorder(new javax.swing.border.MatteBorder(null));
 
         jLabelScore.setText("Score:");
+        jLabelScore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButtonInformation.setText("Information");
-        jButtonInformation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInformationActionPerformed(evt);
-            }
-        });
+        jLabelPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PredefPic/predefPic.png"))); // NOI18N
+        jLabelPicture.setBorder(new javax.swing.border.MatteBorder(null));
 
         jButtonBack.setText("Back");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -81,67 +91,57 @@ public class Ranking extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
                                 .addComponent(jLabelName)
                                 .addGap(47, 47, 47)
                                 .addComponent(jLabelScore))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonInformation)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addComponent(jLabelPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                            .addComponent(jLabelPicture))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jButtonInformation)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(95, 95, 95)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelName)
-                            .addComponent(jLabelScore)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jLabelPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelScore))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelPicture))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jButtonBack)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInformationActionPerformed
-        String name = jListUsers.getSelectedValue();
-        User selectedUser = dB.getUser(name);
-        jLabelName.setText(jLabelName.getText() + " " + selectedUser.getName());
-        jLabelScore.setText(jLabelName.getText() + " " + selectedUser.getWonGames() + "/" + selectedUser.getPlayedGames());
-        jLabelPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource(selectedUser.getPicture().getPath())));
-        
-    }//GEN-LAST:event_jButtonInformationActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         previous.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonBackActionPerformed
 
-
+    private void jListUsersValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListUsersValueChanged
+        String name = jListUsers.getSelectedValue();
+        User selectedUser = dB.getUser(name);
+        jLabelName.setText("Name: " + selectedUser.getName());
+        jLabelScore.setText("Score: " + selectedUser.getWonGames() + "/" + selectedUser.getPlayedGames());
+        
+        ImageIcon imgThisImg = new ImageIcon(selectedUser.getPicture().getAbsolutePath());
+        jLabelPicture.setIcon(imgThisImg);
+        //jLabelPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource(selectedUser.getPicture().getPath())));     
+    }//GEN-LAST:event_jListUsersValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
-    private javax.swing.JButton jButtonInformation;
     private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelPicture;
     private javax.swing.JLabel jLabelScore;

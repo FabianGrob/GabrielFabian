@@ -3,6 +3,9 @@ package edu.ncsu.monopoly.gui;
 import edu.ncsu.monopoly.DataBase;
 import edu.ncsu.monopoly.Serialize;
 import edu.ncsu.monopoly.User;
+import static java.awt.image.ImageObserver.WIDTH;
+import java.io.File;
+import javax.swing.JOptionPane;
 
 public class WelcomeMenu extends javax.swing.JFrame {
     private DataBase dB;
@@ -114,7 +117,14 @@ public class WelcomeMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        if (dB.getUsers().size()==0) {
+            JOptionPane.showMessageDialog(this, "There are not users registered", "Error", WIDTH);
+        }else{
+        Ranking window = new Ranking(dB, this);
+        this.setVisible(false);
+        window.setVisible(true);
+    }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
@@ -141,6 +151,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
                 DataBase dtB = new DataBase();
                 User u = new User();
                 u.setName("Jorge");
+                u.setPicture(new File("/PredefPic/PredefPicture.png"));
                 dtB.addUser(u);
                 new WelcomeMenu(dtB).setVisible(true);
             }
