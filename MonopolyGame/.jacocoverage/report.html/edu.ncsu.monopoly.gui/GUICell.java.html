@@ -6,64 +6,99 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
 import edu.ncsu.monopoly.*;
+import java.awt.geom.Rectangle2D;
+import javafx.stage.Screen;
 
 public class GUICell extends JPanel {
-
-	private Cell cell;
-	private JLabel lblInfo;
-<span class="nc" id="L14">	private JLabel[] lblPlayers = new JLabel[GameMaster.MAX_PLAYER];</span>
-	
-<span class="nc" id="L16">    public GUICell(Cell cell) {</span>
-<span class="nc" id="L17">        this.cell = cell;</span>
-<span class="nc" id="L18">        setLayout(new OverlayLayout(this));</span>
-<span class="nc" id="L19">        setBorder(new BevelBorder(BevelBorder.LOWERED));</span>
-<span class="nc" id="L20">        JPanel pnlPlayer = new JPanel();</span>
-<span class="nc" id="L21">        pnlPlayer.setLayout(new GridLayout(2, 4));</span>
-<span class="nc" id="L22">        pnlPlayer.setOpaque(false);</span>
-<span class="nc" id="L23">        createPlayerLabels(pnlPlayer);</span>
-<span class="nc" id="L24">        add(pnlPlayer);</span>
-<span class="nc" id="L25">        setPreferredSize(new Dimension(100,100));</span>
-<span class="nc" id="L26">        addCellInfo();</span>
-<span class="nc" id="L27">        this.doLayout();</span>
-<span class="nc" id="L28">	}</span>
-	
-	private void addCellInfo() {
-<span class="nc" id="L31">        lblInfo = new JLabel();</span>
-<span class="nc" id="L32">		displayInfo();</span>
-<span class="nc" id="L33">        JPanel pnlInfo = new JPanel();</span>
-<span class="nc" id="L34">        pnlInfo.setLayout(new GridLayout(1, 1));</span>
-<span class="nc" id="L35">        pnlInfo.add(lblInfo);</span>
-<span class="nc" id="L36">        add(pnlInfo);</span>
-<span class="nc" id="L37">    }</span>
-	
-	public void addPlayer(int index) {
-<span class="nc" id="L40">		Player player = GameMaster.instance().getPlayer(index);</span>
-<span class="nc" id="L41">		lblPlayers[index].setText(player.getName().substring(0, 1));</span>
-<span class="nc" id="L42">		lblPlayers[index].setOpaque(true);</span>
-<span class="nc" id="L43">	}</span>
-
+    
+    private Cell cell;
+    private JLabel lblInfo;
+<span class="nc" id="L16">    private JLabel[] lblPlayers = new JLabel[GameMaster.MAX_PLAYER];</span>
+    
+<span class="nc" id="L18">    public GUICell(Cell cell) {</span>
+<span class="nc" id="L19">        this.cell = cell;</span>
+<span class="nc" id="L20">        setLayout(new OverlayLayout(this));</span>
+<span class="nc" id="L21">        setBorder(new BevelBorder(BevelBorder.LOWERED));</span>
+<span class="nc" id="L22">        JPanel pnlPlayer = new JPanel();</span>
+<span class="nc" id="L23">        pnlPlayer.setLayout(new GridLayout(2, 4));</span>
+<span class="nc" id="L24">        createPlayerLabels(pnlPlayer);</span>
+<span class="nc" id="L25">        pnlPlayer.setOpaque(false);</span>
+<span class="nc" id="L26">        add(pnlPlayer);</span>
+<span class="nc" id="L27">        setPreferredSize(new Dimension(135, 80));</span>
+<span class="nc" id="L28">        addCellInfo();</span>
+<span class="nc" id="L29">        this.doLayout();</span>
+<span class="nc" id="L30">    }</span>
+    
+    private void addCellInfo() {
+<span class="nc" id="L33">        lblInfo = new JLabel();</span>
+<span class="nc" id="L34">        displayInfo();</span>
+<span class="nc" id="L35">        JPanel pnlInfo = new JPanel();</span>
+<span class="nc" id="L36">        pnlInfo.setLayout(new GridLayout(1, 1));</span>
+<span class="nc" id="L37">        pnlInfo.add(lblInfo);</span>
+<span class="nc" id="L38">        add(pnlInfo);</span>
+<span class="nc" id="L39">    }</span>
+    
+    public void addPlayer(int index) {
+<span class="nc" id="L42">        Player player = GameMaster.instance().getPlayer(index);</span>
+<span class="nc" id="L43">        lblPlayers[index].setVisible(true);</span>
+        
+<span class="nc" id="L45">    }</span>
+    
     private void createPlayerLabels(JPanel pnlPlayer) {
-<span class="nc bnc" id="L46" title="All 2 branches missed.">		for (int i = 0; i &lt; GameMaster.MAX_PLAYER; i++) {</span>
-<span class="nc" id="L47">			lblPlayers[i] = new JLabel();</span>
-<span class="nc" id="L48">			lblPlayers[i].setBackground(Color.GREEN);</span>
-<span class="nc" id="L49">			pnlPlayer.add(lblPlayers[i]);</span>
-		}
-<span class="nc" id="L51">	}</span>
-
-	public void displayInfo() {
-<span class="nc" id="L54">		lblInfo.setText(InfoFormatter.cellInfo(cell));</span>
-<span class="nc" id="L55">        this.invalidate();</span>
-<span class="nc" id="L56">		this.repaint();</span>
-<span class="nc" id="L57">	}</span>
-
-	public Cell getCell() {
-<span class="nc" id="L60">		return cell;</span>
-	}
-	
-	public void removePlayer(int index) {
-<span class="nc" id="L64">		lblPlayers[index].setText(&quot;&quot;);</span>
-<span class="nc" id="L65">		lblPlayers[index].setOpaque(false);</span>
-<span class="nc" id="L66">        this.repaint();</span>
-<span class="nc" id="L67">	}</span>
+<span class="nc" id="L48">        String color = &quot;&quot;;</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        for (int i = 0; i &lt; GameMaster.MAX_PLAYER; i++) {</span>
+<span class="nc bnc" id="L50" title="All 9 branches missed.">            switch(i) {</span>
+                case 0:
+<span class="nc" id="L52">                    color = &quot;Yellow&quot;;</span>
+<span class="nc" id="L53">                    break;</span>
+                case 1:
+<span class="nc" id="L55">                    color = &quot;Violet&quot;;</span>
+<span class="nc" id="L56">                    break;</span>
+                case 2:
+<span class="nc" id="L58">                    color = &quot;Red&quot;;</span>
+<span class="nc" id="L59">                    break;</span>
+                case 3:
+<span class="nc" id="L61">                    color = &quot;Orange&quot;;</span>
+<span class="nc" id="L62">                    break;</span>
+                case 4:
+<span class="nc" id="L64">                    color = &quot;Green&quot;;</span>
+<span class="nc" id="L65">                    break;</span>
+                case 5:
+<span class="nc" id="L67">                    color = &quot;Yellow&quot;;</span>
+<span class="nc" id="L68">                    break;</span>
+                case 6:
+<span class="nc" id="L70">                    color = &quot;Orange&quot;;</span>
+<span class="nc" id="L71">                    break;</span>
+                case 7:
+<span class="nc" id="L73">                    color = &quot;Red&quot;;</span>
+                    break;
+                    
+            }
+            //ACA TIENE QUE IR EL CAMBIO DE COLOR DEL USUARIO!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+<span class="nc" id="L78">            ImageIcon imageIcon = new ImageIcon(&quot;src/PredefPic/Pawn&quot; + color + &quot;.png&quot;);</span>
+<span class="nc" id="L79">            Image image = imageIcon.getImage();</span>
+<span class="nc" id="L80">            Image newimg = image.getScaledInstance(30, 40,  java.awt.Image.SCALE_SMOOTH);</span>
+<span class="nc" id="L81">            ImageIcon icon = new ImageIcon(newimg);</span>
+<span class="nc" id="L82">            lblPlayers[i] = new JLabel(icon);</span>
+<span class="nc" id="L83">            lblPlayers[i].setVisible(false);</span>
+<span class="nc" id="L84">            pnlPlayer.add(lblPlayers[i]);</span>
+        }
+<span class="nc" id="L86">    }</span>
+    
+    public void displayInfo() {
+<span class="nc" id="L89">        lblInfo.setText(InfoFormatter.cellInfo(cell));</span>
+<span class="nc" id="L90">        this.invalidate();</span>
+<span class="nc" id="L91">        this.repaint();</span>
+<span class="nc" id="L92">    }</span>
+    
+    public Cell getCell() {
+<span class="nc" id="L95">        return cell;</span>
+    }
+    
+    public void removePlayer(int index) {
+<span class="nc" id="L99">        lblPlayers[index].setText(&quot;&quot;);</span>
+<span class="nc" id="L100">        lblPlayers[index].setVisible(false);</span>
+<span class="nc" id="L101">        this.repaint();</span>
+<span class="nc" id="L102">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
