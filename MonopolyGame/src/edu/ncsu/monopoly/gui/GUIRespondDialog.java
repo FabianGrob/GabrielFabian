@@ -35,18 +35,19 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
                 hide();
             }
         });
-
+        
         btnNo.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 response = false;
                 hide();
             }
         });
-    
+        
         setModal(true);
         pack();
+        this.setLocationRelativeTo(null);
     }
-
+    
     public boolean getResponse() {
         return response;
     }
@@ -54,5 +55,5 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
     public void setDeal(TradeDeal deal) {
         txtMessage.setText(deal.makeMessage());
     }
-
+    
 }

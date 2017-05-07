@@ -27,13 +27,14 @@ public class TestDiceRollDialog extends JDialog {
         btnCancel = new JButton("Cancel");
         
         setModal(true);
-             
+        
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridLayout(2, 2));
         contentPane.add(new JLabel("Amount"));
         contentPane.add(txtDiceRoll);
         contentPane.add(btnOK);
         contentPane.add(btnCancel);
+        this.setLocationRelativeTo(null);
         
         btnCancel.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -55,15 +56,15 @@ public class TestDiceRollDialog extends JDialog {
                     return;
                 }
                 if(amount > 0) {
-	                diceRoll = new int[2];
-	                if((amount % 2) == 0) {
-	                	diceRoll[0] = amount / 2;
-	                	diceRoll[1] = amount / 2;
-	                }
-	                else {
-	                	diceRoll[0] = amount / 2;
-	                	diceRoll[1] = (amount / 2) + 1;
-	                }
+                    diceRoll = new int[2];
+                    if((amount % 2) == 0) {
+                        diceRoll[0] = amount / 2;
+                        diceRoll[1] = amount / 2;
+                    }
+                    else {
+                        diceRoll[0] = amount / 2;
+                        diceRoll[1] = (amount / 2) + 1;
+                    }
                 }
                 hide();
             }
@@ -71,7 +72,7 @@ public class TestDiceRollDialog extends JDialog {
         
         this.pack();
     }
-
+    
     public int[] getDiceRoll() {
         return diceRoll;
     }

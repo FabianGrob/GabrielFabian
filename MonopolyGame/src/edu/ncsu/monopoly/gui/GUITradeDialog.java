@@ -20,7 +20,7 @@ import edu.ncsu.monopoly.TradeDialog;
 public class GUITradeDialog extends JDialog implements TradeDialog {
     private JButton btnOK, btnCancel;
     private JComboBox cboSellers, cboProperties;
-
+    
     private TradeDeal deal;
     private JTextField txtAmount;
     
@@ -38,7 +38,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         
         buildSellersCombo();
         setModal(true);
-             
+        
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridLayout(4, 2));
         contentPane.add(new JLabel("Sellers"));
@@ -49,6 +49,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         contentPane.add(txtAmount);
         contentPane.add(btnOK);
         contentPane.add(btnCancel);
+        this.setLocationRelativeTo(null);
         
         btnCancel.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -77,11 +78,11 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
                 if(cell == null) return;
                 Player player = (Player)cboSellers.getSelectedItem();
                 Player currentPlayer = GameMaster.instance().getCurrentPlayer();
-                if(currentPlayer.getMoney() > amount) { 
-	                deal = new TradeDeal();
-	                deal.setAmount(amount);
-	                deal.setPropertyName(cell.getName());
-	                deal.setSellerIndex(GameMaster.instance().getPlayerIndex(player));
+                if(currentPlayer.getMoney() > amount) {
+                    deal = new TradeDeal();
+                    deal.setAmount(amount);
+                    deal.setPropertyName(cell.getName());
+                    deal.setSellerIndex(GameMaster.instance().getPlayerIndex(player));
                 }
                 hide();
             }
@@ -89,7 +90,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         
         this.pack();
     }
-
+    
     private void buildSellersCombo() {
         List sellers = GameMaster.instance().getSellerList();
         for (Iterator iter = sellers.iterator(); iter.hasNext();) {
@@ -100,11 +101,11 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             updatePropertiesCombo((Player)sellers.get(0));
         }
     }
-
+    
     public TradeDeal getTradeDeal() {
         return deal;
     }
-
+    
     private void updatePropertiesCombo(Player player) {
         cboProperties.removeAllItems();
         Cell[] cells = player.getAllProperties();
@@ -113,5 +114,5 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             cboProperties.addItem(cells[i]);
         }
     }
-
+    
 }

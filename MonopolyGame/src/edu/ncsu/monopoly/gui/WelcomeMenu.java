@@ -9,13 +9,13 @@ import javax.swing.JOptionPane;
 
 public class WelcomeMenu extends javax.swing.JFrame {
     private DataBase dB;
-    
+
     public WelcomeMenu(DataBase dBs) {
         initComponents();
         dB=dBs;
         this.setLocationRelativeTo(null);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -153,7 +153,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         this.setVisible(false);
         window.setVisible(true);
     }
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
@@ -173,7 +173,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

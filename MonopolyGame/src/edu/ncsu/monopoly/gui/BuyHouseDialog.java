@@ -32,6 +32,7 @@ public class BuyHouseDialog extends JDialog {
 		c.add(buildCancelButton());
 		c.doLayout();
 		this.pack();
+                this.setLocationRelativeTo(null);
 	}
 
 	private JButton buildCancelButton() {
