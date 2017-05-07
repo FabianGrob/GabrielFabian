@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class GameMaster {
-
+    
     private static GameMaster gameMaster;
     static final public int MAX_PLAYER = 8;
     private Die[] dice;
@@ -15,23 +15,23 @@ public class GameMaster {
     private int turn = 0;
     private int utilDiceRoll;
     private boolean testMode;
-
+    
     public static GameMaster instance() {
         if (gameMaster == null) {
             gameMaster = new GameMaster();
         }
         return gameMaster;
     }
-
+    
     public GameMaster() {
         initAmountOfMoney = 1500;
         dice = new Die[]{new Die(), new Die()};
     }
-
+    
     public void btnBuyHouseClicked() {
         gui.showBuyHouseDialog(getCurrentPlayer());
     }
-
+    
     public Card btnDrawCardClicked() {
         gui.setDrawCardEnabled(false);
         CardCell cell = (CardCell) getCurrentPlayer().getPosition();
@@ -46,7 +46,7 @@ public class GameMaster {
         gui.setEndTurnEnabled(true);
         return card;
     }
-
+    
     public void btnEndTurnClicked() {
         setAllButtonEnabled(false);
         getCurrentPlayer().getPosition().playAction();
@@ -63,9 +63,19 @@ public class GameMaster {
         } else {
             switchTurn();
             updateGUI();
+            Player player = getCurrentPlayer();
+            if(player.isInJail()){
+                if(player.getNumberOfTriesInJail() < 3) {
+                    gui.setRollDiceEnabled(true);
+                    gui.setGetOutOfJailEnabled(true);
+                } else {
+                    gui.setRollDiceEnabled(false);
+                    gui.setGetOutOfJailEnabled(true);
+                }
+            }
         }
     }
-
+    
     public void btnGetOutOfJailClicked() {
         getCurrentPlayer().getOutOfJail();
         if (getCurrentPlayer().isBankrupt()) {
@@ -75,21 +85,25 @@ public class GameMaster {
             gui.setGetOutOfJailEnabled(false);
             gui.setPurchasePropertyEnabled(false);
             gui.setRollDiceEnabled(false);
-            gui.setTradeEnabled(getCurrentPlayerIndex(), false);
-        } else {
+            gui.setTradeEnabled(getCurrentPlayerIndex(),false);
+            PlayerLose();
+            updateGUI();
+        }
+        else {
             gui.setRollDiceEnabled(true);
             gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse());
             gui.setGetOutOfJailEnabled(getCurrentPlayer().isInJail());
+            getCurrentPlayer().setNumberOfTriesInJail(0);
         }
     }
-
+    
     public void btnPurchasePropertyClicked() {
         Player player = getCurrentPlayer();
         player.purchase();
         gui.setPurchasePropertyEnabled(false);
         updateGUI();
     }
-
+    
     public int btnRollDiceClicked() {
         int[] rolls = rollDice();
         if ((rolls[0] + rolls[1]) > 0) {
@@ -110,20 +124,19 @@ public class GameMaster {
                 } else {
                     msg.append(". You cant get out unless you pay or get a double!");
                     roll = false;
+                    player.setNumberOfTriesInJail(player.getNumberOfTriesInJail() + 1);
                 }
             }
             gui.showMessage(msg.toString());
-
             if (roll) {
                 movePlayer(player, rolls[0] + rolls[1]);
-
             }
-
+            
             gui.setEndTurnEnabled(true);
         }
         return rolls[0] + rolls[1];
     }
-
+    
     public void btnTradeClicked() {
         TradeDialog dialog = gui.openTradeDialog();
         TradeDeal deal = dialog.getTradeDeal();
@@ -135,58 +148,58 @@ public class GameMaster {
             }
         }
     }
-
+    
     public void completeTrade(TradeDeal deal) {
         Player seller = getPlayer(deal.getPlayerIndex());
         Cell property = gameBoard.queryCell(deal.getPropertyName());
         seller.sellProperty(property, deal.getAmount());
         getCurrentPlayer().buyProperty(property, deal.getAmount());
     }
-
+    
     public Card drawCCCard() {
         return gameBoard.drawCCCard();
     }
-
+    
     public Card drawChanceCard() {
         return gameBoard.drawChanceCard();
     }
-
+    
     public Player getCurrentPlayer() {
         return getPlayer(turn);
     }
-
+    
     public int getCurrentPlayerIndex() {
         return turn;
     }
-
+    
     public GameBoard getGameBoard() {
         return gameBoard;
     }
-
+    
     public MonopolyGUI getGUI() {
         return gui;
     }
-
+    
     public int getInitAmountOfMoney() {
         return initAmountOfMoney;
     }
-
+    
     public int getNumberOfPlayers() {
         return players.size();
     }
-
+    
     public int getNumberOfSellers() {
         return players.size() - 1;
     }
-
+    
     public Player getPlayer(int index) {
         return (Player) players.get(index);
     }
-
+    
     public int getPlayerIndex(Player player) {
         return players.indexOf(player);
     }
-
+    
     public ArrayList getSellerList() {
         ArrayList sellers = new ArrayList();
         for (Iterator iter = players.iterator(); iter.hasNext();) {
@@ -197,20 +210,20 @@ public class GameMaster {
         }
         return sellers;
     }
-
+    
     public int getTurn() {
         return turn;
     }
-
+    
     public int getUtilDiceRoll() {
         return this.utilDiceRoll;
     }
-
+    
     public void movePlayer(int playerIndex, int diceValue) {
         Player player = (Player) players.get(playerIndex);
         movePlayer(player, diceValue);
     }
-
+    
     public void movePlayer(Player player, int diceValue) {
         Cell currentPosition = player.getPosition();
         int positionIndex = gameBoard.queryCellIndex(currentPosition.getName());
@@ -223,7 +236,7 @@ public class GameMaster {
         playerMoved(player);
         updateGUI();
     }
-
+    
     public void playerMoved(Player player) {
         Cell cell = player.getPosition();
         int playerIndex = getPlayerIndex(player);
@@ -240,7 +253,7 @@ public class GameMaster {
         }
         gui.setTradeEnabled(turn, false);
     }
-
+    
     public void reset() {
         for (int i = 0; i < getNumberOfPlayers(); i++) {
             Player player = (Player) players.get(i);
@@ -251,7 +264,7 @@ public class GameMaster {
         }
         turn = 0;
     }
-
+    
     public int[] rollDice() {
         // if(testMode) {
         // return gui.getDiceRoll();
@@ -263,7 +276,7 @@ public class GameMaster {
         };
     }
     // }
-
+    
     public void sendToJail(Player player) {
         int oldPosition = gameBoard.queryCellIndex(getCurrentPlayer().getPosition().getName());
         player.setPosition(gameBoard.queryCell("Jail"));
@@ -274,7 +287,7 @@ public class GameMaster {
                 oldPosition,
                 jailIndex);
     }
-
+    
     private void setAllButtonEnabled(boolean enabled) {
         gui.setRollDiceEnabled(enabled);
         gui.setPurchasePropertyEnabled(enabled);
@@ -284,38 +297,39 @@ public class GameMaster {
         gui.setDrawCardEnabled(enabled);
         gui.setGetOutOfJailEnabled(enabled);
     }
-
+    
     public void setGameBoard(GameBoard board) {
         this.gameBoard = board;
     }
-
+    
     public void setGUI(MonopolyGUI gui) {
         this.gui = gui;
     }
-
+    
     public void setInitAmountOfMoney(int money) {
         this.initAmountOfMoney = money;
     }
-
+    
     public void setNumberOfPlayers(int number) {
         players.clear();
         for (int i = 0; i < number; i++) {
             Player player = new Player();
+            player.setPlayerPanel(i);
             player.setMoney(initAmountOfMoney);
             players.add(player);
         }
     }
-
+    
     public void setUtilDiceRoll(int diceRoll) {
         this.utilDiceRoll = diceRoll;
     }
-
+    
     public void startGame() {
         gui.startGame();
         gui.enablePlayerTurn(0);
         gui.setTradeEnabled(0, true);
     }
-
+    
     public void switchTurn() {
         turn = (turn + 1) % getNumberOfPlayers();
         if (getCurrentPlayer().isInJail()) {
@@ -324,33 +338,38 @@ public class GameMaster {
             gui.setGetOutOfJailEnabled(false);
             gui.setBuyHouseEnabled(getCurrentPlayer().canBuyHouse());
             gui.setTradeEnabled(turn, true);
-
+            
         }
-        gui.enablePlayerTurn(turn);
-
+        Player player = getPlayer(turn);
+        int panel = player.getPlayerPanel();
+        gui.enablePlayerTurn(panel);
     }
-
+    
     public void updateGUI() {
         gui.update();
     }
-
+    
     public void utilRollDice() {
         this.utilDiceRoll = gui.showUtilDiceRoll();
     }
-
+    
     public void setTestMode(boolean b) {
         testMode = b;
     }
-
-    //ACA ES DONDE SE SETEA QUE EL USUARIO NO PUEDE JUGAR MAS
+    
     public void PlayerLose() {
         Cell[] playerProperties = getCurrentPlayer().getAllProperties();
         getCurrentPlayer().resetProperty();
-        this.players.remove(turn);
         for (int i = 0; i < playerProperties.length; i++) {
             playerProperties[i].setAvailable(true);
             playerProperties[i].setOwner(null);
         }
-
+        gui.showMessage(getCurrentPlayer().toString() + " has lost!");
+        this.players.remove(turn);
+        if (players.size() == 1){
+            gui.showMessage("Congratulations!!! " + players.get(0).toString() + " has won the game!");
+        } else {
+            switchTurn();
+        }
     }
 }
