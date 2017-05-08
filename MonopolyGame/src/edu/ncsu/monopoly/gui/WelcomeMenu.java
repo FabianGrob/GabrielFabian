@@ -29,6 +29,9 @@ public class WelcomeMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
@@ -157,6 +160,12 @@ public class WelcomeMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonRankingActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+       Serialize ser = new Serialize();
+        ser.serializer(dB);
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -175,7 +184,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 DataBase dtB = new DataBase();
@@ -187,6 +196,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

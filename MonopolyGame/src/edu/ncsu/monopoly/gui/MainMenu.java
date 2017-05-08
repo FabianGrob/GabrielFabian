@@ -3,32 +3,39 @@ package edu.ncsu.monopoly.gui;
 import edu.ncsu.monopoly.DataBase;
 import edu.ncsu.monopoly.GameBoard;
 import edu.ncsu.monopoly.GameMaster;
+import edu.ncsu.monopoly.ParametersCheckSelection;
 import edu.ncsu.monopoly.Player;
 import edu.ncsu.monopoly.User;
 import edu.ncsu.monopoly.test.boardScenarios.GameBoardFull;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.ArrayList;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public class MainMenu extends javax.swing.JFrame {
-    
+
     private DataBase dB;
     private WelcomeMenu previous;
     private ArrayList<Player> players;
-    
+    private int guestsQ;
+
     private ArrayList<JComboBox> comboBoxesColor;
-    
-    
+    private ArrayList<JComboBox> comboBoxesUsers;
+    private ArrayList<JCheckBox> checkBoxes;
+
     public MainMenu(DataBase dBs, WelcomeMenu prev) {
         comboBoxesColor = new ArrayList<JComboBox>();
+        comboBoxesUsers = new ArrayList<JComboBox>();
+        checkBoxes = new ArrayList<JCheckBox>();
         players = new ArrayList<Player>();
         previous = prev;
-        
+        guestsQ = 1;
+
         dB = dBs;
         initComponents();
         jCheckBoxUser1.setEnabled(false);
-        
+
         jComboBoxUser2.setEnabled(false);
         jComboBoxUser3.setEnabled(false);
         jComboBoxUser4.setEnabled(false);
@@ -36,8 +43,7 @@ public class MainMenu extends javax.swing.JFrame {
         jComboBoxUser7.setEnabled(false);
         jComboBoxUser6.setEnabled(false);
         jComboBoxUser5.setEnabled(false);
-        
-        
+
         comboBoxesColor.add(jComboBoxColor1);
         comboBoxesColor.add(jComboBoxColor2);
         comboBoxesColor.add(jComboBoxColor3);
@@ -47,7 +53,7 @@ public class MainMenu extends javax.swing.JFrame {
         comboBoxesColor.add(jComboBoxColor7);
         comboBoxesColor.add(jComboBoxColor8);
         String[] colors = {"Green", "Orange", "Red", "Violet", "Yellow", "Gray", "Blue", "Black"};
-        
+
         for (int i = 0; i < comboBoxesColor.size(); i++) {
             if (i > 0) {
                 comboBoxesColor.get(i).setEnabled(false);
@@ -56,20 +62,32 @@ public class MainMenu extends javax.swing.JFrame {
                 comboBoxesColor.get(i).addItem(colors[j]);
             }
         }
-        
-        for (int i = 0; i < dB.getUsers().size(); i++) {
-            jComboBoxUser1.addItem(dB.getUsers().get(i).getName());
-            jComboBoxUser2.addItem(dB.getUsers().get(i).getName());
-            jComboBoxUser3.addItem(dB.getUsers().get(i).getName());
-            jComboBoxUser4.addItem(dB.getUsers().get(i).getName());
-            jComboBoxUser5.addItem(dB.getUsers().get(i).getName());
-            jComboBoxUser6.addItem(dB.getUsers().get(i).getName());
-            jComboBoxUser7.addItem(dB.getUsers().get(i).getName());
-            jComboBoxUser8.addItem(dB.getUsers().get(i).getName());
+        comboBoxesUsers.add(jComboBoxUser1);
+        comboBoxesUsers.add(jComboBoxUser2);
+        comboBoxesUsers.add(jComboBoxUser3);
+        comboBoxesUsers.add(jComboBoxUser4);
+        comboBoxesUsers.add(jComboBoxUser5);
+        comboBoxesUsers.add(jComboBoxUser6);
+        comboBoxesUsers.add(jComboBoxUser7);
+        comboBoxesUsers.add(jComboBoxUser8);
+        checkBoxes.add(jCheckBoxUser1);
+        checkBoxes.add(jCheckBoxUser2);
+        checkBoxes.add(jCheckBoxUser3);
+        checkBoxes.add(jCheckBoxUser4);
+        checkBoxes.add(jCheckBoxUser5);
+        checkBoxes.add(jCheckBoxUser6);
+        checkBoxes.add(jCheckBoxUser7);
+        checkBoxes.add(jCheckBoxUser8);
+
+        for (int j = 0; j < comboBoxesUsers.size(); j++) {
+            for (int i = 0; i < dB.getUsers().size(); i++) {
+                comboBoxesUsers.get(j).addItem(dB.getUsers().get(i).getName());
+            }
         }
+
         this.setLocationRelativeTo(null);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -350,203 +368,54 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public void checkSelection(ParametersCheckSelection pcs,JComboBox comboBoxColor) {
+        JComboBox comboBox = pcs.getComboBox();
+        ArrayList<User> actualUsers = pcs.getActualUsers();
+        ArrayList<String> names = pcs.getNames();
+        boolean[] repeated = pcs.getRepeated();
+        boolean[] repeatedColors = pcs.getRepeatedColors();
+        ArrayList<String> chosenColors = pcs.getChosenColors();
+        int choseColorIndex = pcs.getChoseColorIndex();
 
-    private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
-        User guest = new User();
-        guest.setName("Jugar como invitado");
-        boolean[] repeated = new boolean[9];
-        ArrayList<String> chosenColors = new ArrayList<String>();
-        int choseColorIndex = 0;
-        boolean[] repeatedColors = new boolean[9];
-        ArrayList<User> actualUsers = new ArrayList<User>();
-        int i = 1;
-        String actualName = "";
-        ArrayList<String> names = new ArrayList<String>();
-        
-        if (!((String) jComboBoxUser1.getSelectedItem()).equals(guest.getName())) {
-            names.add((String) jComboBoxUser1.getSelectedItem());
-            User ui = dB.getUser((String) jComboBoxUser1.getSelectedItem());
-            actualUsers.add(ui);
-        } else {
-            names.add("Invitado" + i);
-            i++;
-            User ui = null;
-            actualUsers.add(ui);
-        }
-        chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
-        choseColorIndex++;
-        if (jCheckBoxUser2.isSelected()) {
-            if (!((String) jComboBoxUser2.getSelectedItem()).equals(guest.getName())) {
-                actualName = (String) jComboBoxUser2.getSelectedItem();
-                
-                User ui = dB.getUser((String) jComboBoxUser2.getSelectedItem());
+        if (pcs.isSelectedToPlay()) {
+            String actualName = "";
+            if (!((String) comboBox.getSelectedItem()).equals("Play as guest")) {
+                actualName = (String) comboBox.getSelectedItem();
+
+                User ui = dB.getUser((String) comboBox.getSelectedItem());
                 actualUsers.add(ui);
             } else {
-                actualName = "Invitado" + i;
-                i++;
-                
+                actualName = "Guest" + guestsQ;
+                guestsQ++;
                 User ui = null;
                 actualUsers.add(ui);
             }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
+            if (names.contains(actualName) && !actualName.equals("Guest" + (guestsQ - 1))) {
                 repeated[names.size()] = true;
             }
             names.add(actualName);
-            if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {
+            if (chosenColors.contains((String) comboBoxColor.getSelectedItem())) {
                 repeatedColors[names.size()] = true;
             }
-            chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
+            chosenColors.add((String) comboBoxColor.getSelectedItem());
             choseColorIndex++;
+
+            pcs.setActualUsers(actualUsers);
+            pcs.setNames(names);
+            pcs.setRepeated(repeated);
+            pcs.setRepeatedColors(repeatedColors);
+            pcs.setChosenColors(chosenColors);
+            pcs.setChoseColorIndex(choseColorIndex);
+
         }
-        
-        if (jCheckBoxUser3.isSelected()) {
-            if (!((String) jComboBoxUser3.getSelectedItem()).equals(guest.getName())) {
-                actualName = (String) jComboBoxUser3.getSelectedItem();
-                
-                User ui = dB.getUser((String) jComboBoxUser3.getSelectedItem());
-                actualUsers.add(ui);
-            } else {
-                actualName = "Invitado" + i;
-                i++;
-                
-                User ui = null;
-                actualUsers.add(ui);
-            }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
-                repeated[names.size()] = true;
-            }
-            names.add(actualName);
-            if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {
-                repeatedColors[names.size()] = true;
-            }
-            chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
-            choseColorIndex++;
-        }
-        
-        if (jCheckBoxUser4.isSelected()) {
-            if (!((String) jComboBoxUser4.getSelectedItem()).equals(guest.getName())) {
-                actualName = (String) jComboBoxUser4.getSelectedItem();
-                
-                User ui = dB.getUser((String) jComboBoxUser4.getSelectedItem());
-                actualUsers.add(ui);
-            } else {
-                actualName = "Invitado" + i;
-                i++;
-                
-                User ui = null;
-                actualUsers.add(ui);
-            }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
-                repeated[names.size()] = true;
-            }
-            names.add(actualName);
-            if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {
-                repeatedColors[names.size()] = true;
-            }
-            chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
-            choseColorIndex++;
-        }
-        
-        if (jCheckBoxUser5.isSelected()) {
-            if (!((String) jComboBoxUser5.getSelectedItem()).equals(guest.getName())) {
-                actualName = (String) jComboBoxUser5.getSelectedItem();
-                
-                User ui = dB.getUser((String) jComboBoxUser5.getSelectedItem());
-                actualUsers.add(ui);
-            } else {
-                actualName = "Invitado" + i;
-                i++;
-                
-                User ui = null;
-                actualUsers.add(ui);
-            }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
-                repeated[names.size()] = true;
-            }
-            names.add(actualName);
-            if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {
-                repeatedColors[names.size()] = true;
-            }
-            chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
-            choseColorIndex++;
-        }
-        
-        if (jCheckBoxUser6.isSelected()) {
-            if (!((String) jComboBoxUser6.getSelectedItem()).equals(guest.getName())) {
-                actualName = (String) jComboBoxUser6.getSelectedItem();
-                User ui = dB.getUser((String) jComboBoxUser6.getSelectedItem());
-                actualUsers.add(ui);
-                
-            } else {
-                actualName = "Invitado" + i;
-                i++;
-                
-                User ui = null;
-                actualUsers.add(ui);
-            }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
-                repeated[names.size()] = true;
-            }
-            names.add(actualName);
-            if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {
-                repeatedColors[names.size()] = true;
-            }
-            chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
-            choseColorIndex++;
-        }
-        
-        if (jCheckBoxUser7.isSelected()) {
-            if (!((String) jComboBoxUser7.getSelectedItem()).equals(guest.getName())) {
-                actualName = (String) jComboBoxUser7.getSelectedItem();
-                
-                User ui = dB.getUser((String) jComboBoxUser7.getSelectedItem());
-                actualUsers.add(ui);
-            } else {
-                actualName = "Invitado" + i;
-                i++;
-                
-                User ui = null;
-                actualUsers.add(ui);
-            }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
-                repeated[names.size()] = true;
-            }
-            names.add(actualName);
-            if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {
-                repeatedColors[names.size()] = true;
-            }
-            chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
-            choseColorIndex++;
-        }
-        
-        if (jCheckBoxUser8.isSelected()) {
-            if (!((String) jComboBoxUser8.getSelectedItem()).equals(guest.getName())) {
-                actualName = (String) jComboBoxUser8.getSelectedItem();
-                
-                User ui = dB.getUser((String) jComboBoxUser8.getSelectedItem());
-                actualUsers.add(ui);
-            } else {
-                actualName = "Invitado" + i;
-                i++;
-                User ui = null;
-                actualUsers.add(ui);
-            }
-            if (names.contains(actualName) && !actualName.equals("Invitado" + (i - 1))) {
-                repeated[names.size()] = true;
-            }
-            names.add(actualName);
-            if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {
-                repeatedColors[names.size()] = true;
-            }
-            chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());
-            choseColorIndex++;
-            
-        }
-        
+    }
+
+    public boolean repetitions(ParametersCheckSelection pcs) {
+        boolean[] repeated = pcs.getRepeated();
         boolean hasRepetitions = false;
-        
-        String fstErrorMessage = "El/Los jugadores: ";
-        String sndErrorMessage = " están quieren elegir usuarios ya elegidos";
+
+        String fstErrorMessage = "The player(s): ";
+        String sndErrorMessage = " are choosing chosen users";
         for (int j = 1; j < 9; j++) {
             if (repeated[j]) {
                 if (hasRepetitions) {
@@ -556,13 +425,15 @@ public class MainMenu extends javax.swing.JFrame {
                 hasRepetitions = true;
             }
         }
-        
         if (hasRepetitions) {
             JOptionPane.showMessageDialog(this, fstErrorMessage + sndErrorMessage, "Error", WIDTH);
+            guestsQ=1;
         }
-        
-        
+        return hasRepetitions;
+    }
+    public boolean colorRepetitions(ParametersCheckSelection pcs, boolean shouldCheck){
         boolean colorsAreRepeated = false;
+        boolean[] repeatedColors = pcs.getRepeatedColors();
         String fstColorErrorMessage = "The player(s): ";
         String sndColorErrorMessage = " are choosing repeated colors";
         for (int j = 0; j < 9; j++) {
@@ -574,18 +445,38 @@ public class MainMenu extends javax.swing.JFrame {
                 colorsAreRepeated = true;
             }
         }
-        
-        if (colorsAreRepeated) {
+         if (colorsAreRepeated && shouldCheck) {
             JOptionPane.showMessageDialog(this, fstColorErrorMessage + sndColorErrorMessage, "Error", WIDTH);
+            guestsQ=1;
         }
+    return colorsAreRepeated;
+    }
+    private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
+        ParametersCheckSelection pcs = new ParametersCheckSelection();
+        for (int j = 0; j < comboBoxesUsers.size(); j++) {
+            pcs.setComboBox(comboBoxesUsers.get(j));
+            pcs.setSelectedToPlay(checkBoxes.get(j).isSelected());
+            checkSelection(pcs,comboBoxesColor.get(j));
+        }
+
+      
+        boolean hasRepetitions = repetitions(pcs);
+        
+        
+        boolean colorsAreRepeated = colorRepetitions(pcs,!hasRepetitions);
+       
+        ArrayList<String> names = pcs.getNames();
+        ArrayList<User> actualUsers = pcs.getActualUsers();
+        ArrayList<String> chosenColors = pcs.getChosenColors();
+        
         if (!hasRepetitions && !colorsAreRepeated) {
             GameMaster master = GameMaster.instance();
             MainWindow window = new MainWindow(dB);
             GameBoard gameBoard = new GameBoardFull();
-            
+
             master.setGameBoard(gameBoard);
             GameMaster.instance().setNumberOfPlayers(names.size());
-            
+
             for (int j = 0; j < names.size(); j++) {
                 Player pi = GameMaster.instance().getPlayer(j);
                 if (actualUsers.get(j) != null) {
@@ -593,7 +484,7 @@ public class MainMenu extends javax.swing.JFrame {
                 }
                 pi.setName(names.get(j));
                 pi.setColor(chosenColors.get(j));
-                
+
             }
             window.setupGameBoard(gameBoard);
             window.show();
