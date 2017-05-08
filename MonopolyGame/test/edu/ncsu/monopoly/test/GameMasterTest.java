@@ -210,7 +210,7 @@ public class GameMasterTest extends TestCase {
         TaxiCard tc = new TaxiCard("Journey completed", Card.TYPE_CHANCE);
         gb.addCard(tc);
         gameMaster.setGameBoard(gb);
-        Card c = gb.drawChanceCard();
+        TaxiCard c = (TaxiCard)gb.drawChanceCard();
         c.applyAction(true);
         gameMaster.btnEndTurnClicked();
         c.applyAction(true);

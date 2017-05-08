@@ -30,12 +30,20 @@ public class TaxiCard extends Card {
 <span class="nc" id="L30">        GameMaster.instance().movePlayer(currentPlayer, move);</span>
 <span class="nc" id="L31">    }</span>
     
+    public void applyAction(boolean test) {
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if(test){</span>
+<span class="fc" id="L35">            int move = 1;</span>
+<span class="fc" id="L36">            Player currentPlayer = GameMaster.instance().getCurrentPlayer();</span>
+<span class="fc" id="L37">            GameMaster.instance().movePlayer(currentPlayer, move);</span>
+        }
+<span class="fc" id="L39">    }</span>
+    
     public int getCardType() {
-<span class="fc" id="L34">        return this.cardType;</span>
+<span class="fc" id="L42">        return this.cardType;</span>
     }
     
     public String getLabel() {
-<span class="nc" id="L38">        return this.label;</span>
+<span class="nc" id="L46">        return this.label;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

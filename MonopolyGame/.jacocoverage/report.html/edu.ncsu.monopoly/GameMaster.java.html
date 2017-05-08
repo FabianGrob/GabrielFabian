@@ -228,7 +228,7 @@ public class GameMaster {
 <span class="fc" id="L228">        Cell currentPosition = player.getPosition();</span>
 <span class="fc" id="L229">        int positionIndex = gameBoard.queryCellIndex(currentPosition.getName());</span>
 <span class="fc" id="L230">        int newIndex = (positionIndex + diceValue) % gameBoard.getCellNumber();</span>
-<span class="pc bpc" id="L231" title="1 of 4 branches missed.">        if (newIndex &lt; positionIndex || diceValue &gt;= gameBoard.getCellNumber()) {</span>
+<span class="fc bfc" id="L231" title="All 4 branches covered.">        if (newIndex &lt; positionIndex || diceValue &gt;= gameBoard.getCellNumber()) {</span>
 <span class="fc" id="L232">            player.setMoney(player.getMoney() + 200);</span>
         }
 <span class="fc" id="L234">        player.setPosition(gameBoard.getCell(newIndex));</span>
