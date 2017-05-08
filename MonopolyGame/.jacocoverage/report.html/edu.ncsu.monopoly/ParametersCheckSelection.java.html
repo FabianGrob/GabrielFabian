@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ParametersCheckSelection.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;MonopolyGame&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">edu.ncsu.monopoly</a> &gt; <span class="el_source">ParametersCheckSelection.java</span></div><h1>ParametersCheckSelection.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package edu.ncsu.monopoly;
+
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+
+/**
+ *
+ * @author Fabian
+ */
+public class ParametersCheckSelection {
+
+    private JComboBox comboBox;
+    private boolean selectedToPlay;
+    private ArrayList&lt;User&gt; actualUsers;
+    private ArrayList&lt;String&gt; names;
+    private boolean[] repeatedColors;
+    private ArrayList&lt;String&gt; chosenColors;
+    private int choseColorIndex;
+    private boolean[] repeated;
+
+    public boolean[] getRepeated() {
+<span class="nc" id="L27">        return repeated;</span>
+    }
+
+    public void setRepeated(boolean[] repeated) {
+<span class="nc" id="L31">        this.repeated = repeated;</span>
+<span class="nc" id="L32">    }</span>
+
+<span class="nc" id="L34">    public ParametersCheckSelection() {</span>
+<span class="nc" id="L35">        comboBox = null;</span>
+<span class="nc" id="L36">        selectedToPlay = false;</span>
+<span class="nc" id="L37">        actualUsers = new ArrayList&lt;User&gt;();</span>
+<span class="nc" id="L38">        names = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L39">        repeatedColors = new boolean[9];</span>
+<span class="nc" id="L40">        repeated = new boolean[9];</span>
+<span class="nc" id="L41">        chosenColors = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L42">        choseColorIndex=0;</span>
+
+<span class="nc" id="L44">    }</span>
+
+    public JComboBox getComboBox() {
+<span class="nc" id="L47">        return comboBox;</span>
+    }
+
+    public void setComboBox(JComboBox comboBox) {
+<span class="nc" id="L51">        this.comboBox = comboBox;</span>
+<span class="nc" id="L52">    }</span>
+
+    public boolean isSelectedToPlay() {
+<span class="nc" id="L55">        return selectedToPlay;</span>
+    }
+
+    public void setSelectedToPlay(boolean selectedToPlay) {
+<span class="nc" id="L59">        this.selectedToPlay = selectedToPlay;</span>
+<span class="nc" id="L60">    }</span>
+
+    public ArrayList&lt;User&gt; getActualUsers() {
+<span class="nc" id="L63">        return actualUsers;</span>
+    }
+
+    public void setActualUsers(ArrayList&lt;User&gt; actualUsers) {
+<span class="nc" id="L67">        this.actualUsers = actualUsers;</span>
+<span class="nc" id="L68">    }</span>
+
+    public ArrayList&lt;String&gt; getNames() {
+<span class="nc" id="L71">        return names;</span>
+    }
+
+    public void setNames(ArrayList&lt;String&gt; names) {
+<span class="nc" id="L75">        this.names = names;</span>
+<span class="nc" id="L76">    }</span>
+
+    public boolean[] getRepeatedColors() {
+<span class="nc" id="L79">        return repeatedColors;</span>
+    }
+
+    public void setRepeatedColors(boolean[] repeatedColors) {
+<span class="nc" id="L83">        this.repeatedColors = repeatedColors;</span>
+<span class="nc" id="L84">    }</span>
+
+    public ArrayList&lt;String&gt; getChosenColors() {
+<span class="nc" id="L87">        return chosenColors;</span>
+    }
+
+    public void setChosenColors(ArrayList&lt;String&gt; chosenColors) {
+<span class="nc" id="L91">        this.chosenColors = chosenColors;</span>
+<span class="nc" id="L92">    }</span>
+
+    public int getChoseColorIndex() {
+<span class="nc" id="L95">        return choseColorIndex;</span>
+    }
+
+    public void setChoseColorIndex(int choseColorIndex) {
+<span class="nc" id="L99">        this.choseColorIndex = choseColorIndex;</span>
+<span class="nc" id="L100">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

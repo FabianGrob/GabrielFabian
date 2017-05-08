@@ -24,16 +24,15 @@ public class MovePlayerCard extends Card {
 <span class="nc bnc" id="L24" title="All 2 branches missed.">        else if(currentCell &lt; newCell) {</span>
 <span class="nc" id="L25">            diceValue = newCell - currentCell;</span>
         }
-        //System.out.println(diceValue);
-<span class="fc" id="L28">        GameMaster.instance().movePlayer(currentPlayer, diceValue);</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L27">        GameMaster.instance().movePlayer(currentPlayer, diceValue);</span>
+<span class="fc" id="L28">    }</span>
 
     public int getCardType() {
-<span class="fc" id="L32">        return type;</span>
+<span class="fc" id="L31">        return type;</span>
     }
 
     public String getLabel() {
-<span class="fc" id="L36">        return &quot;Go to &quot; + destination;</span>
+<span class="fc" id="L35">        return &quot;Go to &quot; + destination;</span>
     }
 
 }

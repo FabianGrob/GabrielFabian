@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Ranking.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;MonopolyGame&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">edu.ncsu.monopoly.gui</a> &gt; <span class="el_source">Ranking.java</span></div><h1>Ranking.java</h1><pre class="source lang-java linenums">package edu.ncsu.monopoly.gui;
+
+import edu.ncsu.monopoly.Criteria;
+import edu.ncsu.monopoly.DataBase;
+import edu.ncsu.monopoly.User;
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.ImageIcon;
+
+public class Ranking extends javax.swing.JFrame {
+
+    private DataBase dB;
+    private WelcomeMenu previous;
+
+<span class="nc" id="L16">    public Ranking(DataBase dBs, WelcomeMenu prev) {</span>
+<span class="nc" id="L17">        initComponents();</span>
+<span class="nc" id="L18">        dB = dBs;</span>
+<span class="nc" id="L19">        previous = prev;</span>
+<span class="nc" id="L20">        jLabelTrophy.setVisible(false);</span>
+<span class="nc" id="L21">        jListUsers.removeAll();</span>
+<span class="nc" id="L22">        Collections.sort(dB.getUsers(), new Criteria());</span>
+<span class="nc" id="L23">        ArrayList &lt;User&gt;users = dB.getUsers(); </span>
+<span class="nc" id="L24">        User none = new User();</span>
+<span class="nc" id="L25">        none.setName(&quot;Play as guest&quot;);</span>
+<span class="nc" id="L26">        users.remove(none);</span>
+<span class="nc" id="L27">        String[] names = new String[users.size()];</span>
+<span class="nc" id="L28">        int j =0;</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        for (int i = 0; i &lt; users.size(); i++) {</span>
+<span class="nc" id="L30">            names[j]=users.get(i).getName();</span>
+<span class="nc" id="L31">            j++;</span>
+        }
+<span class="nc" id="L33">        jListUsers.setListData(names);</span>
+<span class="nc" id="L34">        jListUsers.setSelectedIndex(0);</span>
+<span class="nc" id="L35">        ImageIcon imgThisImg = new javax.swing.ImageIcon(&quot;src/PredefPic/trophy-1.png&quot;);</span>
+<span class="nc" id="L36">        Image image=imgThisImg.getImage();</span>
+<span class="nc" id="L37">        Image img= image.getScaledInstance(34, 34,java.awt.Image.SCALE_DEFAULT);</span>
+<span class="nc" id="L38">        ImageIcon imageicon = new ImageIcon(img);</span>
+<span class="nc" id="L39">        jLabelTrophy.setIcon(imageicon);</span>
+<span class="nc" id="L40">        this.setLocationRelativeTo(null);</span>
+<span class="nc" id="L41">    }</span>
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+<span class="nc" id="L47">        jPanel1 = new javax.swing.JPanel();</span>
+<span class="nc" id="L48">        jLabelPicture = new javax.swing.JLabel();</span>
+<span class="nc" id="L49">        jLabelScore = new javax.swing.JLabel();</span>
+<span class="nc" id="L50">        jLabelName = new javax.swing.JLabel();</span>
+<span class="nc" id="L51">        jScrollPane1 = new javax.swing.JScrollPane();</span>
+<span class="nc" id="L52">        jListUsers = new javax.swing.JList&lt;&gt;();</span>
+<span class="nc" id="L53">        jButtonBack = new javax.swing.JButton();</span>
+<span class="nc" id="L54">        jLabel2 = new javax.swing.JLabel();</span>
+<span class="nc" id="L55">        jLabel1 = new javax.swing.JLabel();</span>
+<span class="nc" id="L56">        jLabelRank = new javax.swing.JLabel();</span>
+<span class="nc" id="L57">        jLabelTrophy = new javax.swing.JLabel();</span>
+
+<span class="nc" id="L59">        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</span>
+
+<span class="nc" id="L61">        jLabelPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/PredefPic/predefPic.png&quot;))); // NOI18N</span>
+<span class="nc" id="L62">        jLabelPicture.setBorder(new javax.swing.border.MatteBorder(null));</span>
+
+<span class="nc" id="L64">        jLabelScore.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 14)); // NOI18N</span>
+<span class="nc" id="L65">        jLabelScore.setText(&quot;Score:&quot;);</span>
+
+<span class="nc" id="L67">        jLabelName.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 14)); // NOI18N</span>
+<span class="nc" id="L68">        jLabelName.setText(&quot;Name:&quot;);</span>
+
+<span class="nc" id="L70">        jListUsers.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));</span>
+<span class="nc" id="L71">        jListUsers.setSelectionBackground(new java.awt.Color(0, 153, 255));</span>
+<span class="nc" id="L72">        jListUsers.addListSelectionListener(new javax.swing.event.ListSelectionListener() {</span>
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+<span class="nc" id="L74">                jListUsersValueChanged(evt);</span>
+<span class="nc" id="L75">            }</span>
+        });
+<span class="nc" id="L77">        jScrollPane1.setViewportView(jListUsers);</span>
+
+<span class="nc" id="L79">        jButtonBack.setText(&quot;Back&quot;);</span>
+<span class="nc" id="L80">        jButtonBack.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L82">                jButtonBackActionPerformed(evt);</span>
+<span class="nc" id="L83">            }</span>
+        });
+
+<span class="nc" id="L86">        jLabel2.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 24)); // NOI18N</span>
+<span class="nc" id="L87">        jLabel2.setText(&quot;Ranking&quot;);</span>
+
+<span class="nc" id="L89">        jLabel1.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 14)); // NOI18N</span>
+<span class="nc" id="L90">        jLabel1.setText(&quot;    Choose a user&quot;);</span>
+
+<span class="nc" id="L92">        jLabelRank.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 14)); // NOI18N</span>
+<span class="nc" id="L93">        jLabelRank.setText(&quot;Rank:&quot;);</span>
+
+<span class="nc" id="L95">        jLabelTrophy.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/PredefPic/trophy-1.png&quot;))); // NOI18N</span>
+
+<span class="nc" id="L97">        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);</span>
+<span class="nc" id="L98">        jPanel1.setLayout(jPanel1Layout);</span>
+<span class="nc" id="L99">        jPanel1Layout.setHorizontalGroup(</span>
+<span class="nc" id="L100">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L101">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L102">                .addContainerGap()</span>
+<span class="nc" id="L103">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L104">                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)</span>
+<span class="nc" id="L105">                    .addComponent(jButtonBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L106">                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))</span>
+<span class="nc" id="L107">                .addGap(18, 18, 18)</span>
+<span class="nc" id="L108">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L109">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L110">                        .addComponent(jLabelPicture)</span>
+<span class="nc" id="L111">                        .addGap(43, 43, Short.MAX_VALUE))</span>
+<span class="nc" id="L112">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L113">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L114">                            .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L115">                                .addComponent(jLabelRank, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L116">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L117">                                .addComponent(jLabelTrophy, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L118">                            .addComponent(jLabelScore, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L119">                            .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L120">                        .addGap(0, 43, Short.MAX_VALUE))))</span>
+<span class="nc" id="L121">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L122">                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L123">                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L124">                .addGap(117, 117, 117))</span>
+        );
+<span class="nc" id="L126">        jPanel1Layout.setVerticalGroup(</span>
+<span class="nc" id="L127">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L128">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L129">                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L130">                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L131">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L132">                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L133">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L134">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L135">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L136">                        .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L137">                        .addGap(3, 3, 3)</span>
+<span class="nc" id="L138">                        .addComponent(jLabelScore, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L139">                        .addGap(5, 5, 5)</span>
+<span class="nc" id="L140">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L141">                            .addComponent(jLabelTrophy, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)</span>
+<span class="nc" id="L142">                            .addComponent(jLabelRank, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))</span>
+<span class="nc" id="L143">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L144">                        .addComponent(jLabelPicture))</span>
+<span class="nc" id="L145">                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L146">                .addGap(24, 24, 24)</span>
+<span class="nc" id="L147">                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L148">                .addContainerGap())</span>
+        );
+
+<span class="nc" id="L151">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="nc" id="L152">        getContentPane().setLayout(layout);</span>
+<span class="nc" id="L153">        layout.setHorizontalGroup(</span>
+<span class="nc" id="L154">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L155">            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L156">                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L157">                .addGap(0, 0, Short.MAX_VALUE))</span>
+        );
+<span class="nc" id="L159">        layout.setVerticalGroup(</span>
+<span class="nc" id="L160">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L161">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+        );
+
+<span class="nc" id="L164">        pack();</span>
+<span class="nc" id="L165">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+<span class="nc" id="L168">        previous.setVisible(true);</span>
+<span class="nc" id="L169">        this.setVisible(false);</span>
+<span class="nc" id="L170">    }//GEN-LAST:event_jButtonBackActionPerformed</span>
+
+    private void jListUsersValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListUsersValueChanged
+<span class="nc" id="L173">        String name = jListUsers.getSelectedValue();</span>
+<span class="nc" id="L174">        User selectedUser = dB.getUser(name);</span>
+<span class="nc" id="L175">        jLabelName.setText(&quot;Name: &quot; + selectedUser.getName());</span>
+<span class="nc" id="L176">        jLabelScore.setText(&quot;Score: &quot; + selectedUser.getWonGames() + &quot;/&quot; + selectedUser.getPlayedGames());</span>
+<span class="nc" id="L177">        jLabelRank.setText(&quot;Rank: &quot; + ((int)jListUsers.getSelectedIndex() + 1));</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">        if (jListUsers.getSelectedIndex()==0) {</span>
+<span class="nc" id="L179">            jLabelTrophy.setVisible(true);</span>
+        }else{
+<span class="nc" id="L181">        jLabelTrophy.setVisible(false);</span>
+        }
+<span class="nc" id="L183">        String path = selectedUser.getPicture().getPath();</span>
+<span class="nc" id="L184">        ImageIcon imgThisImg = new javax.swing.ImageIcon(path);</span>
+<span class="nc" id="L185">        Image image=imgThisImg.getImage();</span>
+<span class="nc" id="L186">        Image img= image.getScaledInstance(99, 99,java.awt.Image.SCALE_DEFAULT);</span>
+<span class="nc" id="L187">        ImageIcon imageicon = new ImageIcon(img);</span>
+<span class="nc" id="L188">        jLabelPicture.setIcon(imageicon);</span>
+        //jLabelPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource(selectedUser.getPicture().getPath())));   
+<span class="nc" id="L190">    }//GEN-LAST:event_jListUsersValueChanged</span>
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBack;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelName;
+    private javax.swing.JLabel jLabelPicture;
+    private javax.swing.JLabel jLabelRank;
+    private javax.swing.JLabel jLabelScore;
+    private javax.swing.JLabel jLabelTrophy;
+    private javax.swing.JList&lt;String&gt; jListUsers;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    // End of variables declaration//GEN-END:variables
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -32,52 +32,53 @@ public class BuyHouseDialog extends JDialog {
 <span class="nc" id="L32">		c.add(buildCancelButton());</span>
 <span class="nc" id="L33">		c.doLayout();</span>
 <span class="nc" id="L34">		this.pack();</span>
-<span class="nc" id="L35">	}</span>
+<span class="nc" id="L35">                this.setLocationRelativeTo(null);</span>
+<span class="nc" id="L36">	}</span>
 
 	private JButton buildCancelButton() {
-<span class="nc" id="L38">		JButton btn = new JButton(&quot;Cancel&quot;);</span>
-<span class="nc" id="L39">		btn.addActionListener(new ActionListener(){</span>
+<span class="nc" id="L39">		JButton btn = new JButton(&quot;Cancel&quot;);</span>
+<span class="nc" id="L40">		btn.addActionListener(new ActionListener(){</span>
 			public void actionPerformed(ActionEvent e) {
-<span class="nc" id="L41">				cancelClicked();</span>
-<span class="nc" id="L42">			}</span>
+<span class="nc" id="L42">				cancelClicked();</span>
+<span class="nc" id="L43">			}</span>
 		});
-<span class="nc" id="L44">		return btn;</span>
+<span class="nc" id="L45">		return btn;</span>
 	}
 
 	private JComboBox buildMonopolyComboBox() {
-<span class="nc" id="L48">		cboMonopoly = new JComboBox(player.getMonopolies());</span>
-<span class="nc" id="L49">		return cboMonopoly;</span>
+<span class="nc" id="L49">		cboMonopoly = new JComboBox(player.getMonopolies());</span>
+<span class="nc" id="L50">		return cboMonopoly;</span>
 	}
 	
 	private JComboBox buildNumberComboBox() {
-<span class="nc" id="L53">		cboNumber = new JComboBox(new Integer[]{</span>
+<span class="nc" id="L54">		cboNumber = new JComboBox(new Integer[]{</span>
 				new Integer(1),
 				new Integer(2),
 				new Integer(3),
 				new Integer(4),
 				new Integer(5)});
-<span class="nc" id="L59">		return cboNumber;</span>
+<span class="nc" id="L60">		return cboNumber;</span>
 	}
 
 	private JButton buildOKButton() {
-<span class="nc" id="L63">		JButton btn = new JButton(&quot;OK&quot;);</span>
-<span class="nc" id="L64">		btn.addActionListener(new ActionListener(){</span>
+<span class="nc" id="L64">		JButton btn = new JButton(&quot;OK&quot;);</span>
+<span class="nc" id="L65">		btn.addActionListener(new ActionListener(){</span>
 			public void actionPerformed(ActionEvent e) {
-<span class="nc" id="L66">				okClicked();</span>
-<span class="nc" id="L67">			}</span>
+<span class="nc" id="L67">				okClicked();</span>
+<span class="nc" id="L68">			}</span>
 		});
-<span class="nc" id="L69">		return btn;</span>
+<span class="nc" id="L70">		return btn;</span>
 	}
 	
 	private void cancelClicked() {
-<span class="nc" id="L73">		this.dispose();</span>
-<span class="nc" id="L74">	}</span>
+<span class="nc" id="L74">		this.dispose();</span>
+<span class="nc" id="L75">	}</span>
 	
 	private void okClicked() {
-<span class="nc" id="L77">		String monopoly = (String)cboMonopoly.getSelectedItem();</span>
-<span class="nc" id="L78">		int number = cboNumber.getSelectedIndex() + 1;</span>
-<span class="nc" id="L79">		player.purchaseHouse(monopoly, number);</span>
-<span class="nc" id="L80">		this.dispose();</span>
-<span class="nc" id="L81">	}</span>
+<span class="nc" id="L78">		String monopoly = (String)cboMonopoly.getSelectedItem();</span>
+<span class="nc" id="L79">		int number = cboNumber.getSelectedIndex() + 1;</span>
+<span class="nc" id="L80">		player.purchaseHouse(monopoly, number);</span>
+<span class="nc" id="L81">		this.dispose();</span>
+<span class="nc" id="L82">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

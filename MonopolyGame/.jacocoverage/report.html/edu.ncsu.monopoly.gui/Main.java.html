@@ -6,90 +6,35 @@ import edu.ncsu.monopoly.*;
 import edu.ncsu.monopoly.test.boardScenarios.GameBoardFull;
 
 <span class="nc" id="L8">public class Main {</span>
-
-	private static int inputNumberOfPlayers(MainWindow window) {
-<span class="nc" id="L11">		int numPlayers = 0;</span>
-<span class="nc bnc" id="L12" title="All 4 branches missed.">		while(numPlayers &lt;= 0 || numPlayers &gt; GameMaster.MAX_PLAYER) {</span>
-<span class="nc" id="L13">			String numberOfPlayers = JOptionPane.showInputDialog(window, &quot;How many players&quot;);</span>
-<span class="nc bnc" id="L14" title="All 2 branches missed.">			if(numberOfPlayers == null) {</span>
-<span class="nc" id="L15">				System.exit(0);</span>
-			}
-			try {
-<span class="nc" id="L18">				numPlayers = Integer.parseInt(numberOfPlayers);</span>
-<span class="nc" id="L19">			} catch (NumberFormatException e) {</span>
-<span class="nc" id="L20">				JOptionPane.showMessageDialog(window, &quot;Please input a number&quot;);</span>
-<span class="nc" id="L21">			}</span>
-<span class="nc bnc" id="L22" title="All 4 branches missed.">			if (numPlayers &lt;= 0 || numPlayers &gt; GameMaster.MAX_PLAYER) {</span>
-<span class="nc" id="L23">				JOptionPane.showMessageDialog(window, &quot;Please input a number between one and eight&quot;);</span>
-			} else {
-<span class="nc" id="L25">				GameMaster.instance().setNumberOfPlayers(numPlayers);</span>
-			}
-<span class="nc" id="L27">		}</span>
-<span class="nc" id="L28">		return numPlayers;</span>
-	}
-
-	public static void main(String[] args) {
-                 DataBase dB;
-        
+    
+    public static void main(String[] args) {
         try {
-<span class="nc" id="L35">            Serialize ser = new Serialize();</span>
-<span class="nc" id="L36">            dB = ser.recuperate();</span>
-<span class="nc" id="L37">            javax.swing.UIManager.setLookAndFeel(&quot;javax.swing.plaf.nimbus.NimbusLookAndFeel&quot;);</span>
-<span class="nc" id="L38">        } catch (Exception ex) {</span>
-<span class="nc" id="L39">            dB = new DataBase();</span>
-<span class="nc" id="L40">        }</span>
-            
-            
-<span class="nc" id="L43">		GameMaster master = GameMaster.instance();</span>
-<span class="nc" id="L44">		MainWindow window = new MainWindow();</span>
-<span class="nc" id="L45">		GameBoard gameBoard = null;</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">		if(args.length &gt; 0) {</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">			if(args[0].equals(&quot;test&quot;)) {</span>
-<span class="nc" id="L48">				master.setTestMode(true);</span>
-			}
-			try {
-<span class="nc" id="L51">				Class c = Class.forName(args[1]);</span>
-<span class="nc" id="L52">				gameBoard = (GameBoard)c.newInstance();</span>
-			}
-<span class="nc" id="L54">			catch (ClassNotFoundException e) {</span>
-<span class="nc" id="L55">				JOptionPane.showMessageDialog(window, &quot;Class Not Found.  Program will exit&quot;);</span>
-<span class="nc" id="L56">				System.exit(0);</span>
-			}
-<span class="nc" id="L58">			catch (IllegalAccessException e ) {</span>
-<span class="nc" id="L59">				JOptionPane.showMessageDialog(window, &quot;Illegal Access of Class.  Program will exit&quot;);</span>
-<span class="nc" id="L60">				System.exit(0);</span>
-			}
-<span class="nc" id="L62">			catch (InstantiationException e) {</span>
-<span class="nc" id="L63">				JOptionPane.showMessageDialog(window, &quot;Class Cannot be Instantiated.  Program will exit&quot;);</span>
-<span class="nc" id="L64">				System.exit(0);</span>
-<span class="nc" id="L65">			}</span>
-		}
-		else {
-<span class="nc" id="L68">			gameBoard = new GameBoardFull();</span>
-		}
-		
-//      GameBoard gameBoard = new GameBoardFull();
-//		GameBoard gameBoard = new GameBoardCCMovePlayer();
-//		GameBoard gameBoard = new GameBoardCCLoseMoney();
-//		GameBoard gameBoard = new GameBoardCCJail();
-//		GameBoard gameBoard = new GameBoardUtility();
-//		GameBoard gameBoard = new GameBoardRailRoad();
-//		GameBoard gameBoard = new GameBoard14();
-//		GameBoard gameBoard = new SimpleGameBoard();
-//		GameBoard gameBoard = new GameBoardJail();
-//		GameBoard gameBoard = new GameBoardFreeParking();
-
-<span class="nc" id="L82">		master.setGameBoard(gameBoard);</span>
-<span class="nc" id="L83">		int numPlayers = inputNumberOfPlayers(window);</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">		for(int i = 0; i &lt; numPlayers; i++) {</span>
-<span class="nc" id="L85">			String name = </span>
-<span class="nc" id="L86">				JOptionPane.showInputDialog(window, &quot;Please input name for Player &quot; + (i+1));</span>
-<span class="nc" id="L87">			GameMaster.instance().getPlayer(i).setName(name);</span>
-		}
-<span class="nc" id="L89">		window.setupGameBoard(gameBoard);</span>
-<span class="nc" id="L90">		window.show();</span>
-<span class="nc" id="L91">		master.setGUI(window);</span>
-<span class="nc" id="L92">		master.startGame();</span>
-<span class="nc" id="L93">	}</span>
+<span class="nc bnc" id="L12" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="nc bnc" id="L13" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="nc" id="L14">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L15">                    break;</span>
+                }
+            }
+<span class="nc" id="L18">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L19">            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L20">        } catch (InstantiationException ex) {</span>
+<span class="nc" id="L21">            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L22">        } catch (IllegalAccessException ex) {</span>
+<span class="nc" id="L23">            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L24">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
+<span class="nc" id="L25">            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L26">        }</span>
+        DataBase dB;
+        try {
+<span class="nc" id="L29">            Serialize ser = new Serialize();</span>
+<span class="nc" id="L30">            dB = ser.recuperate();</span>
+<span class="nc" id="L31">        } catch (Exception ex) {</span>
+<span class="nc" id="L32">            dB = new DataBase();</span>
+<span class="nc" id="L33">        }</span>
+<span class="nc" id="L34">        WelcomeMenu window = new WelcomeMenu(dB,args);</span>
+<span class="nc" id="L35">        window.setVisible(true);</span>
+        
+        
+<span class="nc" id="L38">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

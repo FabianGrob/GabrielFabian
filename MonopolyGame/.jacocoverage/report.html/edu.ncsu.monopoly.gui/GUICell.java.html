@@ -45,60 +45,32 @@ public class GUICell extends JPanel {
 <span class="nc" id="L45">    }</span>
     
     private void createPlayerLabels(JPanel pnlPlayer) {
-<span class="nc" id="L48">        String color = &quot;&quot;;</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">        for (int i = 0; i &lt; GameMaster.MAX_PLAYER; i++) {</span>
-<span class="nc bnc" id="L50" title="All 9 branches missed.">            switch(i) {</span>
-                case 0:
-<span class="nc" id="L52">                    color = &quot;Yellow&quot;;</span>
-<span class="nc" id="L53">                    break;</span>
-                case 1:
-<span class="nc" id="L55">                    color = &quot;Violet&quot;;</span>
-<span class="nc" id="L56">                    break;</span>
-                case 2:
-<span class="nc" id="L58">                    color = &quot;Red&quot;;</span>
-<span class="nc" id="L59">                    break;</span>
-                case 3:
-<span class="nc" id="L61">                    color = &quot;Orange&quot;;</span>
-<span class="nc" id="L62">                    break;</span>
-                case 4:
-<span class="nc" id="L64">                    color = &quot;Green&quot;;</span>
-<span class="nc" id="L65">                    break;</span>
-                case 5:
-<span class="nc" id="L67">                    color = &quot;Yellow&quot;;</span>
-<span class="nc" id="L68">                    break;</span>
-                case 6:
-<span class="nc" id="L70">                    color = &quot;Orange&quot;;</span>
-<span class="nc" id="L71">                    break;</span>
-                case 7:
-<span class="nc" id="L73">                    color = &quot;Red&quot;;</span>
-                    break;
-                    
-            }
-            //ACA TIENE QUE IR EL CAMBIO DE COLOR DEL USUARIO!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-<span class="nc" id="L78">            ImageIcon imageIcon = new ImageIcon(&quot;src/PredefPic/Pawn&quot; + color + &quot;.png&quot;);</span>
-<span class="nc" id="L79">            Image image = imageIcon.getImage();</span>
-<span class="nc" id="L80">            Image newimg = image.getScaledInstance(30, 40,  java.awt.Image.SCALE_SMOOTH);</span>
-<span class="nc" id="L81">            ImageIcon icon = new ImageIcon(newimg);</span>
-<span class="nc" id="L82">            lblPlayers[i] = new JLabel(icon);</span>
-<span class="nc" id="L83">            lblPlayers[i].setVisible(false);</span>
-<span class="nc" id="L84">            pnlPlayer.add(lblPlayers[i]);</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        for (int i = 0; i &lt; GameMaster.instance().getNumberOfPlayers(); i++) {</span>
+<span class="nc" id="L49">            Player player = GameMaster.instance().getPlayer(i);</span>
+<span class="nc" id="L50">            ImageIcon imageIcon = new ImageIcon(&quot;src/PredefPic/Pawn&quot; + player.getColor() + &quot;.png&quot;);</span>
+<span class="nc" id="L51">            Image image = imageIcon.getImage();</span>
+<span class="nc" id="L52">            Image newimg = image.getScaledInstance(30, 40,  java.awt.Image.SCALE_SMOOTH);</span>
+<span class="nc" id="L53">            ImageIcon icon = new ImageIcon(newimg);</span>
+<span class="nc" id="L54">            lblPlayers[i] = new JLabel(icon);</span>
+<span class="nc" id="L55">            lblPlayers[i].setVisible(false);</span>
+<span class="nc" id="L56">            pnlPlayer.add(lblPlayers[i]);</span>
         }
-<span class="nc" id="L86">    }</span>
+<span class="nc" id="L58">    }</span>
     
     public void displayInfo() {
-<span class="nc" id="L89">        lblInfo.setText(InfoFormatter.cellInfo(cell));</span>
-<span class="nc" id="L90">        this.invalidate();</span>
-<span class="nc" id="L91">        this.repaint();</span>
-<span class="nc" id="L92">    }</span>
+<span class="nc" id="L61">        lblInfo.setText(InfoFormatter.cellInfo(cell));</span>
+<span class="nc" id="L62">        this.invalidate();</span>
+<span class="nc" id="L63">        this.repaint();</span>
+<span class="nc" id="L64">    }</span>
     
     public Cell getCell() {
-<span class="nc" id="L95">        return cell;</span>
+<span class="nc" id="L67">        return cell;</span>
     }
     
     public void removePlayer(int index) {
-<span class="nc" id="L99">        lblPlayers[index].setText(&quot;&quot;);</span>
-<span class="nc" id="L100">        lblPlayers[index].setVisible(false);</span>
-<span class="nc" id="L101">        this.repaint();</span>
-<span class="nc" id="L102">    }</span>
+<span class="nc" id="L71">        lblPlayers[index].setText(&quot;&quot;);</span>
+<span class="nc" id="L72">        lblPlayers[index].setVisible(false);</span>
+<span class="nc" id="L73">        this.repaint();</span>
+<span class="nc" id="L74">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

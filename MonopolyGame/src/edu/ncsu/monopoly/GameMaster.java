@@ -24,7 +24,7 @@ public class GameMaster {
     }
     
     public GameMaster() {
-        initAmountOfMoney = 1;
+        initAmountOfMoney = 1500;
         dice = new Die[]{new Die(), new Die()};
     }
     

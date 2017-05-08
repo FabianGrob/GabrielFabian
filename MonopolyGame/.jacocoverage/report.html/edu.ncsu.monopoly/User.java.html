@@ -6,67 +6,68 @@
 package edu.ncsu.monopoly;
 
 import java.io.File;
+import java.io.Serializable;
 
 /**
  *
  * @author Fabian
  */
-public class User {
+public class User implements Serializable {
 
     private String name;
     private File picture;
     private int playedGames;
     private int wonGames;
 
-<span class="nc" id="L21">    public User() {</span>
-<span class="nc" id="L22">        name = &quot;Not name asigned yet&quot;;</span>
-<span class="nc" id="L23">        picture = null;</span>
-<span class="nc" id="L24">        playedGames = 0;</span>
-<span class="nc" id="L25">        wonGames = 0;</span>
-<span class="nc" id="L26">    }</span>
+<span class="fc" id="L22">    public User() {</span>
+<span class="fc" id="L23">        name = &quot;Not name asigned yet&quot;;</span>
+<span class="fc" id="L24">        picture = null;</span>
+<span class="fc" id="L25">        playedGames = 0;</span>
+<span class="fc" id="L26">        wonGames = 0;</span>
+<span class="fc" id="L27">    }</span>
 
     public File getPicture() {
-<span class="nc" id="L29">        return picture;</span>
+<span class="nc" id="L30">        return picture;</span>
     }
 
     public void setPicture(File pic) {
-<span class="nc" id="L33">        picture = pic;</span>
-<span class="nc" id="L34">    }</span>
+<span class="nc" id="L34">        picture = pic;</span>
+<span class="nc" id="L35">    }</span>
 
     public void setWonGames(int wGs) {
-<span class="nc" id="L37">        wonGames = wGs;</span>
-<span class="nc" id="L38">    }</span>
+<span class="nc" id="L38">        wonGames = wGs;</span>
+<span class="nc" id="L39">    }</span>
 
     public int getWonGames() {
-<span class="nc" id="L41">        return wonGames;</span>
+<span class="nc" id="L42">        return wonGames;</span>
     }
 
     public void setPlayedGames(int pGs) {
-<span class="nc" id="L45">        playedGames = pGs;</span>
-<span class="nc" id="L46">    }</span>
+<span class="nc" id="L46">        playedGames = pGs;</span>
+<span class="nc" id="L47">    }</span>
 
     public int getPlayedGames() {
-<span class="nc" id="L49">        return playedGames;</span>
+<span class="nc" id="L50">        return playedGames;</span>
     }
 
     public void setName(String n) {
-<span class="nc" id="L53">        name = n;</span>
-<span class="nc" id="L54">    }</span>
+<span class="fc" id="L54">        name = n;</span>
+<span class="fc" id="L55">    }</span>
 
     public String getName() {
-<span class="nc" id="L57">        return name;</span>
+<span class="fc" id="L58">        return name;</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L62">        String txt = this.getName() + &quot; |Puntaje: &quot; + this.getWonGames() + &quot;/&quot; + this.getPlayedGames();</span>
-<span class="nc" id="L63">        return txt;</span>
+<span class="nc" id="L63">        String txt = this.getName();</span>
+<span class="nc" id="L64">        return txt;</span>
     }
 
     @Override
     public boolean equals(Object o) {
-<span class="nc" id="L68">        User u2 = (User) o;</span>
-<span class="nc" id="L69">        return this.getName().equals(u2.getName());</span>
+<span class="nc" id="L69">        User u2 = (User) o;</span>
+<span class="nc" id="L70">        return this.getName().equals(u2.getName());</span>
     }
 
 }

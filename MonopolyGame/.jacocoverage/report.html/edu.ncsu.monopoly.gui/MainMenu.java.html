@@ -1,144 +1,144 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MainMenu.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;MonopolyGame&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">edu.ncsu.monopoly.gui</a> &gt; <span class="el_source">MainMenu.java</span></div><h1>MainMenu.java</h1><pre class="source lang-java linenums">/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package edu.ncsu.monopoly.gui;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MainMenu.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;MonopolyGame&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">edu.ncsu.monopoly.gui</a> &gt; <span class="el_source">MainMenu.java</span></div><h1>MainMenu.java</h1><pre class="source lang-java linenums">package edu.ncsu.monopoly.gui;
 
 import edu.ncsu.monopoly.DataBase;
 import edu.ncsu.monopoly.GameBoard;
 import edu.ncsu.monopoly.GameMaster;
+import edu.ncsu.monopoly.ParametersCheckSelection;
 import edu.ncsu.monopoly.Player;
 import edu.ncsu.monopoly.User;
 import edu.ncsu.monopoly.test.boardScenarios.GameBoardFull;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.ArrayList;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Fabian
- */
 public class MainMenu extends javax.swing.JFrame {
 
     private DataBase dB;
     private WelcomeMenu previous;
     private ArrayList&lt;Player&gt; players;
+    private int guestsQ;
+    private String[] args;
+
     private ArrayList&lt;JComboBox&gt; comboBoxesColor;
+    private ArrayList&lt;JComboBox&gt; comboBoxesUsers;
+    private ArrayList&lt;JCheckBox&gt; checkBoxes;
 
-    /**
-     * Creates new form MainMenu
-     */
-<span class="nc" id="L33">    public MainMenu(DataBase dBs, WelcomeMenu prev) {</span>
-<span class="nc" id="L34">        comboBoxesColor = new ArrayList&lt;JComboBox&gt;();</span>
-<span class="nc" id="L35">        players = new ArrayList&lt;Player&gt;();</span>
-<span class="nc" id="L36">        previous = prev;</span>
+<span class="nc" id="L28">    public MainMenu(DataBase dBs, WelcomeMenu prev,String[] arg) {</span>
+<span class="nc" id="L29">        args= arg;</span>
+<span class="nc" id="L30">        comboBoxesColor = new ArrayList&lt;JComboBox&gt;();</span>
+<span class="nc" id="L31">        comboBoxesUsers = new ArrayList&lt;JComboBox&gt;();</span>
+<span class="nc" id="L32">        checkBoxes = new ArrayList&lt;JCheckBox&gt;();</span>
+<span class="nc" id="L33">        players = new ArrayList&lt;Player&gt;();</span>
+<span class="nc" id="L34">        previous = prev;</span>
+<span class="nc" id="L35">        guestsQ = 1;</span>
 
-<span class="nc" id="L38">        dB = dBs;</span>
-<span class="nc" id="L39">        initComponents();</span>
-<span class="nc" id="L40">        jCheckBoxUser1.setEnabled(false);</span>
+<span class="nc" id="L37">        dB = dBs;</span>
+<span class="nc" id="L38">        initComponents();</span>
+<span class="nc" id="L39">        jCheckBoxUser1.setEnabled(false);</span>
 
-<span class="nc" id="L42">        jComboBoxUser2.setEnabled(false);</span>
-        // jTextField2.setEnabled(false);
-<span class="nc" id="L44">        jComboBoxUser3.setEnabled(false);</span>
-        //jTextField3.setEnabled(false);
-<span class="nc" id="L46">        jComboBoxUser4.setEnabled(false);</span>
-        //jTextField4.setEnabled(false);
-<span class="nc" id="L48">        jComboBoxUser8.setEnabled(false);</span>
-        //jTextField8.setEnabled(false);
-<span class="nc" id="L50">        jComboBoxUser7.setEnabled(false);</span>
-        //jTextField7.setEnabled(false);
-<span class="nc" id="L52">        jComboBoxUser6.setEnabled(false);</span>
-        //jTextField5.setEnabled(false);
-<span class="nc" id="L54">        jComboBoxUser5.setEnabled(false);</span>
-        //jTextField6.setEnabled(false);
-<span class="nc" id="L56">        comboBoxesColor.add(jComboBoxColor1);</span>
-<span class="nc" id="L57">        comboBoxesColor.add(jComboBoxColor2);</span>
-<span class="nc" id="L58">        comboBoxesColor.add(jComboBoxColor3);</span>
-<span class="nc" id="L59">        comboBoxesColor.add(jComboBoxColor4);</span>
-<span class="nc" id="L60">        comboBoxesColor.add(jComboBoxColor5);</span>
-<span class="nc" id="L61">        comboBoxesColor.add(jComboBoxColor6);</span>
-<span class="nc" id="L62">        comboBoxesColor.add(jComboBoxColor7);</span>
-<span class="nc" id="L63">        comboBoxesColor.add(jComboBoxColor8);</span>
-<span class="nc" id="L64">        String[] colors = {&quot;Green&quot;, &quot;Orange&quot;, &quot;Red&quot;, &quot;Violet&quot;, &quot;Yellow&quot;, &quot;Gray&quot;, &quot;Blue&quot;, &quot;Black&quot;};</span>
+<span class="nc" id="L41">        jComboBoxUser2.setEnabled(false);</span>
+<span class="nc" id="L42">        jComboBoxUser3.setEnabled(false);</span>
+<span class="nc" id="L43">        jComboBoxUser4.setEnabled(false);</span>
+<span class="nc" id="L44">        jComboBoxUser8.setEnabled(false);</span>
+<span class="nc" id="L45">        jComboBoxUser7.setEnabled(false);</span>
+<span class="nc" id="L46">        jComboBoxUser6.setEnabled(false);</span>
+<span class="nc" id="L47">        jComboBoxUser5.setEnabled(false);</span>
 
-<span class="nc bnc" id="L66" title="All 2 branches missed.">        for (int i = 0; i &lt; comboBoxesColor.size(); i++) {</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (i &gt; 0) {</span>
-<span class="nc" id="L68">                comboBoxesColor.get(i).setEnabled(false);</span>
+<span class="nc" id="L49">        comboBoxesColor.add(jComboBoxColor1);</span>
+<span class="nc" id="L50">        comboBoxesColor.add(jComboBoxColor2);</span>
+<span class="nc" id="L51">        comboBoxesColor.add(jComboBoxColor3);</span>
+<span class="nc" id="L52">        comboBoxesColor.add(jComboBoxColor4);</span>
+<span class="nc" id="L53">        comboBoxesColor.add(jComboBoxColor5);</span>
+<span class="nc" id="L54">        comboBoxesColor.add(jComboBoxColor6);</span>
+<span class="nc" id="L55">        comboBoxesColor.add(jComboBoxColor7);</span>
+<span class="nc" id="L56">        comboBoxesColor.add(jComboBoxColor8);</span>
+<span class="nc" id="L57">        String[] colors = {&quot;Green&quot;, &quot;Orange&quot;, &quot;Red&quot;, &quot;Violet&quot;, &quot;Yellow&quot;, &quot;Gray&quot;, &quot;Blue&quot;, &quot;Black&quot;};</span>
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        for (int i = 0; i &lt; comboBoxesColor.size(); i++) {</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (i &gt; 0) {</span>
+<span class="nc" id="L61">                comboBoxesColor.get(i).setEnabled(false);</span>
             }
-<span class="nc bnc" id="L70" title="All 2 branches missed.">            for (int j = 0; j &lt; colors.length; j++) {</span>
-<span class="nc" id="L71">                comboBoxesColor.get(i).addItem(colors[j]);</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            for (int j = 0; j &lt; colors.length; j++) {</span>
+<span class="nc" id="L64">                comboBoxesColor.get(i).addItem(colors[j]);</span>
+            }
+        }
+<span class="nc" id="L67">        comboBoxesUsers.add(jComboBoxUser1);</span>
+<span class="nc" id="L68">        comboBoxesUsers.add(jComboBoxUser2);</span>
+<span class="nc" id="L69">        comboBoxesUsers.add(jComboBoxUser3);</span>
+<span class="nc" id="L70">        comboBoxesUsers.add(jComboBoxUser4);</span>
+<span class="nc" id="L71">        comboBoxesUsers.add(jComboBoxUser5);</span>
+<span class="nc" id="L72">        comboBoxesUsers.add(jComboBoxUser6);</span>
+<span class="nc" id="L73">        comboBoxesUsers.add(jComboBoxUser7);</span>
+<span class="nc" id="L74">        comboBoxesUsers.add(jComboBoxUser8);</span>
+<span class="nc" id="L75">        checkBoxes.add(jCheckBoxUser1);</span>
+<span class="nc" id="L76">        checkBoxes.add(jCheckBoxUser2);</span>
+<span class="nc" id="L77">        checkBoxes.add(jCheckBoxUser3);</span>
+<span class="nc" id="L78">        checkBoxes.add(jCheckBoxUser4);</span>
+<span class="nc" id="L79">        checkBoxes.add(jCheckBoxUser5);</span>
+<span class="nc" id="L80">        checkBoxes.add(jCheckBoxUser6);</span>
+<span class="nc" id="L81">        checkBoxes.add(jCheckBoxUser7);</span>
+<span class="nc" id="L82">        checkBoxes.add(jCheckBoxUser8);</span>
+
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        for (int j = 0; j &lt; comboBoxesUsers.size(); j++) {</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            for (int i = 0; i &lt; dB.getUsers().size(); i++) {</span>
+<span class="nc" id="L86">                comboBoxesUsers.get(j).addItem(dB.getUsers().get(i).getName());</span>
             }
         }
 
-<span class="nc bnc" id="L75" title="All 2 branches missed.">        for (int i = 0; i &lt; dB.getUsers().size(); i++) {</span>
+<span class="nc" id="L90">        this.setLocationRelativeTo(null);</span>
+<span class="nc" id="L91">    }</span>
 
-<span class="nc" id="L77">            jComboBoxUser1.addItem(dB.getUsers().get(i).getName());</span>
-<span class="nc" id="L78">            jComboBoxUser2.addItem(dB.getUsers().get(i).getName());</span>
-<span class="nc" id="L79">            jComboBoxUser3.addItem(dB.getUsers().get(i).getName());</span>
-<span class="nc" id="L80">            jComboBoxUser4.addItem(dB.getUsers().get(i).getName());</span>
-<span class="nc" id="L81">            jComboBoxUser5.addItem(dB.getUsers().get(i).getName());</span>
-<span class="nc" id="L82">            jComboBoxUser6.addItem(dB.getUsers().get(i).getName());</span>
-<span class="nc" id="L83">            jComboBoxUser7.addItem(dB.getUsers().get(i).getName());</span>
-<span class="nc" id="L84">            jComboBoxUser8.addItem(dB.getUsers().get(i).getName());</span>
-
-        }
-
-<span class="nc" id="L88">    }</span>
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings(&quot;unchecked&quot;)
     // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<span class="nc" id="L99">        jPanel1 = new javax.swing.JPanel();</span>
-<span class="nc" id="L100">        jLabel2 = new javax.swing.JLabel();</span>
-<span class="nc" id="L101">        jComboBoxUser1 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L102">        jLabelChoose = new javax.swing.JLabel();</span>
-<span class="nc" id="L103">        jCheckBoxUser1 = new javax.swing.JCheckBox();</span>
-<span class="nc" id="L104">        jCheckBoxUser2 = new javax.swing.JCheckBox();</span>
-<span class="nc" id="L105">        jComboBoxUser2 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L106">        jCheckBoxUser3 = new javax.swing.JCheckBox();</span>
-<span class="nc" id="L107">        jComboBoxUser3 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L108">        jComboBoxUser4 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L109">        jCheckBoxUser4 = new javax.swing.JCheckBox();</span>
-<span class="nc" id="L110">        jCheckBoxUser8 = new javax.swing.JCheckBox();</span>
-<span class="nc" id="L111">        jCheckBoxUser7 = new javax.swing.JCheckBox();</span>
-<span class="nc" id="L112">        jCheckBoxUser6 = new javax.swing.JCheckBox();</span>
-<span class="nc" id="L113">        jCheckBoxUser5 = new javax.swing.JCheckBox();</span>
-<span class="nc" id="L114">        jComboBoxUser8 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L115">        jComboBoxUser7 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L116">        jComboBoxUser6 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L117">        jComboBoxUser5 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L118">        jButtonStart = new javax.swing.JButton();</span>
-<span class="nc" id="L119">        Salir = new javax.swing.JButton();</span>
-<span class="nc" id="L120">        jComboBoxColor1 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L121">        jComboBoxColor2 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L122">        jComboBoxColor3 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L123">        jComboBoxColor4 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L124">        jComboBoxColor5 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L125">        jComboBoxColor6 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L126">        jComboBoxColor7 = new javax.swing.JComboBox&lt;&gt;();</span>
-<span class="nc" id="L127">        jComboBoxColor8 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L97">        jPanel1 = new javax.swing.JPanel();</span>
+<span class="nc" id="L98">        jComboBoxUser1 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L99">        jLabelChoose = new javax.swing.JLabel();</span>
+<span class="nc" id="L100">        jCheckBoxUser1 = new javax.swing.JCheckBox();</span>
+<span class="nc" id="L101">        jCheckBoxUser2 = new javax.swing.JCheckBox();</span>
+<span class="nc" id="L102">        jComboBoxUser2 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L103">        jCheckBoxUser3 = new javax.swing.JCheckBox();</span>
+<span class="nc" id="L104">        jComboBoxUser3 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L105">        jComboBoxUser4 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L106">        jCheckBoxUser4 = new javax.swing.JCheckBox();</span>
+<span class="nc" id="L107">        jCheckBoxUser8 = new javax.swing.JCheckBox();</span>
+<span class="nc" id="L108">        jCheckBoxUser7 = new javax.swing.JCheckBox();</span>
+<span class="nc" id="L109">        jCheckBoxUser6 = new javax.swing.JCheckBox();</span>
+<span class="nc" id="L110">        jCheckBoxUser5 = new javax.swing.JCheckBox();</span>
+<span class="nc" id="L111">        jComboBoxUser8 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L112">        jComboBoxUser7 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L113">        jComboBoxUser6 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L114">        jComboBoxUser5 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L115">        jButtonStart = new javax.swing.JButton();</span>
+<span class="nc" id="L116">        Exit = new javax.swing.JButton();</span>
+<span class="nc" id="L117">        jComboBoxColor1 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L118">        jComboBoxColor2 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L119">        jComboBoxColor3 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L120">        jComboBoxColor4 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L121">        jComboBoxColor5 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L122">        jComboBoxColor6 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L123">        jComboBoxColor7 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L124">        jComboBoxColor8 = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L125">        jLabel1 = new javax.swing.JLabel();</span>
 
-<span class="nc" id="L129">        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</span>
-
-<span class="nc" id="L131">        jPanel1.setBackground(new java.awt.Color(255, 255, 255));</span>
-
-<span class="nc" id="L133">        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/PredefPic/monopolyIlustration.jpg&quot;))); // NOI18N</span>
-
-<span class="nc" id="L135">        jComboBoxUser1.addActionListener(new java.awt.event.ActionListener() {</span>
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="nc" id="L137">                jComboBoxUser1ActionPerformed(evt);</span>
-<span class="nc" id="L138">            }</span>
+<span class="nc" id="L127">        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);</span>
+<span class="nc" id="L128">        addWindowListener(new java.awt.event.WindowAdapter() {</span>
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+<span class="nc" id="L130">                formWindowClosing(evt);</span>
+<span class="nc" id="L131">            }</span>
         });
 
-<span class="nc" id="L141">        jLabelChoose.setText(&quot;Selecciona un usuario:&quot;);</span>
+<span class="nc" id="L134">        jComboBoxUser1.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L136">                jComboBoxUser1ActionPerformed(evt);</span>
+<span class="nc" id="L137">            }</span>
+        });
+
+<span class="nc" id="L140">        jLabelChoose.setFont(new java.awt.Font(&quot;Lucida Grande&quot;, 0, 24)); // NOI18N</span>
+<span class="nc" id="L141">        jLabelChoose.setText(&quot;Select Users&quot;);</span>
 
 <span class="nc" id="L143">        jCheckBoxUser1.setSelected(true);</span>
 <span class="nc" id="L144">        jCheckBoxUser1.addActionListener(new java.awt.event.ActionListener() {</span>
@@ -231,518 +231,395 @@ public class MainMenu extends javax.swing.JFrame {
 <span class="nc" id="L231">            }</span>
         });
 
-<span class="nc" id="L234">        jButtonStart.setText(&quot;Comenzar&quot;);</span>
+<span class="nc" id="L234">        jButtonStart.setText(&quot;Start&quot;);</span>
 <span class="nc" id="L235">        jButtonStart.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 <span class="nc" id="L237">                jButtonStartActionPerformed(evt);</span>
 <span class="nc" id="L238">            }</span>
         });
 
-<span class="nc" id="L241">        Salir.setText(&quot;Salir&quot;);</span>
-<span class="nc" id="L242">        Salir.addActionListener(new java.awt.event.ActionListener() {</span>
+<span class="nc" id="L241">        Exit.setText(&quot;Exit&quot;);</span>
+<span class="nc" id="L242">        Exit.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="nc" id="L244">                SalirActionPerformed(evt);</span>
+<span class="nc" id="L244">                ExitActionPerformed(evt);</span>
 <span class="nc" id="L245">            }</span>
         });
 
-<span class="nc" id="L248">        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);</span>
-<span class="nc" id="L249">        jPanel1.setLayout(jPanel1Layout);</span>
-<span class="nc" id="L250">        jPanel1Layout.setHorizontalGroup(</span>
-<span class="nc" id="L251">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L252">            .addGroup(jPanel1Layout.createSequentialGroup()</span>
-<span class="nc" id="L253">                .addContainerGap()</span>
-<span class="nc" id="L254">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
-<span class="nc" id="L255">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
-<span class="nc" id="L256">                        .addComponent(jLabel2)</span>
-<span class="nc" id="L257">                        .addGap(0, 0, Short.MAX_VALUE))</span>
-<span class="nc" id="L258">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
-<span class="nc" id="L259">                        .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L260">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L261">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L262">                            .addGroup(jPanel1Layout.createSequentialGroup()</span>
-<span class="nc" id="L263">                                .addComponent(jComboBoxUser8, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L264">                                .addGap(48, 48, 48))</span>
-<span class="nc" id="L265">                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()</span>
-<span class="nc" id="L266">                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
-<span class="nc" id="L267">                                    .addComponent(jLabelChoose)</span>
-<span class="nc" id="L268">                                    .addComponent(jComboBoxUser1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L269">                                    .addComponent(jComboBoxUser2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L270">                                    .addComponent(jComboBoxUser3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L271">                                    .addComponent(jComboBoxUser4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L272">                                    .addComponent(jComboBoxUser5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L273">                                    .addComponent(jComboBoxUser6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L274">                                    .addComponent(jComboBoxUser7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
-<span class="nc" id="L275">                                .addGap(27, 27, 27)</span>
-<span class="nc" id="L276">                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L277">                                    .addComponent(jCheckBoxUser1)</span>
-<span class="nc" id="L278">                                    .addComponent(jCheckBoxUser2)</span>
-<span class="nc" id="L279">                                    .addComponent(jCheckBoxUser3)</span>
-<span class="nc" id="L280">                                    .addComponent(jCheckBoxUser4)</span>
-<span class="nc" id="L281">                                    .addComponent(jCheckBoxUser5)</span>
-<span class="nc" id="L282">                                    .addComponent(jCheckBoxUser6)</span>
-<span class="nc" id="L283">                                    .addComponent(jCheckBoxUser7)</span>
-<span class="nc" id="L284">                                    .addComponent(jCheckBoxUser8))))</span>
-<span class="nc" id="L285">                        .addGap(26, 26, 26)</span>
-<span class="nc" id="L286">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
-<span class="nc" id="L287">                            .addComponent(jComboBoxColor2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L288">                            .addComponent(jComboBoxColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L289">                            .addComponent(jComboBoxColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L290">                            .addComponent(jComboBoxColor4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L291">                            .addComponent(jComboBoxColor5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L292">                            .addComponent(jComboBoxColor6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L293">                            .addComponent(jComboBoxColor7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L294">                            .addComponent(jComboBoxColor8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
-<span class="nc" id="L295">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L296">                        .addComponent(jButtonStart)</span>
-<span class="nc" id="L297">                        .addGap(36, 36, 36))))</span>
+<span class="nc" id="L248">        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/PredefPic/Monpoly_users.png&quot;))); // NOI18N</span>
+
+<span class="nc" id="L250">        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);</span>
+<span class="nc" id="L251">        jPanel1.setLayout(jPanel1Layout);</span>
+<span class="nc" id="L252">        jPanel1Layout.setHorizontalGroup(</span>
+<span class="nc" id="L253">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L254">            .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L255">                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L256">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L257">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L258">                    .addComponent(jLabelChoose)</span>
+<span class="nc" id="L259">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L260">                        .addComponent(jCheckBoxUser1)</span>
+<span class="nc" id="L261">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L262">                        .addComponent(jComboBoxUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L263">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L264">                        .addComponent(jComboBoxColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L265">                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L266">                        .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L267">                            .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L268">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L269">                            .addComponent(jButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L270">                        .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L271">                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L272">                                .addComponent(jCheckBoxUser2)</span>
+<span class="nc" id="L273">                                .addComponent(jCheckBoxUser3)</span>
+<span class="nc" id="L274">                                .addComponent(jCheckBoxUser4)</span>
+<span class="nc" id="L275">                                .addComponent(jCheckBoxUser5)</span>
+<span class="nc" id="L276">                                .addComponent(jCheckBoxUser6)</span>
+<span class="nc" id="L277">                                .addComponent(jCheckBoxUser7)</span>
+<span class="nc" id="L278">                                .addComponent(jCheckBoxUser8))</span>
+<span class="nc" id="L279">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L280">                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L281">                                .addComponent(jComboBoxUser8, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L282">                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L283">                                    .addComponent(jComboBoxUser2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L284">                                    .addComponent(jComboBoxUser3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L285">                                    .addComponent(jComboBoxUser4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L286">                                    .addComponent(jComboBoxUser5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L287">                                    .addComponent(jComboBoxUser6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L288">                                    .addComponent(jComboBoxUser7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L289">                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L290">                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L291">                                .addComponent(jComboBoxColor2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L292">                                .addComponent(jComboBoxColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L293">                                .addComponent(jComboBoxColor4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L294">                                .addComponent(jComboBoxColor5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L295">                                .addComponent(jComboBoxColor6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L296">                                .addComponent(jComboBoxColor7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L297">                                .addComponent(jComboBoxColor8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))</span>
+<span class="nc" id="L298">                .addGap(20, 20, 20))</span>
         );
-<span class="nc" id="L299">        jPanel1Layout.setVerticalGroup(</span>
-<span class="nc" id="L300">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L301">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()</span>
-<span class="nc" id="L302">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L303">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
-<span class="nc" id="L304">                        .addContainerGap()</span>
-<span class="nc" id="L305">                        .addComponent(jLabelChoose)</span>
-<span class="nc" id="L306">                        .addGap(10, 10, 10)</span>
-<span class="nc" id="L307">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L308">                            .addComponent(jComboBoxUser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L309">                            .addComponent(jCheckBoxUser1)</span>
-<span class="nc" id="L310">                            .addComponent(jComboBoxColor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
-<span class="nc" id="L311">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L300">        jPanel1Layout.setVerticalGroup(</span>
+<span class="nc" id="L301">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L302">            .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L303">                .addGap(10, 10, 10)</span>
+<span class="nc" id="L304">                .addComponent(jLabelChoose)</span>
+<span class="nc" id="L305">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L306">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L307">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L308">                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L309">                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</span>
+<span class="nc" id="L310">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L311">                        .addGap(6, 6, 6)</span>
 <span class="nc" id="L312">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L313">                            .addComponent(jComboBoxUser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L314">                            .addComponent(jCheckBoxUser2)</span>
-<span class="nc" id="L315">                            .addComponent(jComboBoxColor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L313">                            .addComponent(jComboBoxUser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L314">                            .addComponent(jComboBoxColor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L315">                            .addComponent(jCheckBoxUser1))</span>
 <span class="nc" id="L316">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
 <span class="nc" id="L317">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L318">                            .addComponent(jComboBoxUser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L319">                            .addComponent(jCheckBoxUser3)</span>
-<span class="nc" id="L320">                            .addComponent(jComboBoxColor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L318">                            .addComponent(jCheckBoxUser2)</span>
+<span class="nc" id="L319">                            .addComponent(jComboBoxUser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L320">                            .addComponent(jComboBoxColor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
 <span class="nc" id="L321">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
 <span class="nc" id="L322">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L323">                            .addComponent(jComboBoxUser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L324">                            .addComponent(jCheckBoxUser4)</span>
-<span class="nc" id="L325">                            .addComponent(jComboBoxColor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L323">                            .addComponent(jCheckBoxUser3)</span>
+<span class="nc" id="L324">                            .addComponent(jComboBoxUser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L325">                            .addComponent(jComboBoxColor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
 <span class="nc" id="L326">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
 <span class="nc" id="L327">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L328">                            .addComponent(jComboBoxUser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L329">                            .addComponent(jCheckBoxUser5)</span>
-<span class="nc" id="L330">                            .addComponent(jComboBoxColor5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L328">                            .addComponent(jCheckBoxUser4)</span>
+<span class="nc" id="L329">                            .addComponent(jComboBoxUser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L330">                            .addComponent(jComboBoxColor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
 <span class="nc" id="L331">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
 <span class="nc" id="L332">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L333">                            .addComponent(jComboBoxUser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L334">                            .addComponent(jCheckBoxUser6)</span>
-<span class="nc" id="L335">                            .addComponent(jComboBoxColor6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L333">                            .addComponent(jCheckBoxUser5)</span>
+<span class="nc" id="L334">                            .addComponent(jComboBoxUser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L335">                            .addComponent(jComboBoxColor5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
 <span class="nc" id="L336">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
 <span class="nc" id="L337">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L338">                            .addComponent(jCheckBoxUser7)</span>
-<span class="nc" id="L339">                            .addComponent(jComboBoxUser7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L340">                            .addComponent(jComboBoxColor7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L338">                            .addComponent(jCheckBoxUser6)</span>
+<span class="nc" id="L339">                            .addComponent(jComboBoxUser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L340">                            .addComponent(jComboBoxColor6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
 <span class="nc" id="L341">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
 <span class="nc" id="L342">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L343">                            .addComponent(jComboBoxUser8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L344">                            .addComponent(jCheckBoxUser8)</span>
-<span class="nc" id="L345">                            .addComponent(jComboBoxColor8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
-<span class="nc" id="L346">                        .addGap(13, 13, 13))</span>
-<span class="nc" id="L347">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
-<span class="nc" id="L348">                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L349">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L350">                            .addComponent(Salir, javax.swing.GroupLayout.Alignment.TRAILING)</span>
-<span class="nc" id="L351">                            .addComponent(jButtonStart, javax.swing.GroupLayout.Alignment.TRAILING))</span>
-<span class="nc" id="L352">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))</span>
-<span class="nc" id="L353">                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L343">                            .addComponent(jCheckBoxUser7)</span>
+<span class="nc" id="L344">                            .addComponent(jComboBoxUser7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L345">                            .addComponent(jComboBoxColor7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L346">                        .addGap(7, 7, 7)</span>
+<span class="nc" id="L347">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L348">                            .addComponent(jComboBoxUser8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L349">                            .addComponent(jComboBoxColor8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L350">                            .addComponent(jCheckBoxUser8))</span>
+<span class="nc" id="L351">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L352">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L353">                            .addComponent(jButtonStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L354">                            .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L355">                        .addGap(0, 6, Short.MAX_VALUE))))</span>
         );
-
-<span class="nc" id="L356">        jLabel2.getAccessibleContext().setAccessibleParent(this);</span>
 
 <span class="nc" id="L358">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
 <span class="nc" id="L359">        getContentPane().setLayout(layout);</span>
 <span class="nc" id="L360">        layout.setHorizontalGroup(</span>
 <span class="nc" id="L361">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L362">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
+<span class="nc" id="L362">            .addGroup(layout.createSequentialGroup()</span>
 <span class="nc" id="L363">                .addContainerGap()</span>
-<span class="nc" id="L364">                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
-<span class="nc" id="L365">                .addContainerGap())</span>
+<span class="nc" id="L364">                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</span>
         );
-<span class="nc" id="L367">        layout.setVerticalGroup(</span>
-<span class="nc" id="L368">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="nc" id="L369">            .addGroup(layout.createSequentialGroup()</span>
-<span class="nc" id="L370">                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
-<span class="nc" id="L371">                .addGap(0, 0, Short.MAX_VALUE))</span>
+<span class="nc" id="L366">        layout.setVerticalGroup(</span>
+<span class="nc" id="L367">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L368">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
         );
 
-<span class="nc" id="L374">        pack();</span>
-<span class="nc" id="L375">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+<span class="nc" id="L371">        pack();</span>
+<span class="nc" id="L372">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+public void checkSelection(ParametersCheckSelection pcs,JComboBox comboBoxColor) {
+<span class="nc" id="L374">        JComboBox comboBox = pcs.getComboBox();</span>
+<span class="nc" id="L375">        ArrayList&lt;User&gt; actualUsers = pcs.getActualUsers();</span>
+<span class="nc" id="L376">        ArrayList&lt;String&gt; names = pcs.getNames();</span>
+<span class="nc" id="L377">        boolean[] repeated = pcs.getRepeated();</span>
+<span class="nc" id="L378">        boolean[] repeatedColors = pcs.getRepeatedColors();</span>
+<span class="nc" id="L379">        ArrayList&lt;String&gt; chosenColors = pcs.getChosenColors();</span>
+<span class="nc" id="L380">        int choseColorIndex = pcs.getChoseColorIndex();</span>
 
+<span class="nc bnc" id="L382" title="All 2 branches missed.">        if (pcs.isSelectedToPlay()) {</span>
+<span class="nc" id="L383">            String actualName = &quot;&quot;;</span>
+<span class="nc bnc" id="L384" title="All 2 branches missed.">            if (!((String) comboBox.getSelectedItem()).equals(&quot;Play as guest&quot;)) {</span>
+<span class="nc" id="L385">                actualName = (String) comboBox.getSelectedItem();</span>
+
+<span class="nc" id="L387">                User ui = dB.getUser((String) comboBox.getSelectedItem());</span>
+<span class="nc" id="L388">                actualUsers.add(ui);</span>
+<span class="nc" id="L389">            } else {</span>
+<span class="nc" id="L390">                actualName = &quot;Guest&quot; + guestsQ;</span>
+<span class="nc" id="L391">                guestsQ++;</span>
+<span class="nc" id="L392">                User ui = null;</span>
+<span class="nc" id="L393">                actualUsers.add(ui);</span>
+            }
+<span class="nc bnc" id="L395" title="All 4 branches missed.">            if (names.contains(actualName) &amp;&amp; !actualName.equals(&quot;Guest&quot; + (guestsQ - 1))) {</span>
+<span class="nc" id="L396">                repeated[names.size()] = true;</span>
+            }
+<span class="nc" id="L398">            names.add(actualName);</span>
+<span class="nc bnc" id="L399" title="All 2 branches missed.">            if (chosenColors.contains((String) comboBoxColor.getSelectedItem())) {</span>
+<span class="nc" id="L400">                repeatedColors[names.size()] = true;</span>
+            }
+<span class="nc" id="L402">            chosenColors.add((String) comboBoxColor.getSelectedItem());</span>
+<span class="nc" id="L403">            choseColorIndex++;</span>
+
+<span class="nc" id="L405">            pcs.setActualUsers(actualUsers);</span>
+<span class="nc" id="L406">            pcs.setNames(names);</span>
+<span class="nc" id="L407">            pcs.setRepeated(repeated);</span>
+<span class="nc" id="L408">            pcs.setRepeatedColors(repeatedColors);</span>
+<span class="nc" id="L409">            pcs.setChosenColors(chosenColors);</span>
+<span class="nc" id="L410">            pcs.setChoseColorIndex(choseColorIndex);</span>
+
+        }
+<span class="nc" id="L413">    }</span>
+
+    public boolean repetitions(ParametersCheckSelection pcs) {
+<span class="nc" id="L416">        boolean[] repeated = pcs.getRepeated();</span>
+<span class="nc" id="L417">        boolean hasRepetitions = false;</span>
+
+<span class="nc" id="L419">        String fstErrorMessage = &quot;The player(s): &quot;;</span>
+<span class="nc" id="L420">        String sndErrorMessage = &quot; are choosing chosen users&quot;;</span>
+<span class="nc bnc" id="L421" title="All 2 branches missed.">        for (int j = 1; j &lt; 9; j++) {</span>
+<span class="nc bnc" id="L422" title="All 2 branches missed.">            if (repeated[j]) {</span>
+<span class="nc bnc" id="L423" title="All 2 branches missed.">                if (hasRepetitions) {</span>
+<span class="nc" id="L424">                    fstErrorMessage += &quot;, &quot;;</span>
+                }
+<span class="nc" id="L426">                fstErrorMessage += j + 1;</span>
+<span class="nc" id="L427">                hasRepetitions = true;</span>
+            }
+        }
+<span class="nc bnc" id="L430" title="All 2 branches missed.">        if (hasRepetitions) {</span>
+<span class="nc" id="L431">            JOptionPane.showMessageDialog(this, fstErrorMessage + sndErrorMessage, &quot;Error&quot;, WIDTH);</span>
+<span class="nc" id="L432">            guestsQ=1;</span>
+        }
+<span class="nc" id="L434">        return hasRepetitions;</span>
+    }
+    public boolean colorRepetitions(ParametersCheckSelection pcs, boolean shouldCheck){
+<span class="nc" id="L437">        boolean colorsAreRepeated = false;</span>
+<span class="nc" id="L438">        boolean[] repeatedColors = pcs.getRepeatedColors();</span>
+<span class="nc" id="L439">        String fstColorErrorMessage = &quot;The player(s): &quot;;</span>
+<span class="nc" id="L440">        String sndColorErrorMessage = &quot; are choosing repeated colors&quot;;</span>
+<span class="nc bnc" id="L441" title="All 2 branches missed.">        for (int j = 0; j &lt; 9; j++) {</span>
+<span class="nc bnc" id="L442" title="All 2 branches missed.">            if (repeatedColors[j]) {</span>
+<span class="nc bnc" id="L443" title="All 2 branches missed.">                if (colorsAreRepeated) {</span>
+<span class="nc" id="L444">                    fstColorErrorMessage += &quot;, &quot;;</span>
+                }
+<span class="nc" id="L446">                fstColorErrorMessage += j;</span>
+<span class="nc" id="L447">                colorsAreRepeated = true;</span>
+            }
+        }
+<span class="nc bnc" id="L450" title="All 4 branches missed.">         if (colorsAreRepeated &amp;&amp; shouldCheck) {</span>
+<span class="nc" id="L451">            JOptionPane.showMessageDialog(this, fstColorErrorMessage + sndColorErrorMessage, &quot;Error&quot;, WIDTH);</span>
+<span class="nc" id="L452">            guestsQ=1;</span>
+        }
+<span class="nc" id="L454">    return colorsAreRepeated;</span>
+    }
     private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
-<span class="nc" id="L378">        User guest = new User();</span>
-<span class="nc" id="L379">        guest.setName(&quot;Jugar como invitado&quot;);</span>
-<span class="nc" id="L380">        boolean isNoneSelected1 = ((String) jComboBoxUser1.getSelectedItem()).equals(guest.getName());</span>
-<span class="nc" id="L381">        boolean isNoneSelected2 = ((String) jComboBoxUser2.getSelectedItem()).equals(guest.getName());</span>
-<span class="nc" id="L382">        boolean isNoneSelected3 = ((String) jComboBoxUser3.getSelectedItem()).equals(guest.getName());</span>
-<span class="nc" id="L383">        boolean isNoneSelected4 = ((String) jComboBoxUser4.getSelectedItem()).equals(guest.getName());</span>
-<span class="nc" id="L384">        boolean isNoneSelected5 = ((String) jComboBoxUser5.getSelectedItem()).equals(guest.getName());</span>
-<span class="nc" id="L385">        boolean isNoneSelected6 = ((String) jComboBoxUser6.getSelectedItem()).equals(guest.getName());</span>
-<span class="nc" id="L386">        boolean isNoneSelected7 = ((String) jComboBoxUser7.getSelectedItem()).equals(guest.getName());</span>
-<span class="nc" id="L387">        boolean isNoneSelected8 = ((String) jComboBoxUser8.getSelectedItem()).equals(guest.getName());</span>
-        //boolean isNoneSelected = isNoneSelected1 || isNoneSelected2 || isNoneSelected3 || isNoneSelected4 || isNoneSelected5 || isNoneSelected6 || isNoneSelected7 || isNoneSelected8;
-<span class="nc" id="L389">        boolean[] repeated = new boolean[9];</span>
-<span class="nc" id="L390">        ArrayList&lt;String&gt; chosenColors = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L391">        int choseColorIndex = 0;</span>
-<span class="nc" id="L392">        boolean[] repeatedColors = {false, false, false, false, false, false, false, false};</span>
-<span class="nc" id="L393">        ArrayList&lt;User&gt; actualUsers = new ArrayList&lt;User&gt;();</span>
-<span class="nc" id="L394">        int i = 1;</span>
-<span class="nc" id="L395">        String actualName = &quot;&quot;;</span>
-<span class="nc" id="L396">        ArrayList&lt;String&gt; names = new ArrayList&lt;String&gt;();</span>
-<span class="nc bnc" id="L397" title="All 2 branches missed.">        if (!((String) jComboBoxUser1.getSelectedItem()).equals(guest.getName())) {</span>
-
-<span class="nc" id="L399">            names.add((String) jComboBoxUser1.getSelectedItem());</span>
-<span class="nc" id="L400">            User ui = dB.getUser((String) jComboBoxUser1.getSelectedItem());</span>
-<span class="nc" id="L401">            actualUsers.add(ui);</span>
-
-<span class="nc" id="L403">        } else {</span>
-<span class="nc" id="L404">            names.add(&quot;Invitado&quot; + i);</span>
-<span class="nc" id="L405">            i++;</span>
-<span class="nc" id="L406">            User ui = null;</span>
-<span class="nc" id="L407">            actualUsers.add(ui);</span>
-
+<span class="nc" id="L457">        ParametersCheckSelection pcs = new ParametersCheckSelection();</span>
+<span class="nc bnc" id="L458" title="All 2 branches missed.">        for (int j = 0; j &lt; comboBoxesUsers.size(); j++) {</span>
+<span class="nc" id="L459">            pcs.setComboBox(comboBoxesUsers.get(j));</span>
+<span class="nc" id="L460">            pcs.setSelectedToPlay(checkBoxes.get(j).isSelected());</span>
+<span class="nc" id="L461">            checkSelection(pcs,comboBoxesColor.get(j));</span>
         }
-<span class="nc" id="L410">        chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());</span>
-<span class="nc" id="L411">        choseColorIndex++;</span>
-<span class="nc bnc" id="L412" title="All 2 branches missed.">        if (jCheckBoxUser2.isSelected()) {</span>
-<span class="nc bnc" id="L413" title="All 2 branches missed.">            if (!((String) jComboBoxUser2.getSelectedItem()).equals(guest.getName())) {</span>
-<span class="nc" id="L414">                actualName = (String) jComboBoxUser2.getSelectedItem();</span>
 
-<span class="nc" id="L416">                User ui = dB.getUser((String) jComboBoxUser2.getSelectedItem());</span>
-<span class="nc" id="L417">                actualUsers.add(ui);</span>
-                //create player2 as user
-<span class="nc" id="L419">            } else {</span>
-<span class="nc" id="L420">                actualName = &quot;Invitado&quot; + i;</span>
-<span class="nc" id="L421">                i++;</span>
-
-<span class="nc" id="L423">                User ui = null;</span>
-<span class="nc" id="L424">                actualUsers.add(ui);</span>
-                //create player2 as guest
+      
+<span class="nc" id="L465">        boolean hasRepetitions = repetitions(pcs);</span>
+        
+        
+<span class="nc bnc" id="L468" title="All 2 branches missed.">        boolean colorsAreRepeated = colorRepetitions(pcs,!hasRepetitions);</span>
+       
+<span class="nc" id="L470">        ArrayList&lt;String&gt; names = pcs.getNames();</span>
+<span class="nc" id="L471">        ArrayList&lt;User&gt; actualUsers = pcs.getActualUsers();</span>
+<span class="nc" id="L472">        ArrayList&lt;String&gt; chosenColors = pcs.getChosenColors();</span>
+        
+<span class="nc bnc" id="L474" title="All 4 branches missed.">        if (!hasRepetitions &amp;&amp; !colorsAreRepeated) {</span>
+<span class="nc" id="L475">            GameMaster master = GameMaster.instance();</span>
+<span class="nc" id="L476">            MainWindow window = new MainWindow(dB,args);</span>
+<span class="nc" id="L477">            GameBoard gameBoard = null;</span>
+<span class="nc bnc" id="L478" title="All 2 branches missed.">        if(args.length &gt; 0) {</span>
+<span class="nc bnc" id="L479" title="All 2 branches missed.">            if(args[0].equals(&quot;test&quot;)) {</span>
+<span class="nc" id="L480">                master.setTestMode(true);</span>
             }
-<span class="nc bnc" id="L427" title="All 4 branches missed.">            if (names.contains(actualName) &amp;&amp; !actualName.equals(&quot;Invitado&quot; + (i - 1))) {</span>
-<span class="nc" id="L428">                repeated[names.size()] = true;</span>
+            try {
+<span class="nc" id="L483">                Class c = Class.forName(args[1]);</span>
+<span class="nc" id="L484">                gameBoard = (GameBoard)c.newInstance();</span>
             }
-<span class="nc" id="L430">            names.add(actualName);</span>
-        }
-<span class="nc bnc" id="L432" title="All 2 branches missed.">        if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {</span>
-<span class="nc" id="L433">            repeatedColors[names.size()] = true;</span>
-        }
-<span class="nc" id="L435">        chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());</span>
-<span class="nc" id="L436">        choseColorIndex++;</span>
-
-<span class="nc bnc" id="L438" title="All 2 branches missed.">        if (jCheckBoxUser3.isSelected()) {</span>
-<span class="nc bnc" id="L439" title="All 2 branches missed.">            if (!((String) jComboBoxUser3.getSelectedItem()).equals(guest.getName())) {</span>
-<span class="nc" id="L440">                actualName = (String) jComboBoxUser3.getSelectedItem();</span>
-
-<span class="nc" id="L442">                User ui = dB.getUser((String) jComboBoxUser3.getSelectedItem());</span>
-<span class="nc" id="L443">                actualUsers.add(ui);</span>
-                //create player2 as user
-<span class="nc" id="L445">            } else {</span>
-<span class="nc" id="L446">                actualName = &quot;Invitado&quot; + i;</span>
-<span class="nc" id="L447">                i++;</span>
-
-<span class="nc" id="L449">                User ui = null;</span>
-<span class="nc" id="L450">                actualUsers.add(ui);</span>
-                //create player2 as guest
+<span class="nc" id="L486">            catch (ClassNotFoundException e) {</span>
+<span class="nc" id="L487">                JOptionPane.showMessageDialog(window, &quot;Class Not Found.  Program will exit&quot;);</span>
+<span class="nc" id="L488">                System.exit(0);</span>
             }
-<span class="nc bnc" id="L453" title="All 4 branches missed.">            if (names.contains(actualName) &amp;&amp; !actualName.equals(&quot;Invitado&quot; + (i - 1))) {</span>
-<span class="nc" id="L454">                repeated[names.size()] = true;</span>
+<span class="nc" id="L490">            catch (IllegalAccessException e ) {</span>
+<span class="nc" id="L491">                JOptionPane.showMessageDialog(window, &quot;Illegal Access of Class.  Program will exit&quot;);</span>
+<span class="nc" id="L492">                System.exit(0);</span>
             }
-<span class="nc" id="L456">            names.add(actualName);</span>
+<span class="nc" id="L494">            catch (InstantiationException e) {</span>
+<span class="nc" id="L495">                JOptionPane.showMessageDialog(window, &quot;Class Cannot be Instantiated.  Program will exit&quot;);</span>
+<span class="nc" id="L496">                System.exit(0);</span>
+<span class="nc" id="L497">            }</span>
         }
-<span class="nc bnc" id="L458" title="All 2 branches missed.">        if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {</span>
-<span class="nc" id="L459">            repeatedColors[names.size()] = true;</span>
+        else {
+<span class="nc" id="L500">            gameBoard = new GameBoardFull();</span>
         }
-<span class="nc" id="L461">        chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());</span>
-<span class="nc" id="L462">        choseColorIndex++;</span>
 
-<span class="nc bnc" id="L464" title="All 2 branches missed.">        if (jCheckBoxUser4.isSelected()) {</span>
-<span class="nc bnc" id="L465" title="All 2 branches missed.">            if (!((String) jComboBoxUser4.getSelectedItem()).equals(guest.getName())) {</span>
-<span class="nc" id="L466">                actualName = (String) jComboBoxUser4.getSelectedItem();</span>
+<span class="nc" id="L503">            master.setGameBoard(gameBoard);</span>
+<span class="nc" id="L504">            GameMaster.instance().setNumberOfPlayers(names.size());</span>
 
-<span class="nc" id="L468">                User ui = dB.getUser((String) jComboBoxUser4.getSelectedItem());</span>
-<span class="nc" id="L469">                actualUsers.add(ui);</span>
-                //create player2 as user
-<span class="nc" id="L471">            } else {</span>
-<span class="nc" id="L472">                actualName = &quot;Invitado&quot; + i;</span>
-<span class="nc" id="L473">                i++;</span>
-
-<span class="nc" id="L475">                User ui = null;</span>
-<span class="nc" id="L476">                actualUsers.add(ui);</span>
-                //create player2 as guest
-            }
-<span class="nc bnc" id="L479" title="All 4 branches missed.">            if (names.contains(actualName) &amp;&amp; !actualName.equals(&quot;Invitado&quot; + (i - 1))) {</span>
-<span class="nc" id="L480">                repeated[names.size()] = true;</span>
-            }
-<span class="nc" id="L482">            names.add(actualName);</span>
-        }
-<span class="nc bnc" id="L484" title="All 2 branches missed.">        if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {</span>
-<span class="nc" id="L485">            repeatedColors[names.size()] = true;</span>
-        }
-<span class="nc" id="L487">        chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());</span>
-<span class="nc" id="L488">        choseColorIndex++;</span>
-
-<span class="nc bnc" id="L490" title="All 2 branches missed.">        if (jCheckBoxUser5.isSelected()) {</span>
-<span class="nc bnc" id="L491" title="All 2 branches missed.">            if (!((String) jComboBoxUser5.getSelectedItem()).equals(guest.getName())) {</span>
-<span class="nc" id="L492">                actualName = (String) jComboBoxUser5.getSelectedItem();</span>
-
-<span class="nc" id="L494">                User ui = dB.getUser((String) jComboBoxUser5.getSelectedItem());</span>
-<span class="nc" id="L495">                actualUsers.add(ui);</span>
-                //create player2 as user
-<span class="nc" id="L497">            } else {</span>
-<span class="nc" id="L498">                actualName = &quot;Invitado&quot; + i;</span>
-<span class="nc" id="L499">                i++;</span>
-
-<span class="nc" id="L501">                User ui = null;</span>
-<span class="nc" id="L502">                actualUsers.add(ui);</span>
-                //create player2 as guest
-            }
-<span class="nc bnc" id="L505" title="All 4 branches missed.">            if (names.contains(actualName) &amp;&amp; !actualName.equals(&quot;Invitado&quot; + (i - 1))) {</span>
-<span class="nc" id="L506">                repeated[names.size()] = true;</span>
-            }
-<span class="nc" id="L508">            names.add(actualName);</span>
-        }
-<span class="nc bnc" id="L510" title="All 2 branches missed.">        if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {</span>
-<span class="nc" id="L511">            repeatedColors[names.size()] = true;</span>
-        }
-<span class="nc" id="L513">        chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());</span>
-<span class="nc" id="L514">        choseColorIndex++;</span>
-
-<span class="nc bnc" id="L516" title="All 2 branches missed.">        if (jCheckBoxUser6.isSelected()) {</span>
-<span class="nc bnc" id="L517" title="All 2 branches missed.">            if (!((String) jComboBoxUser6.getSelectedItem()).equals(guest.getName())) {</span>
-<span class="nc" id="L518">                actualName = (String) jComboBoxUser6.getSelectedItem();</span>
-<span class="nc" id="L519">                User ui = dB.getUser((String) jComboBoxUser6.getSelectedItem());</span>
-<span class="nc" id="L520">                actualUsers.add(ui);</span>
-                //create player2 as user
-
-<span class="nc" id="L523">            } else {</span>
-<span class="nc" id="L524">                actualName = &quot;Invitado&quot; + i;</span>
-<span class="nc" id="L525">                i++;</span>
-
-<span class="nc" id="L527">                User ui = null;</span>
-<span class="nc" id="L528">                actualUsers.add(ui);</span>
-                //create player2 as guest
-            }
-<span class="nc bnc" id="L531" title="All 4 branches missed.">            if (names.contains(actualName) &amp;&amp; !actualName.equals(&quot;Invitado&quot; + (i - 1))) {</span>
-<span class="nc" id="L532">                repeated[names.size()] = true;</span>
-            }
-<span class="nc" id="L534">            names.add(actualName);</span>
-        }
-<span class="nc bnc" id="L536" title="All 2 branches missed.">        if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {</span>
-<span class="nc" id="L537">            repeatedColors[names.size()] = true;</span>
-        }
-<span class="nc" id="L539">        chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());</span>
-<span class="nc" id="L540">        choseColorIndex++;</span>
-
-<span class="nc bnc" id="L542" title="All 2 branches missed.">        if (jCheckBoxUser7.isSelected()) {</span>
-<span class="nc bnc" id="L543" title="All 2 branches missed.">            if (!((String) jComboBoxUser7.getSelectedItem()).equals(guest.getName())) {</span>
-<span class="nc" id="L544">                actualName = (String) jComboBoxUser7.getSelectedItem();</span>
-
-<span class="nc" id="L546">                User ui = dB.getUser((String) jComboBoxUser7.getSelectedItem());</span>
-<span class="nc" id="L547">                actualUsers.add(ui);</span>
-                //create player2 as user
-<span class="nc" id="L549">            } else {</span>
-<span class="nc" id="L550">                actualName = &quot;Invitado&quot; + i;</span>
-<span class="nc" id="L551">                i++;</span>
-
-<span class="nc" id="L553">                User ui = null;</span>
-<span class="nc" id="L554">                actualUsers.add(ui);</span>
-                //create player2 as guest
-            }
-<span class="nc bnc" id="L557" title="All 4 branches missed.">            if (names.contains(actualName) &amp;&amp; !actualName.equals(&quot;Invitado&quot; + (i - 1))) {</span>
-<span class="nc" id="L558">                repeated[names.size()] = true;</span>
-            }
-<span class="nc" id="L560">            names.add(actualName);</span>
-        }
-<span class="nc bnc" id="L562" title="All 2 branches missed.">        if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {</span>
-<span class="nc" id="L563">            repeatedColors[names.size()] = true;</span>
-        }
-<span class="nc" id="L565">        chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());</span>
-<span class="nc" id="L566">        choseColorIndex++;</span>
-
-<span class="nc bnc" id="L568" title="All 2 branches missed.">        if (jCheckBoxUser8.isSelected()) {</span>
-<span class="nc bnc" id="L569" title="All 2 branches missed.">            if (!((String) jComboBoxUser8.getSelectedItem()).equals(guest.getName())) {</span>
-<span class="nc" id="L570">                actualName = (String) jComboBoxUser8.getSelectedItem();</span>
-
-<span class="nc" id="L572">                User ui = dB.getUser((String) jComboBoxUser8.getSelectedItem());</span>
-<span class="nc" id="L573">                actualUsers.add(ui);</span>
-                //create player2 as user
-<span class="nc" id="L575">            } else {</span>
-<span class="nc" id="L576">                actualName = &quot;Invitado&quot; + i;</span>
-<span class="nc" id="L577">                i++;</span>
-
-<span class="nc" id="L579">                User ui = null;</span>
-<span class="nc" id="L580">                actualUsers.add(ui);</span>
-                //create player2 as guest
-            }
-<span class="nc bnc" id="L583" title="All 4 branches missed.">            if (names.contains(actualName) &amp;&amp; !actualName.equals(&quot;Invitado&quot; + (i - 1))) {</span>
-<span class="nc" id="L584">                repeated[names.size()] = true;</span>
-            }
-<span class="nc" id="L586">            names.add(actualName);</span>
-        }
-<span class="nc bnc" id="L588" title="All 2 branches missed.">        if (chosenColors.contains((String) comboBoxesColor.get(choseColorIndex).getSelectedItem())) {</span>
-<span class="nc" id="L589">            repeatedColors[names.size()] = true;</span>
-        }
-<span class="nc" id="L591">        chosenColors.add((String) comboBoxesColor.get(choseColorIndex).getSelectedItem());</span>
-<span class="nc" id="L592">        choseColorIndex++;</span>
-
-<span class="nc" id="L594">        boolean hasRepetitions = false;</span>
-
-<span class="nc" id="L596">        String fstErrorMessage = &quot;El/Los jugadores: &quot;;</span>
-<span class="nc" id="L597">        String sndErrorMessage = &quot; están quieren elegir usuarios ya elegidos&quot;;</span>
-<span class="nc bnc" id="L598" title="All 2 branches missed.">        for (int j = 1; j &lt; 9; j++) {</span>
-<span class="nc bnc" id="L599" title="All 2 branches missed.">            if (repeated[j]) {</span>
-<span class="nc bnc" id="L600" title="All 2 branches missed.">                if (hasRepetitions) {</span>
-<span class="nc" id="L601">                    fstErrorMessage += &quot;, &quot;;</span>
+<span class="nc bnc" id="L506" title="All 2 branches missed.">            for (int j = 0; j &lt; names.size(); j++) {</span>
+<span class="nc" id="L507">                Player pi = GameMaster.instance().getPlayer(j);</span>
+<span class="nc bnc" id="L508" title="All 2 branches missed.">                if (actualUsers.get(j) != null) {</span>
+<span class="nc" id="L509">                    pi.setUser(actualUsers.get(j));</span>
                 }
-<span class="nc" id="L603">                fstErrorMessage += j + 1;</span>
-<span class="nc" id="L604">                hasRepetitions = true;</span>
-            }
-        }
-
-<span class="nc bnc" id="L608" title="All 2 branches missed.">        if (hasRepetitions) {</span>
-<span class="nc" id="L609">            JOptionPane.showMessageDialog(this, fstErrorMessage + sndErrorMessage, &quot;Error&quot;, WIDTH);</span>
-        }
-
-<span class="nc" id="L612">        boolean colorsAreRepeated = false;</span>
-<span class="nc" id="L613">        String fstColorErrorMessage = &quot;The player(s): &quot;;</span>
-<span class="nc" id="L614">        String sndColorErrorMessage = &quot; are choosing repeated colors&quot;;</span>
-<span class="nc bnc" id="L615" title="All 2 branches missed.">        for (int j = 0; j &lt; 8; j++) {</span>
-<span class="nc bnc" id="L616" title="All 2 branches missed.">            if (repeatedColors[j]) {</span>
-<span class="nc bnc" id="L617" title="All 2 branches missed.">                if (colorsAreRepeated) {</span>
-<span class="nc" id="L618">                    fstColorErrorMessage += &quot;, &quot;;</span>
-                }
-<span class="nc" id="L620">                fstColorErrorMessage += j;</span>
-<span class="nc" id="L621">                colorsAreRepeated = true;</span>
-            }
-        }
-<span class="nc bnc" id="L624" title="All 2 branches missed.">        if (colorsAreRepeated) {</span>
-<span class="nc" id="L625">            JOptionPane.showMessageDialog(this, fstColorErrorMessage + sndColorErrorMessage, &quot;Error&quot;, WIDTH);</span>
-        }
-<span class="nc bnc" id="L627" title="All 4 branches missed.">        if (!hasRepetitions &amp;&amp; !colorsAreRepeated) {</span>
-<span class="nc" id="L628">            GameMaster master = GameMaster.instance();</span>
-<span class="nc" id="L629">            MainWindow window = new MainWindow();</span>
-<span class="nc" id="L630">            GameBoard gameBoard = new GameBoardFull();</span>
-
-<span class="nc" id="L632">            master.setGameBoard(gameBoard);</span>
-<span class="nc" id="L633">            GameMaster.instance().setNumberOfPlayers(names.size());</span>
-
-<span class="nc bnc" id="L635" title="All 2 branches missed.">            for (int j = 0; j &lt; names.size(); j++) {</span>
-<span class="nc" id="L636">                Player pi = GameMaster.instance().getPlayer(j);</span>
-<span class="nc bnc" id="L637" title="All 2 branches missed.">                if (actualUsers.get(j) != null) {</span>
-<span class="nc" id="L638">                    pi.setBelongsToUser(actualUsers.get(j));</span>
-                }
-<span class="nc" id="L640">                pi.setName(names.get(j));</span>
+<span class="nc" id="L511">                pi.setName(names.get(j));</span>
+<span class="nc" id="L512">                pi.setColor(chosenColors.get(j));</span>
 
             }
-<span class="nc" id="L643">            window.setupGameBoard(gameBoard);</span>
-<span class="nc" id="L644">            window.show();</span>
-<span class="nc" id="L645">            master.setGUI(window);</span>
-<span class="nc" id="L646">            master.startGame();</span>
-<span class="nc" id="L647">            this.setVisible(false);</span>
+<span class="nc" id="L515">            window.setupGameBoard(gameBoard);</span>
+<span class="nc" id="L516">            window.show();</span>
+<span class="nc" id="L517">            master.setGUI(window);</span>
+<span class="nc" id="L518">            master.startGame();</span>
+<span class="nc" id="L519">            this.setVisible(false);</span>
         }
 
-<span class="nc" id="L650">    }//GEN-LAST:event_jButtonStartActionPerformed</span>
+<span class="nc" id="L522">    }//GEN-LAST:event_jButtonStartActionPerformed</span>
 
     private void jComboBoxUser5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUser5ActionPerformed
 
-<span class="nc" id="L654">    }//GEN-LAST:event_jComboBoxUser5ActionPerformed</span>
+<span class="nc" id="L526">    }//GEN-LAST:event_jComboBoxUser5ActionPerformed</span>
 
     private void jComboBoxUser6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUser6ActionPerformed
 
-<span class="nc" id="L658">    }//GEN-LAST:event_jComboBoxUser6ActionPerformed</span>
+<span class="nc" id="L530">    }//GEN-LAST:event_jComboBoxUser6ActionPerformed</span>
 
     private void jComboBoxUser7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUser7ActionPerformed
 
-<span class="nc" id="L662">    }//GEN-LAST:event_jComboBoxUser7ActionPerformed</span>
+<span class="nc" id="L534">    }//GEN-LAST:event_jComboBoxUser7ActionPerformed</span>
 
     private void jComboBoxUser8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUser8ActionPerformed
 
-<span class="nc" id="L666">    }//GEN-LAST:event_jComboBoxUser8ActionPerformed</span>
+<span class="nc" id="L538">    }//GEN-LAST:event_jComboBoxUser8ActionPerformed</span>
 
     private void jCheckBoxUser5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUser5ActionPerformed
-<span class="nc" id="L669">        boolean isEnable = jCheckBoxUser5.isSelected();</span>
-<span class="nc" id="L670">        jComboBoxUser5.setEnabled(isEnable);</span>
-<span class="nc" id="L671">        comboBoxesColor.get(4).setEnabled(isEnable);</span>
+<span class="nc" id="L541">        boolean isEnable = jCheckBoxUser5.isSelected();</span>
+<span class="nc" id="L542">        jComboBoxUser5.setEnabled(isEnable);</span>
+<span class="nc" id="L543">        comboBoxesColor.get(4).setEnabled(isEnable);</span>
 
-<span class="nc" id="L673">    }//GEN-LAST:event_jCheckBoxUser5ActionPerformed</span>
+<span class="nc" id="L545">    }//GEN-LAST:event_jCheckBoxUser5ActionPerformed</span>
 
     private void jCheckBoxUser6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUser6ActionPerformed
-<span class="nc" id="L676">        boolean isEnable = jCheckBoxUser6.isSelected();</span>
-<span class="nc" id="L677">        jComboBoxUser6.setEnabled(isEnable);</span>
-<span class="nc" id="L678">        comboBoxesColor.get(5).setEnabled(isEnable);</span>
+<span class="nc" id="L548">        boolean isEnable = jCheckBoxUser6.isSelected();</span>
+<span class="nc" id="L549">        jComboBoxUser6.setEnabled(isEnable);</span>
+<span class="nc" id="L550">        comboBoxesColor.get(5).setEnabled(isEnable);</span>
 
-<span class="nc" id="L680">    }//GEN-LAST:event_jCheckBoxUser6ActionPerformed</span>
+<span class="nc" id="L552">    }//GEN-LAST:event_jCheckBoxUser6ActionPerformed</span>
 
     private void jCheckBoxUser7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUser7ActionPerformed
-<span class="nc" id="L683">        boolean isEnable = jCheckBoxUser7.isSelected();</span>
-<span class="nc" id="L684">        jComboBoxUser7.setEnabled(isEnable);</span>
-<span class="nc" id="L685">        comboBoxesColor.get(6).setEnabled(isEnable);</span>
+<span class="nc" id="L555">        boolean isEnable = jCheckBoxUser7.isSelected();</span>
+<span class="nc" id="L556">        jComboBoxUser7.setEnabled(isEnable);</span>
+<span class="nc" id="L557">        comboBoxesColor.get(6).setEnabled(isEnable);</span>
 
-<span class="nc" id="L687">    }//GEN-LAST:event_jCheckBoxUser7ActionPerformed</span>
+<span class="nc" id="L559">    }//GEN-LAST:event_jCheckBoxUser7ActionPerformed</span>
 
     private void jCheckBoxUser8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUser8ActionPerformed
-<span class="nc" id="L690">        boolean isEnable = jCheckBoxUser8.isSelected();</span>
-<span class="nc" id="L691">        jComboBoxUser8.setEnabled(isEnable);</span>
-<span class="nc" id="L692">        comboBoxesColor.get(7).setEnabled(isEnable);</span>
+<span class="nc" id="L562">        boolean isEnable = jCheckBoxUser8.isSelected();</span>
+<span class="nc" id="L563">        jComboBoxUser8.setEnabled(isEnable);</span>
+<span class="nc" id="L564">        comboBoxesColor.get(7).setEnabled(isEnable);</span>
 
-<span class="nc" id="L694">    }//GEN-LAST:event_jCheckBoxUser8ActionPerformed</span>
+<span class="nc" id="L566">    }//GEN-LAST:event_jCheckBoxUser8ActionPerformed</span>
 
     private void jCheckBoxUser4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUser4ActionPerformed
-<span class="nc" id="L697">        boolean isEnable = jCheckBoxUser4.isSelected();</span>
-<span class="nc" id="L698">        jComboBoxUser4.setEnabled(isEnable);</span>
-<span class="nc" id="L699">        comboBoxesColor.get(3).setEnabled(isEnable);</span>
+<span class="nc" id="L569">        boolean isEnable = jCheckBoxUser4.isSelected();</span>
+<span class="nc" id="L570">        jComboBoxUser4.setEnabled(isEnable);</span>
+<span class="nc" id="L571">        comboBoxesColor.get(3).setEnabled(isEnable);</span>
 
-<span class="nc" id="L701">    }//GEN-LAST:event_jCheckBoxUser4ActionPerformed</span>
+<span class="nc" id="L573">    }//GEN-LAST:event_jCheckBoxUser4ActionPerformed</span>
 
     private void jComboBoxUser4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUser4ActionPerformed
 
-<span class="nc" id="L705">    }//GEN-LAST:event_jComboBoxUser4ActionPerformed</span>
+<span class="nc" id="L577">    }//GEN-LAST:event_jComboBoxUser4ActionPerformed</span>
 
     private void jComboBoxUser3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUser3ActionPerformed
 
-<span class="nc" id="L709">    }//GEN-LAST:event_jComboBoxUser3ActionPerformed</span>
+<span class="nc" id="L581">    }//GEN-LAST:event_jComboBoxUser3ActionPerformed</span>
 
     private void jCheckBoxUser3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUser3ActionPerformed
-<span class="nc" id="L712">        boolean isEnable = jCheckBoxUser3.isSelected();</span>
-<span class="nc" id="L713">        jComboBoxUser3.setEnabled(isEnable);</span>
-<span class="nc" id="L714">        comboBoxesColor.get(2).setEnabled(isEnable);</span>
+<span class="nc" id="L584">        boolean isEnable = jCheckBoxUser3.isSelected();</span>
+<span class="nc" id="L585">        jComboBoxUser3.setEnabled(isEnable);</span>
+<span class="nc" id="L586">        comboBoxesColor.get(2).setEnabled(isEnable);</span>
 
-<span class="nc" id="L716">    }//GEN-LAST:event_jCheckBoxUser3ActionPerformed</span>
+<span class="nc" id="L588">    }//GEN-LAST:event_jCheckBoxUser3ActionPerformed</span>
 
     private void jComboBoxUser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUser2ActionPerformed
 
-<span class="nc" id="L720">    }//GEN-LAST:event_jComboBoxUser2ActionPerformed</span>
+<span class="nc" id="L592">    }//GEN-LAST:event_jComboBoxUser2ActionPerformed</span>
 
     private void jCheckBoxUser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUser2ActionPerformed
-<span class="nc" id="L723">        boolean isEnable = jCheckBoxUser2.isSelected();</span>
-<span class="nc" id="L724">        jComboBoxUser2.setEnabled(isEnable);</span>
-<span class="nc" id="L725">        comboBoxesColor.get(1).setEnabled(isEnable);</span>
+<span class="nc" id="L595">        boolean isEnable = jCheckBoxUser2.isSelected();</span>
+<span class="nc" id="L596">        jComboBoxUser2.setEnabled(isEnable);</span>
+<span class="nc" id="L597">        comboBoxesColor.get(1).setEnabled(isEnable);</span>
 
-<span class="nc" id="L727">    }//GEN-LAST:event_jCheckBoxUser2ActionPerformed</span>
+<span class="nc" id="L599">    }//GEN-LAST:event_jCheckBoxUser2ActionPerformed</span>
 
     private void jCheckBoxUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUser1ActionPerformed
-<span class="nc" id="L730">        boolean isEnable = jCheckBoxUser1.isSelected();</span>
-<span class="nc" id="L731">        jComboBoxUser1.setEnabled(isEnable);</span>
+<span class="nc" id="L602">        boolean isEnable = jCheckBoxUser1.isSelected();</span>
+<span class="nc" id="L603">        jComboBoxUser1.setEnabled(isEnable);</span>
 
-<span class="nc" id="L733">    }//GEN-LAST:event_jCheckBoxUser1ActionPerformed</span>
+<span class="nc" id="L605">    }//GEN-LAST:event_jCheckBoxUser1ActionPerformed</span>
 
     private void jComboBoxUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUser1ActionPerformed
 
-<span class="nc" id="L737">    }//GEN-LAST:event_jComboBoxUser1ActionPerformed</span>
+<span class="nc" id="L609">    }//GEN-LAST:event_jComboBoxUser1ActionPerformed</span>
 
-    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-<span class="nc" id="L740">        this.setVisible(false);</span>
-<span class="nc" id="L741">        previous.setVisible(true);</span>
-<span class="nc" id="L742">    }//GEN-LAST:event_SalirActionPerformed</span>
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+<span class="nc" id="L612">        this.setVisible(false);</span>
+<span class="nc" id="L613">        previous.setVisible(true);</span>
+<span class="nc" id="L614">    }//GEN-LAST:event_ExitActionPerformed</span>
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+<span class="nc" id="L617">        this.previous.setVisible(true);</span>
+<span class="nc" id="L618">        this.setVisible(false);</span>
+<span class="nc" id="L619">    }//GEN-LAST:event_formWindowClosing</span>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Salir;
+    private javax.swing.JButton Exit;
     private javax.swing.JButton jButtonStart;
     private javax.swing.JCheckBox jCheckBoxUser1;
     private javax.swing.JCheckBox jCheckBoxUser2;
@@ -768,7 +645,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox&lt;String&gt; jComboBoxUser6;
     private javax.swing.JComboBox&lt;String&gt; jComboBoxUser7;
     private javax.swing.JComboBox&lt;String&gt; jComboBoxUser8;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelChoose;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

@@ -35,25 +35,26 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
 <span class="nc" id="L35">                hide();</span>
 <span class="nc" id="L36">            }</span>
         });
-
+        
 <span class="nc" id="L39">        btnNo.addActionListener(new ActionListener(){</span>
             public void actionPerformed(ActionEvent e) {
 <span class="nc" id="L41">                response = false;</span>
 <span class="nc" id="L42">                hide();</span>
 <span class="nc" id="L43">            }</span>
         });
-    
+        
 <span class="nc" id="L46">        setModal(true);</span>
 <span class="nc" id="L47">        pack();</span>
-<span class="nc" id="L48">    }</span>
-
+<span class="nc" id="L48">        this.setLocationRelativeTo(null);</span>
+<span class="nc" id="L49">    }</span>
+    
     public boolean getResponse() {
-<span class="nc" id="L51">        return response;</span>
+<span class="nc" id="L52">        return response;</span>
     }
     
     public void setDeal(TradeDeal deal) {
-<span class="nc" id="L55">        txtMessage.setText(deal.makeMessage());</span>
-<span class="nc" id="L56">    }</span>
-
+<span class="nc" id="L56">        txtMessage.setText(deal.makeMessage());</span>
+<span class="nc" id="L57">    }</span>
+    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
