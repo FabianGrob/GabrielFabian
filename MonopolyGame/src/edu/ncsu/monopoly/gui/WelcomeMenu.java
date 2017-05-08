@@ -23,7 +23,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonRanking = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabelImage = new javax.swing.JLabel();
 
@@ -50,11 +50,12 @@ public class WelcomeMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jButton3.setText("Ranking");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRanking.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jButtonRanking.setText("Ranking");
+        jButtonRanking.setPreferredSize(new java.awt.Dimension(75, 29));
+        jButtonRanking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonRankingActionPerformed(evt);
             }
         });
 
@@ -87,7 +88,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -101,7 +102,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -145,7 +146,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRankingActionPerformed
         if (dB.getUsers().size()==0) {
             JOptionPane.showMessageDialog(this, "There are not users registered", "Error", WIDTH);
         }else{
@@ -154,7 +155,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         window.setVisible(true);
     }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonRankingActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -180,7 +181,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
                 DataBase dtB = new DataBase();
                 User u = new User();
                 u.setName("Jorge");
-                u.setPicture(new File("/PredefPic/PredefPicture.png"));
+                u.setPicture(new File("src/PredefPic/PredefPicture.png"));
                 dtB.addUser(u);
                 new WelcomeMenu(dtB).setVisible(true);
             }
@@ -190,8 +191,8 @@ public class WelcomeMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonRanking;
     private javax.swing.JLabel jLabelImage;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

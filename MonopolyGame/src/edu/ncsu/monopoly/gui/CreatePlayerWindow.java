@@ -16,7 +16,7 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
         prev = previous;
         dB = dBs;
         user = new User();
-        File playerPicture = new File("/PredefPic/PredefPicture.png");
+        File playerPicture = new File("src/PredefPic/PredefPicture.png");
         user.setPicture(playerPicture);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -47,11 +47,21 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
         });
 
         jButtonCreate.setText("Crear");
+        jButtonCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCreateActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Create player");
 
         Back.setText("Cancelar");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,13 +118,25 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {                                     
-        prev.setVisible(true);
+    private void jButtonAddPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddPictureActionPerformed
+        PictureChooser window = new PictureChooser(this);
         this.setVisible(false);
-    }                                    
+        javax.swing.JFileChooser jFCh = window.getfCh();
+        int returnVal = jFCh.showOpenDialog(null);
+        boolean opened = returnVal != jFCh.CANCEL_OPTION;
+        if (opened) {
+            String path = jFCh.getSelectedFile().getPath();
+            File file = new File(path);
+            user.setPicture(file);
+            
+            
+        } 
+            this.setVisible(true);
 
-    private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {                                              
+                                                  
+    }//GEN-LAST:event_jButtonAddPictureActionPerformed
+
+    private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
         String userName = jTextFieldName.getText();
         user.setName(userName);
         if (userName.length() == 0) {
@@ -133,36 +155,14 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
                     this.setVisible(false);
                 }
             }
-        }
-    }                                             
+        }                                            
+       
+    }//GEN-LAST:event_jButtonCreateActionPerformed
 
-    private void jButtonAddPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddPictureActionPerformed
-        PictureChooser window = new PictureChooser(this);
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        prev.setVisible(true);
         this.setVisible(false);
-        javax.swing.JFileChooser jFCh = window.getfCh();
-        int returnVal = jFCh.showOpenDialog(null);
-        boolean opened = returnVal != jFCh.CANCEL_OPTION;
-        if (opened) {
-            String path = jFCh.getSelectedFile().getPath();
-            File file = new File(path);
-            String name = file.getName();
-            String newName = name.replace(".", "-");
-            String[] fileName = newName.split("-");
-            String extension = fileName[fileName.length - 1].toUpperCase();
-            boolean isValid = extension.equals("JPEG") || extension.equals("JPG") || extension.equals("PNG");
-            if (isValid) {
-                user.setPicture(file);
-                this.setVisible(true);
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Archivo inválido, debe ser jpg, jpeg o png", "Error", 0);
-                this.setVisible(true);
-            }
-        } else {
-            this.setVisible(true);
-
-    }                                                 
-    }//GEN-LAST:event_jButtonAddPictureActionPerformed
+    }//GEN-LAST:event_BackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;

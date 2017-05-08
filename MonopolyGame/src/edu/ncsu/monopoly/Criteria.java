@@ -7,7 +7,7 @@ public class Criteria implements Comparator<User> {
     @Override
     public int compare(User o1, User o2) {
 
-        return o1.getWonGames() - o2.getWonGames();
+        return o2.getWonGames() - o1.getWonGames();
 
     }
 }
