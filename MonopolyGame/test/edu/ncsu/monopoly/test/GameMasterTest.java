@@ -1,12 +1,15 @@
 package edu.ncsu.monopoly.test;
 
+import edu.ncsu.monopoly.Card;
 import edu.ncsu.monopoly.Cell;
+import edu.ncsu.monopoly.GameBoard;
 import java.util.ArrayList;
 
 import edu.ncsu.monopoly.GameMaster;
 import edu.ncsu.monopoly.MonopolyGUI;
 import edu.ncsu.monopoly.Player;
 import edu.ncsu.monopoly.RespondDialog;
+import edu.ncsu.monopoly.TaxiCard;
 import edu.ncsu.monopoly.TradeDeal;
 import edu.ncsu.monopoly.TradeDialog;
 import edu.ncsu.monopoly.test.boardScenarios.GameBoardFull;
@@ -198,6 +201,20 @@ public class GameMasterTest extends TestCase {
         gameMaster.btnEndTurnClicked();
         gameMaster.btnGetOutOfJailClicked();
         assertEquals(gui.isRollDiceButtonEnabled(), true);
+    }
+
+    @Test
+    public void testTaxi() {
+        gameMaster.setNumberOfPlayers(2);
+        GameBoard gb = new GameBoard();
+        TaxiCard tc = new TaxiCard("Journey completed", Card.TYPE_CHANCE);
+        gb.addCard(tc);
+        gameMaster.setGameBoard(gb);
+        Card c = gb.drawChanceCard();
+        c.applyAction(true);
+        gameMaster.btnEndTurnClicked();
+        c.applyAction(true);
+        assertEquals(gameMaster.getPlayer(0).getPosition(), gameMaster.getPlayer(1).getPosition());
     }
 
 }
