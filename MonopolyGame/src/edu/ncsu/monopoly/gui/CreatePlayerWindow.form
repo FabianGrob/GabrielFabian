@@ -98,7 +98,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonAddPicture">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Subir Foto"/>
+            <Property name="text" type="java.lang.String" value="Load picture"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddPictureActionPerformed"/>
@@ -106,7 +106,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonCreate">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Crear"/>
+            <Property name="text" type="java.lang.String" value="Create"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCreateActionPerformed"/>
@@ -122,7 +122,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="Back">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="text" type="java.lang.String" value="Back"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackActionPerformed"/>

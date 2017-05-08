@@ -41,14 +41,14 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
 
         jLabelEnterName.setText("Name:");
 
-        jButtonAddPicture.setText("Subir Foto");
+        jButtonAddPicture.setText("Load picture");
         jButtonAddPicture.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddPictureActionPerformed(evt);
             }
         });
 
-        jButtonCreate.setText("Crear");
+        jButtonCreate.setText("Create");
         jButtonCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCreateActionPerformed(evt);
@@ -58,7 +58,7 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Create player");
 
-        Back.setText("Cancelar");
+        Back.setText("Back");
         Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackActionPerformed(evt);
