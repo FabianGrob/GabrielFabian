@@ -20,6 +20,7 @@ public class DataBase implements Serializable {
         users = new ArrayList<User>();
         User none = new User();
         none.setName("Play as guest");
+        none.setWonGames(9999);
         users.add(none);
     }
     

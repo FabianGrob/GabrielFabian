@@ -18,6 +18,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         User guest = new User();
         guest.setName("Play as guest");
+        guest.setWonGames(9999);
         if (!dB.getUsers().contains(guest)) {
             dB.getUsers().add(guest);
         }

@@ -24,10 +24,10 @@ public class Ranking extends javax.swing.JFrame {
         ArrayList <User>users = dB.getUsers();
         User none = new User();
         none.setName("Play as guest");
-        users.remove(none);
+        //users.remove(none);
         String[] names = new String[users.size()];
         int j =0;
-        for (int i = 0; i < users.size(); i++) {
+        for (int i = 1; i < users.size(); i++) {
             names[j]=users.get(i).getName();
             j++;
         }
