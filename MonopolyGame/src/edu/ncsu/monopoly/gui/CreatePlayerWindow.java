@@ -11,10 +11,12 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
     private User user;
     private DataBase dB;
     private WelcomeMenu prev;
+    private String[] args;
 
-    public CreatePlayerWindow(WelcomeMenu previous, DataBase dBs) {
+    public CreatePlayerWindow(WelcomeMenu previous, DataBase dBs,String[] arg) {
         prev = previous;
         dB = dBs;
+        args=arg;
         user = new User();
         File playerPicture = new File("src/PredefPic/PredefPicture.png");
         user.setPicture(playerPicture);
@@ -150,7 +152,7 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
                 } else {
 
                     dB.addUser(user);
-
+                    prev = new WelcomeMenu(dB,args);
                     prev.setVisible(true);
                     this.setVisible(false);
                 }

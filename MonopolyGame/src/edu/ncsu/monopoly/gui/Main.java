@@ -7,76 +7,33 @@ import edu.ncsu.monopoly.test.boardScenarios.GameBoardFull;
 
 public class Main {
     
-    private static int inputNumberOfPlayers(MainWindow window) {
-        int numPlayers = 0;
-        while(numPlayers <= 0 || numPlayers > GameMaster.MAX_PLAYER) {
-            String numberOfPlayers = JOptionPane.showInputDialog(window, "How many players");
-            if(numberOfPlayers == null) {
-                System.exit(0);
-            }
-            try {
-                numPlayers = Integer.parseInt(numberOfPlayers);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(window, "Please input a number");
-            }
-            if (numPlayers <= 0 || numPlayers > GameMaster.MAX_PLAYER) {
-                JOptionPane.showMessageDialog(window, "Please input a number between one and eight");
-            } else {
-                GameMaster.instance().setNumberOfPlayers(numPlayers);
-            }
-        }
-        return numPlayers;
-    }
-    
     public static void main(String[] args) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         DataBase dB;
         try {
             Serialize ser = new Serialize();
             dB = ser.recuperate();
-            javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception ex) {
             dB = new DataBase();
         }
+        WelcomeMenu window = new WelcomeMenu(dB,args);
+        window.setVisible(true);
         
         
-        GameMaster master = GameMaster.instance();
-        MainWindow window = new MainWindow(dB);
-        GameBoard gameBoard = null;
-        if(args.length > 0) {
-            if(args[0].equals("test")) {
-                master.setTestMode(true);
-            }
-            try {
-                Class c = Class.forName(args[1]);
-                gameBoard = (GameBoard)c.newInstance();
-            }
-            catch (ClassNotFoundException e) {
-                JOptionPane.showMessageDialog(window, "Class Not Found.  Program will exit");
-                System.exit(0);
-            }
-            catch (IllegalAccessException e ) {
-                JOptionPane.showMessageDialog(window, "Illegal Access of Class.  Program will exit");
-                System.exit(0);
-            }
-            catch (InstantiationException e) {
-                JOptionPane.showMessageDialog(window, "Class Cannot be Instantiated.  Program will exit");
-                System.exit(0);
-            }
-        }
-        else {
-            gameBoard = new GameBoardFull();
-        }
-        
-        master.setGameBoard(gameBoard);
-        int numPlayers = inputNumberOfPlayers(window);
-        for(int i = 0; i < numPlayers; i++) {
-            String name =
-                    JOptionPane.showInputDialog(window, "Please input name for Player " + (i+1));
-            GameMaster.instance().getPlayer(i).setName(name);
-        }
-        window.setupGameBoard(gameBoard);
-        window.show();
-        master.setGUI(window);
-        master.startGame();
     }
 }

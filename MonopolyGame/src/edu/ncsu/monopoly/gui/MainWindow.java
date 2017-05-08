@@ -32,13 +32,15 @@ public class MainWindow extends JFrame implements MonopolyGUI{
     JPanel southPanel = new JPanel();
     JPanel westPanel = new JPanel();
     private DataBase dB;
+    private String[] args;
     
-    public MainWindow(DataBase dBs) {
+    public MainWindow(DataBase dBs,String[] arg) {
         northPanel.setBorder(new LineBorder(Color.BLACK));
         southPanel.setBorder(new LineBorder(Color.BLACK));
         westPanel.setBorder(new LineBorder(Color.BLACK));
         eastPanel.setBorder(new LineBorder(Color.BLACK));
         dB = dBs;
+        args=arg;
         Container c = getContentPane();
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
@@ -50,7 +52,7 @@ public class MainWindow extends JFrame implements MonopolyGUI{
         
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
-                WelcomeMenu welcome = new WelcomeMenu(dB);
+                WelcomeMenu welcome = new WelcomeMenu(dB,args);
                 welcome.setVisible(true);
                 dispose();
             }

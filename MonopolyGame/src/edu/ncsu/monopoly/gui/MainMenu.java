@@ -19,12 +19,14 @@ public class MainMenu extends javax.swing.JFrame {
     private WelcomeMenu previous;
     private ArrayList<Player> players;
     private int guestsQ;
+    private String[] args;
 
     private ArrayList<JComboBox> comboBoxesColor;
     private ArrayList<JComboBox> comboBoxesUsers;
     private ArrayList<JCheckBox> checkBoxes;
 
-    public MainMenu(DataBase dBs, WelcomeMenu prev) {
+    public MainMenu(DataBase dBs, WelcomeMenu prev,String[] arg) {
+        args= arg;
         comboBoxesColor = new ArrayList<JComboBox>();
         comboBoxesUsers = new ArrayList<JComboBox>();
         checkBoxes = new ArrayList<JCheckBox>();
@@ -471,8 +473,32 @@ public void checkSelection(ParametersCheckSelection pcs,JComboBox comboBoxColor)
         
         if (!hasRepetitions && !colorsAreRepeated) {
             GameMaster master = GameMaster.instance();
-            MainWindow window = new MainWindow(dB);
-            GameBoard gameBoard = new GameBoardFull();
+            MainWindow window = new MainWindow(dB,args);
+            GameBoard gameBoard = null;
+        if(args.length > 0) {
+            if(args[0].equals("test")) {
+                master.setTestMode(true);
+            }
+            try {
+                Class c = Class.forName(args[1]);
+                gameBoard = (GameBoard)c.newInstance();
+            }
+            catch (ClassNotFoundException e) {
+                JOptionPane.showMessageDialog(window, "Class Not Found.  Program will exit");
+                System.exit(0);
+            }
+            catch (IllegalAccessException e ) {
+                JOptionPane.showMessageDialog(window, "Illegal Access of Class.  Program will exit");
+                System.exit(0);
+            }
+            catch (InstantiationException e) {
+                JOptionPane.showMessageDialog(window, "Class Cannot be Instantiated.  Program will exit");
+                System.exit(0);
+            }
+        }
+        else {
+            gameBoard = new GameBoardFull();
+        }
 
             master.setGameBoard(gameBoard);
             GameMaster.instance().setNumberOfPlayers(names.size());

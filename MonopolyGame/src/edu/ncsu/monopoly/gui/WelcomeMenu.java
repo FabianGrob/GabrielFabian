@@ -9,8 +9,10 @@ import javax.swing.JOptionPane;
 
 public class WelcomeMenu extends javax.swing.JFrame {
     private DataBase dB;
+    private String[] args;
 
-    public WelcomeMenu(DataBase dBs) {
+    public WelcomeMenu(DataBase dBs,String[] arg) {
+        args= arg;
         initComponents();
         dB=dBs;
         this.setLocationRelativeTo(null);
@@ -126,13 +128,13 @@ public class WelcomeMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MainMenu window= new MainMenu(dB,this);
+        MainMenu window= new MainMenu(dB,this,args);
         this.setVisible(false);
         window.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        CreatePlayerWindow window = new CreatePlayerWindow(this,dB);
+        CreatePlayerWindow window = new CreatePlayerWindow(this,dB,args);
         this.setVisible(false);
         window.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -165,7 +167,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         ser.serializer(dB);
         System.exit(0);
     }//GEN-LAST:event_formWindowClosed
-
+/*
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -192,11 +194,11 @@ public class WelcomeMenu extends javax.swing.JFrame {
                 u.setName("Jorge");
                 u.setPicture(new File("src/PredefPic/PredefPicture.png"));
                 dtB.addUser(u);
-                new WelcomeMenu(dtB).setVisible(true);
+                new WelcomeMenu(dtB,args).setVisible(true);
             }
         });
     }
-
+*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

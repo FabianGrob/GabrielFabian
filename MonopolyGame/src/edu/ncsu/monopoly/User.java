@@ -6,12 +6,13 @@
 package edu.ncsu.monopoly;
 
 import java.io.File;
+import java.io.Serializable;
 
 /**
  *
  * @author Fabian
  */
-public class User {
+public class User implements Serializable {
 
     private String name;
     private File picture;
