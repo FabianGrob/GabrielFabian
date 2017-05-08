@@ -21,7 +21,7 @@ public class User implements Serializable {
 
     public User() {
         name = "Not name asigned yet";
-        picture = null;
+        picture = new File("src/PredefPic/PredefPicture.png");
         playedGames = 0;
         wonGames = 0;
     }

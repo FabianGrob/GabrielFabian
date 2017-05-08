@@ -13,7 +13,6 @@ public class Player implements Serializable{
     private boolean inJail;
     private int money;
     private String name;
-    private File picture;
     private Cell position;
     private ArrayList properties = new ArrayList();
     private ArrayList railroads = new ArrayList();
@@ -38,14 +37,6 @@ public class Player implements Serializable{
     
     public void setUser(User belongs) {
         user = belongs;
-    }
-    
-    public File getPicture() {
-        return picture;
-    }
-    
-    public void setPicture(File pic) {
-        picture = pic;
     }
 
     public String getColor() {

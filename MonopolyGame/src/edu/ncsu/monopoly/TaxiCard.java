@@ -30,6 +30,14 @@ public class TaxiCard extends Card {
         GameMaster.instance().movePlayer(currentPlayer, move);
     }
     
+    public void applyAction(boolean test) {
+        if(test){
+            int move = 1;
+            Player currentPlayer = GameMaster.instance().getCurrentPlayer();
+            GameMaster.instance().movePlayer(currentPlayer, move);
+        }
+    }
+    
     public int getCardType() {
         return this.cardType;
     }
