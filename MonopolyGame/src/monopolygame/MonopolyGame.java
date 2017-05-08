@@ -38,11 +38,7 @@ public class MonopolyGame {
         } catch (Exception ex) {
             dB = new DataBase();
         }
-        User guest = new User();
-        guest.setName("Play as guest");
-        if (!dB.getUsers().contains(guest)) {
-            dB.getUsers().add(guest);
-        }
+       
         WelcomeMenu window = new WelcomeMenu(dB,args);
         window.setVisible(true);
     }

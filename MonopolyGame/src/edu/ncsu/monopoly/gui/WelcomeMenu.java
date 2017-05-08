@@ -10,14 +10,22 @@ import javax.swing.JOptionPane;
 public class WelcomeMenu extends javax.swing.JFrame {
     private DataBase dB;
     private String[] args;
-
+    
     public WelcomeMenu(DataBase dBs,String[] arg) {
         args= arg;
         initComponents();
         dB=dBs;
         this.setLocationRelativeTo(null);
+        User guest = new User();
+        guest.setName("Play as guest");
+        if (!dB.getUsers().contains(guest)) {
+            dB.getUsers().add(guest);
+        }
+        if(dB.getUsers().size() < 2){
+            jButtonRanking.setEnabled(false);
+        }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -155,50 +163,50 @@ public class WelcomeMenu extends javax.swing.JFrame {
         if (dB.getUsers().size()==0) {
             JOptionPane.showMessageDialog(this, "There are not users registered", "Error", WIDTH);
         }else{
-        Ranking window = new Ranking(dB, this);
-        this.setVisible(false);
-        window.setVisible(true);
-    }
+            Ranking window = new Ranking(this.dB, this, this.args);
+            this.setVisible(false);
+            window.setVisible(true);
+        }
 
     }//GEN-LAST:event_jButtonRankingActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-       Serialize ser = new Serialize();
+        Serialize ser = new Serialize();
         ser.serializer(dB);
         System.exit(0);
     }//GEN-LAST:event_formWindowClosed
-/*
+    /*
     public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                DataBase dtB = new DataBase();
-                User u = new User();
-                u.setName("Jorge");
-                u.setPicture(new File("src/PredefPic/PredefPicture.png"));
-                dtB.addUser(u);
-                new WelcomeMenu(dtB,args).setVisible(true);
-            }
-        });
+    try {
+    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+    if ("Nimbus".equals(info.getName())) {
+    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+    break;
     }
-*/
+    }
+    } catch (ClassNotFoundException ex) {
+    java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+    java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+    java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+    java.util.logging.Logger.getLogger(WelcomeMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    
+    
+    java.awt.EventQueue.invokeLater(new Runnable() {
+    public void run() {
+    DataBase dtB = new DataBase();
+    User u = new User();
+    u.setName("Jorge");
+    u.setPicture(new File("src/PredefPic/PredefPicture.png"));
+    dtB.addUser(u);
+    new WelcomeMenu(dtB,args).setVisible(true);
+    }
+    });
+    }
+    */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

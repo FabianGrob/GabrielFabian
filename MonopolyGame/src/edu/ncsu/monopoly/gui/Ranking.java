@@ -9,18 +9,19 @@ import java.util.Collections;
 import javax.swing.ImageIcon;
 
 public class Ranking extends javax.swing.JFrame {
-
+    
     private DataBase dB;
     private WelcomeMenu previous;
-
-    public Ranking(DataBase dBs, WelcomeMenu prev) {
+    private String [] args;
+    public Ranking(DataBase dBs, WelcomeMenu prev, String [] arg) {
         initComponents();
         dB = dBs;
         previous = prev;
+        this.args = arg;
         jLabelTrophy.setVisible(false);
         jListUsers.removeAll();
         Collections.sort(dB.getUsers(), new Criteria());
-        ArrayList <User>users = dB.getUsers(); 
+        ArrayList <User>users = dB.getUsers();
         User none = new User();
         none.setName("Play as guest");
         users.remove(none);
@@ -39,7 +40,7 @@ public class Ranking extends javax.swing.JFrame {
         jLabelTrophy.setIcon(imageicon);
         this.setLocationRelativeTo(null);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -56,7 +57,12 @@ public class Ranking extends javax.swing.JFrame {
         jLabelRank = new javax.swing.JLabel();
         jLabelTrophy = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabelPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PredefPic/predefPic.png"))); // NOI18N
         jLabelPicture.setBorder(new javax.swing.border.MatteBorder(null));
@@ -165,7 +171,8 @@ public class Ranking extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        previous.setVisible(true);
+        WelcomeMenu welcome = new WelcomeMenu(dB, this.args);
+        welcome.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonBackActionPerformed
 
@@ -178,7 +185,7 @@ public class Ranking extends javax.swing.JFrame {
         if (jListUsers.getSelectedIndex()==0) {
             jLabelTrophy.setVisible(true);
         }else{
-        jLabelTrophy.setVisible(false);
+            jLabelTrophy.setVisible(false);
         }
         String path = selectedUser.getPicture().getPath();
         ImageIcon imgThisImg = new javax.swing.ImageIcon(path);
@@ -186,8 +193,14 @@ public class Ranking extends javax.swing.JFrame {
         Image img= image.getScaledInstance(99, 99,java.awt.Image.SCALE_DEFAULT);
         ImageIcon imageicon = new ImageIcon(img);
         jLabelPicture.setIcon(imageicon);
-        //jLabelPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource(selectedUser.getPicture().getPath())));   
     }//GEN-LAST:event_jListUsersValueChanged
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        WelcomeMenu welcome = new WelcomeMenu(dB, this.args);
+        welcome.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_formWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
     private javax.swing.JLabel jLabel1;
