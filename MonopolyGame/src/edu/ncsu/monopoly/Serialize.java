@@ -35,7 +35,7 @@ public class Serialize {
     }
 
     public DataBase recuperate() throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream ff = new FileInputStream("archivo");
+        FileInputStream ff = new FileInputStream("archive");
         BufferedInputStream bb = new BufferedInputStream(ff);
         ObjectInputStream ss = new ObjectInputStream(bb);
 

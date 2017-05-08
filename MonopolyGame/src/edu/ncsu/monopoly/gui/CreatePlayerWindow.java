@@ -7,12 +7,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class CreatePlayerWindow extends javax.swing.JFrame {
-
+    
     private User user;
     private DataBase dB;
     private WelcomeMenu prev;
     private String[] args;
-
+    
     public CreatePlayerWindow(WelcomeMenu previous, DataBase dBs,String[] arg) {
         prev = previous;
         dB = dBs;
@@ -23,7 +23,7 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -132,10 +132,10 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
             user.setPicture(file);
             
             
-        } 
-            this.setVisible(true);
-
-                                                  
+        }
+        this.setVisible(true);
+        
+        
     }//GEN-LAST:event_jButtonAddPictureActionPerformed
 
     private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
@@ -150,15 +150,15 @@ public class CreatePlayerWindow extends javax.swing.JFrame {
                 if (dB.alreadyExists(user)) {
                     JOptionPane.showMessageDialog(this, "An user with that name already exists", "Error", WIDTH);
                 } else {
-
+                    JOptionPane.showMessageDialog(this, "User created!");
                     dB.addUser(user);
                     prev = new WelcomeMenu(dB,args);
                     prev.setVisible(true);
                     this.setVisible(false);
                 }
             }
-        }                                            
-       
+        }
+        
     }//GEN-LAST:event_jButtonCreateActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
